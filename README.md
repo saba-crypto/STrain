@@ -1,59 +1,45 @@
-# Railsaba
+# STrain
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.14.
+STrain Represents one of the **Fastest**, **Modern**, **Scalable**, **Maintainable** FrontEnd Application I'm Currently Developing.
 
-## Development server
+## About Project
 
-To start a local development server, run:
+in This Project You Will be Able to Book Specific Seat(s) in a Specific Train Coach.  
+You Can Create, Modify, Delete Train Booking and so Much More.
+Project Communicated with REST API Backend
 
-```bash
-ng serve
-```
+## Technologies Used
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Core Technologies
 
-## Code scaffolding
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" width="18" height="18" /> Angular 21
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rxjs/rxjs-original.svg" width="18" height="18" /> RxJS
 
-```bash
-ng generate component component-name
-```
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" width="18" height="18" /> Typescript
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg" width="18" height="18" /> SASS(scss)
 
-```bash
-ng generate --help
-```
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" width="18" height="18" /> HTML5
 
-## Building
+### Development Tools
 
-To build the project run:
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" width="18" height="18" /> git
 
-```bash
-ng build
-```
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" width="18" height="18"/> github
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- <img src="https://icons.iconarchive.com/icons/simpleicons-team/simple/128/prettier-icon.png" width="18" height="18"> Prettier
 
-## Running unit tests
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg"  width="18" height="18" /> ESLint
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg" width="18" height="18" /> npm
 
-```bash
-ng test
-```
+## My Priorities
 
-## Running end-to-end tests
+1. excellent User Experience
+2. Maintainable and Scalable Code
+3. Optimization
 
-For end-to-end (e2e) testing, run:
+//placeholder
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **do not touch or modify /node_modules, /.angular, /.vscode or any documentation file(.md)**
