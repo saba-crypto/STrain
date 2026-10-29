@@ -1,0 +1,68 @@
+//colors(mainly used as background colors)
+$bg-clr: #0d1226;
+
+$primary-clr: #1e2840;
+$primary-hover-clr: #1a2235;
+
+$secondary-clr: #0d1226;
+
+$accent-clr: #c9a84c;
+$accent-clr-hover: #d4b568;
+$faded-accent-clr: #d4b56898;
+
+$success-clr: #1db954;
+$faded-success-clr: #1db95498;
+
+$error-clr: #e05c5c;
+$faded-error-clr: #e05c5c98;
+
+//borders
+$primary-border-clr: #2a3350;
+$secondary-border-clr: #c9a84c;
+$optional-border-clr: #c9a84c4d;
+
+$radiusM: 8px;
+$radiusL: 16px;
+$radiusXL: 24px;
+$radius-full: 999px;
+
+//shadows
+$shadowXL: 0 16px 32px 0 rgba(0, 0, 0, 0.5);
+$shadow-button-hover: 0 6px 20px rgba(201, 168, 76, 0.45);
+
+//fonts
+$primary-font: sagoe;
+
+$primary-font-clr: #c9a84c;
+$secondary-font-clr: #f0e6c8;
+$tertiary-font-clr: #0a0e1a;
+$faded-tertiary-font-clr: #4a4535;
+$quaternary-font-clr: #8a7f65;
+$optional-font-clr: #b8a882;
+
+$font-sizeXXXL: clamp(2.5rem, 12vw + 0.3rem, 6.5rem);
+$font-sizeXXL: clamp(2rem, 7vw + 0.3rem, 5.1rem);
+$font-sizeXL: clamp(1.7rem, 5vw + 0.3rem, 3.9rem);
+$font-sizeL: clamp(1.4rem, 3vw + 0.3rem, 2.3rem);
+$font-sizeM: clamp(1rem, 1.5vw + 0.3rem, 1.4rem);
+$font-sizeS: clamp(0.8rem, 1.3vw + 0.2rem, 1.1rem);
+$font-sizeXS: clamp(0.7rem, 1.2vw + 0.2rem, 0.8rem);
+$font-sizeXXS: clamp(0.6rem, 1.1vw + 0.15rem, 0.7rem);
+
+//paddingss
+$paddingXXS: min(3px, 0.8vw);
+$paddingXS: min(5px, 1vw);
+$paddingS: min(10px, 2vw);
+$paddingM: min(15px, 2.5vw);
+$paddingL: min(20px, 3vw);
+$paddingXL: min(30px, 4vw);
+$padding2XL: min(50px, 6vw);
+$padding3XL: min(100px, 8vw);
+$padding4XL: min(130px, 10vw);
+
+//breakpoints
+$breakpointXXL: 1260px;
+$breakpointXL: 1024px;
+$breakpointL: 900px;
+$breakpointM: 767px;
+$breakpointS: 650px;

@@ -1,0 +1,5 @@
+@use './variables' as vars;
+html {
+  font-family: vars.$primary-font;
+  background-color: vars.$bg-clr;
+}

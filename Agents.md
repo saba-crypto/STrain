@@ -22,6 +22,7 @@ goal for this project is to recreate already created application as close as pos
 - use Observables and async pipes when working with backend APIs.
 - read Architecture.md and follow conventions written there
 - I don't want you to make any git commits or git push, this job is only for owner of this project.
+- **do not touch or modify /node_modules, /.angular, /.vscode or any documentation file(.md)**
 
 ## Useful information and links you might need
 

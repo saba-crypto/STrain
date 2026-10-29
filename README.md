@@ -39,7 +39,3 @@ Project Communicated with REST API Backend
 1. excellent User Experience
 2. Maintainable and Scalable Code
 3. Optimization
-
-//placeholder
-
-- **do not touch or modify /node_modules, /.angular, /.vscode or any documentation file(.md)**
