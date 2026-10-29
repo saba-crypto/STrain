@@ -1,0 +1,39 @@
+@use '../../../../styles/index' as *;
+.default-btn {
+  @include flexbox(row, center, center, 10px);
+  background-color: $accent-clr;
+  border: none;
+  transition-duration: 0.25s;
+  &:hover {
+    cursor: pointer;
+    background-color: $accent-clr-hover;
+    box-shadow: $shadow-button-hover;
+  }
+}
+:host(.btn--full-width) .default-btn {
+  width: 100%;
+}
+
+:host(.btn--tiny) .default-btn {
+  font-size: $font-sizeXS;
+  padding: $paddingXS $paddingS;
+  border-radius: $radiusM;
+}
+
+:host(.btn--small) .default-btn {
+  font-size: $font-sizeXS;
+  padding: $paddingS $paddingM;
+  border-radius: $radiusM;
+}
+
+:host(.btn--medium) .default-btn {
+  font-size: $font-sizeS;
+  padding: $paddingM $paddingXL;
+  border-radius: $radiusM;
+}
+
+:host(.btn--large) .default-btn {
+  font-size: $font-sizeM;
+  padding: $paddingL $padding2XL;
+  border-radius: $radiusL;
+}

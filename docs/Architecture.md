@@ -24,7 +24,7 @@ yep thats it for now :/
 - when styling, always try to use pre-made scss variables and mixins.
   this speeds up development and makes styles maintainable.
 
-### indentations
+### formatting
 
 - avoid indentations beyond level 4,
   this makes code easier to read and debug

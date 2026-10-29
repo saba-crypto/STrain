@@ -1,0 +1,43 @@
+@use '../../../../styles/index' as *;
+
+.outline-btn {
+  @include flexbox(row, center, center, 10px);
+  color: $quaternary-font-clr;
+  background-color: transparent;
+  border: 1px solid $primary-border-clr;
+  transition-duration: 0.3s;
+
+  &:hover {
+    color: $accent-clr;
+    cursor: pointer;
+    border-color: $accent-clr;
+  }
+}
+
+:host(.btn--full-width) .outline-btn {
+  width: 100%;
+}
+
+:host(.btn--tiny) .outline-btn {
+  font-size: $font-sizeXS;
+  padding: $paddingXS $paddingS;
+  border-radius: $radiusM;
+}
+
+:host(.btn--small) .outline-btn {
+  font-size: $font-sizeXS;
+  padding: $paddingS $paddingM;
+  border-radius: $radiusM;
+}
+
+:host(.btn--medium) .outline-btn {
+  font-size: $font-sizeS;
+  padding: $paddingM $paddingXL;
+  border-radius: $radiusM;
+}
+
+:host(.btn--large) .outline-btn {
+  font-size: $font-sizeM;
+  padding: $paddingL $padding2XL;
+  border-radius: $radiusL;
+}
