@@ -1,0 +1,92 @@
+@use '../../../styles/index' as *;
+
+header {
+  @include flexbox(row, center, center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: $bg-clr;
+  border-bottom: 1px solid $primary-border-clr;
+  padding: $paddingM 0;
+}
+
+.header-container {
+  @include flexbox(row, space-between, center, 20px);
+  width: min(100% - 3.5rem, 70.8rem);
+
+  .header-left {
+    @include flexbox(row, center, center, 10px);
+    color: $accent-clr;
+  }
+
+  .header-logo-text {
+    @include flexbox(row, center, center);
+    font-size: $font-sizeS;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .header-logo-name-suffix {
+    color: $secondary-font-clr;
+  }
+
+  .header-right {
+    @include flexbox(row, center, center, 30px);
+
+    .nav-list {
+      @include flexbox(row, center, center, min(40px));
+    }
+
+    .list-item {
+      color: $secondary-font-clr;
+      font-size: $font-sizeXS;
+      cursor: pointer;
+      transition:
+        color 0.25s,
+        transform 0.25s;
+
+      &:hover {
+        color: $accent-clr;
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .menu-toggle {
+    @include flexbox(column, center, center, 5px);
+    display: none;
+    width: 36px;
+    height: 36px;
+    padding: $paddingXS;
+    background: transparent;
+    border: 1px solid $primary-border-clr;
+    border-radius: $radiusM;
+    cursor: pointer;
+
+    svg {
+      color: $secondary-font-clr;
+    }
+  }
+}
+
+@media (max-width: $breakpointM) {
+  header {
+    padding: $paddingS 0;
+  }
+
+  .header-container {
+    width: min(100% - 2rem, 70.8rem);
+
+    .header-right {
+      .nav-list {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  }
+}

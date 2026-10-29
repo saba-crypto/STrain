@@ -23,11 +23,12 @@ goal for this project is to recreate already created application as close as pos
 - read Architecture.md and follow conventions written there
 - I don't want you to make any git commits or git push, this job is only for owner of this project.
 - **do not touch or modify /node_modules, /.angular, /.vscode or any documentation file(.md)**
+- always use svg icons whenever you want to create icon, avoid using html tags to "draw" icons.
 
 ## Useful information and links you might need
 
 [original project demo](https://trains.stepacademy.ge/)  
-[backend documentation](https://hackmd.io/@ITStep/trains)
+[backend documentation](https://hackmd.io/@ITStep/trains)  
 [project architecture, patterns and conventions](./docs/Architecture.md)
 
 #### email and password if original website tells you to register:
