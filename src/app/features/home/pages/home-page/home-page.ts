@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Section1 } from '../../components/sections/section-1/section-1';
-import { Section2 } from '../../components/sections/section-2/section-2';
-import { Section3 } from '../../components/sections/section-3/section-3';
+import { HeroSection } from '../../components/sections/hero-section/hero-section';
+import { FeaturesSection } from '../../components/sections/features-section/features-section';
+import { CtaSection } from '../../components/sections/cta-section/cta-section';
 
 @Component({
   selector: 'app-home-page',
-  imports: [Section1, Section2, Section3],
+  imports: [HeroSection, FeaturesSection, CtaSection],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })

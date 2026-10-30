@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { DefaultButton } from '../../../../../shared/buttons/default-button/default-button';
 
 @Component({
-  selector: 'app-section-1',
+  selector: 'app-hero-section',
   imports: [DefaultButton],
-  templateUrl: './section-1.html',
-  styleUrl: './section-1.scss',
+  templateUrl: './hero-section.html',
+  styleUrl: './hero-section.scss',
 })
-export class Section1 {}
+export class HeroSection {}

@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FeatureCard } from '../../other/feature-card/feature-card';
 
 @Component({
-  selector: 'app-section-2',
+  selector: 'app-features-section',
   imports: [FeatureCard],
-  templateUrl: './section-2.html',
-  styleUrl: './section-2.scss',
+  templateUrl: './features-section.html',
+  styleUrl: './features-section.scss',
 })
-export class Section2 {
+export class FeaturesSection {
   public features = [
     {
       icon: 'classes',

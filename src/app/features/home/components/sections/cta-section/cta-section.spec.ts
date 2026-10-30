@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Section1 } from './section-1';
+import { CtaSection } from './cta-section';
 
-describe('Section1', () => {
-  let component: Section1;
-  let fixture: ComponentFixture<Section1>;
+describe('CtaSection', () => {
+  let component: CtaSection;
+  let fixture: ComponentFixture<CtaSection>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Section1],
+      imports: [CtaSection],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Section1);
+    fixture = TestBed.createComponent(CtaSection);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

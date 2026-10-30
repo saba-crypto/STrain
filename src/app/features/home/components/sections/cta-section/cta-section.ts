@@ -3,9 +3,9 @@ import { DefaultButton } from '../../../../../shared/buttons/default-button/defa
 import { OutlineButton } from '../../../../../shared/buttons/outline-button/outline-button';
 
 @Component({
-  selector: 'app-section-3',
+  selector: 'app-cta-section',
   imports: [DefaultButton, OutlineButton],
-  templateUrl: './section-3.html',
-  styleUrl: './section-3.scss',
+  templateUrl: './cta-section.html',
+  styleUrl: './cta-section.scss',
 })
-export class Section3 {}
+export class CtaSection {}
