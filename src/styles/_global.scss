@@ -3,6 +3,9 @@ html {
   font-family: $primary-font;
   background-color: $bg-clr;
 }
+body {
+  padding-top: 80px;
+}
 
 section {
   @include flexbox(row, center, center);

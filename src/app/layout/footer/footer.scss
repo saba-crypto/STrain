@@ -1,0 +1,22 @@
+@use '../../../styles/index' as *;
+
+.footer {
+  @include flexbox(row, center, center);
+  min-height: 56px;
+  padding: $paddingS $paddingM;
+  background-color: $tertiary-font-clr;
+  border-top: 1px solid $secondary-border-clr;
+}
+
+.footer-link {
+  color: $secondary-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: underline;
+  transition: color 0.25s;
+
+  &:hover {
+    color: $accent-clr-hover;
+  }
+}
