@@ -1,0 +1,140 @@
+@use '../../../../../../styles/index' as *;
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201, 168, 76, 0.12) 0%, transparent 70%),
+    $bg-clr;
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(201, 168, 76, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    content: '';
+  }
+}
+
+.hero-content {
+  @include flexbox(column, center, center);
+  position: relative;
+  z-index: 1;
+  width: min(100% - 3.5rem, 760px);
+  min-height: calc(100vh - 80px);
+  margin: 0 auto;
+  padding: $paddingXL 0;
+  text-align: center;
+}
+
+.hero-tag {
+  display: inline-block;
+  margin-bottom: $paddingL;
+  padding: $paddingXS $paddingM;
+  color: $accent-clr;
+  border: 1px solid $optional-border-clr;
+  border-radius: $radius-full;
+  font-size: $font-sizeXS;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  margin-bottom: $paddingL;
+  color: $secondary-font-clr;
+  font-size: $font-sizeXL;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.25;
+}
+
+.hero-subtitle {
+  max-width: 600px;
+  margin-bottom: $padding3XL;
+  color: $optional-font-clr;
+  font-size: $font-sizeS;
+  line-height: 1.75;
+}
+
+.hero-search {
+  @include flexbox(row, flex-end, center);
+  width: 80%;
+  padding: $paddingS;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  box-shadow: $shadowXL;
+
+  default-button {
+    flex-shrink: 0;
+  }
+}
+
+.search-field {
+  flex: 1;
+  min-width: 0;
+  padding: $paddingS $paddingM;
+  text-align: left;
+}
+
+.search-label {
+  display: block;
+  margin-bottom: 4px;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeXXS;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0;
+  color: $secondary-font-clr;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+  font-size: $font-sizeXS;
+
+  &::placeholder {
+    color: $faded-tertiary-font-clr;
+  }
+}
+
+.search-divider {
+  @include flexbox(row, center, center);
+  flex-shrink: 0;
+  padding: 0 $paddingXS;
+  color: $quaternary-font-clr;
+}
+
+@media (max-width: $breakpointM) {
+  .hero-content {
+    width: min(100% - 2rem, 760px);
+  }
+
+  .hero-search {
+    @include grid(1fr 1fr, 1fr 1fr, 10px);
+    width: clamp(200px, 50%, 100%);
+  }
+
+  .search-divider {
+    display: none;
+  }
+
+  .search-field {
+    padding: $paddingS $paddingM;
+  }
+  default-button {
+    grid-area: 2/1/3/3;
+    width: 100%;
+  }
+}

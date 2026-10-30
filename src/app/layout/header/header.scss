@@ -20,6 +20,10 @@ header {
     @include flexbox(row, center, center, 10px);
     color: $accent-clr;
   }
+  .header-logo {
+    @include flexbox(row, center, center, 10px);
+    cursor: pointer;
+  }
 
   .header-logo-text {
     @include flexbox(row, center, center);
@@ -39,7 +43,7 @@ header {
       @include flexbox(row, center, center, min(40px));
     }
 
-    .list-item {
+    a {
       color: $secondary-font-clr;
       font-size: $font-sizeXS;
       cursor: pointer;

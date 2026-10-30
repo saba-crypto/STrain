@@ -1,4 +1,7 @@
 @use '../../../../styles/index' as *;
+:host {
+  display: inline-block;
+}
 .default-btn {
   @include flexbox(row, center, center, 10px);
   background-color: $accent-clr;
@@ -8,6 +11,10 @@
     cursor: pointer;
     background-color: $accent-clr-hover;
     box-shadow: $shadow-button-hover;
+  }
+  &:active {
+    transition-duration: 0s;
+    opacity: 0.8;
   }
 }
 :host(.btn--full-width) .default-btn {
