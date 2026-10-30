@@ -1,0 +1,44 @@
+@use '../../../../../../styles/index' as *;
+
+.call-to-action {
+  padding-bottom: $padding2XL;
+  box-sizing: border-box;
+}
+
+.call-to-action-card {
+  width: 100%;
+  padding: $padding4XL $padding3XL;
+  text-align: center;
+  background: linear-gradient(135deg, $primary-clr 0%, rgba(201, 168, 76, 0.05) 100%);
+  border: 1px solid $optional-border-clr;
+  border-radius: $radiusXL;
+  box-sizing: border-box;
+  .call-to-action-content {
+    @include flexbox(column, center, center);
+  }
+  .call-to-action-title {
+    margin-bottom: $paddingM;
+    color: $secondary-font-clr;
+    font-size: $font-sizeL;
+    font-weight: 800;
+  }
+  .call-to-action-description {
+    margin-bottom: $paddingXL;
+    color: $optional-font-clr;
+    font-size: $font-sizeS;
+    line-height: 1.75;
+  }
+  .call-to-action-actions {
+    @include flexbox(row, center, center, $paddingS, wrap);
+  }
+}
+
+@media (max-width: $breakpointM) {
+  .call-to-action-card {
+    padding: $padding2XL $paddingL;
+  }
+
+  .call-to-action-actions {
+    width: 100%;
+  }
+}

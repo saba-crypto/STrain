@@ -7,6 +7,7 @@
   background-color: $accent-clr;
   border: none;
   transition-duration: 0.25s;
+  width: var(--width);
   &:hover {
     cursor: pointer;
     background-color: $accent-clr-hover;
