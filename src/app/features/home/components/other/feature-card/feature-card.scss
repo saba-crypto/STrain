@@ -1,0 +1,45 @@
+@use '../../../../../../styles/index' as *;
+
+:host {
+  display: block;
+}
+
+.feature-card {
+  height: 100%;
+  padding: $paddingXL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusXL;
+  box-sizing: border-box;
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    border-color: $optional-border-clr;
+    transform: translateY(-2px);
+  }
+}
+
+.feature-icon {
+  @include flexbox(row, center, center);
+  width: 40px;
+  height: 40px;
+  margin-bottom: $paddingS;
+  color: $accent-clr;
+  background-color: rgba(201, 168, 76, 0.08);
+  border-radius: $radiusM;
+}
+
+.feature-title {
+  margin-bottom: $paddingS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 700;
+}
+
+.feature-description {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeXXS;
+  line-height: 1.6;
+}

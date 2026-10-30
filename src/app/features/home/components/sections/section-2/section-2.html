@@ -1,0 +1,9 @@
+<section>
+  <div class="section-container">
+    <div class="features-grid">
+      @for (feature of features; track feature.title) {
+      <app-feature-card [feature]="feature"></app-feature-card>
+      }
+    </div>
+  </div>
+</section>

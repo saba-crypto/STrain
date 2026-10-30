@@ -1,0 +1,18 @@
+@use '../../../../../../styles/index' as *;
+
+.features-grid {
+  @include grid(repeat(4, 1fr), 1fr, $paddingL);
+  width: 100%;
+}
+
+@media (max-width: $breakpointXL) {
+  .features-grid {
+    @include grid(repeat(2, 1fr), 1fr, $paddingL);
+  }
+}
+
+@media (max-width: $breakpointS) {
+  .features-grid {
+    @include grid(1fr, 1fr, $paddingL);
+  }
+}
