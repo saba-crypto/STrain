@@ -3,6 +3,10 @@ html {
   font-family: $primary-font;
   background-color: $bg-clr;
 }
+a {
+  color: unset;
+  text-decoration: none;
+}
 
 section {
   @include flexbox(row, center, center);
