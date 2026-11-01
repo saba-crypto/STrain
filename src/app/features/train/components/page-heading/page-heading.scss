@@ -1,0 +1,45 @@
+@use '../../../../../styles/index' as *;
+
+:host {
+  display: block;
+  width: min(100% - 3.5rem, 70.8rem);
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.page-header {
+  @include flexbox(column, flex-start, flex-start, 15px);
+  padding: $padding3XL 0 $padding2XL;
+  margin-bottom: $paddingXL;
+  border-bottom: 1px solid $primary-border-clr;
+}
+
+.page-tag {
+  display: inline-block;
+  margin-bottom: $paddingXS;
+  color: $accent-clr;
+  font-size: $font-sizeXS;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.page-title {
+  margin: 0 0 $paddingXXS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeL;
+  font-weight: 800;
+}
+
+.page-desc {
+  margin: 0;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+}
+
+@media (max-width: $breakpointM) {
+  .page-header {
+    padding: $padding2XL 0 $paddingXL;
+    margin-bottom: $paddingXL;
+  }
+}
