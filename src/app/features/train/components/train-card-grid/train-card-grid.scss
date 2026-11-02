@@ -1,5 +1,17 @@
 @use '../../../../../styles/index' as *;
 
 .trains-grid {
-  @include grid(repeat(4, 1fr), repeat(3, 1fr), 15px);
+  @include grid(repeat(3, 1fr), repeat(3, 1fr), 15px);
+}
+
+@media (max-width: $breakpointXL) {
+  .trains-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: $breakpointXS) {
+  .trains-grid {
+    grid-template-columns: 1fr;
+  }
 }

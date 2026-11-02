@@ -1,5 +1,15 @@
-// :host {
-//   display: block;
-//   margin: 0 auto;
-//   width: min(100% - 3.5rem, 70.8rem);
-// }
+@use '../../../../../styles/index' as *;
+
+:host {
+  display: grid;
+  grid-template-columns: minmax(15rem, 17.5rem) minmax(0, 1fr);
+  align-items: start;
+  gap: $paddingXL;
+}
+
+@media (max-width: $breakpointM) {
+  :host {
+    grid-template-columns: 1fr;
+    gap: $paddingL;
+  }
+}

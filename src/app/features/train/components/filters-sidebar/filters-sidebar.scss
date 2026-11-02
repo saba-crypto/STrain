@@ -1,0 +1,144 @@
+@use '../../../../../styles/index' as *;
+
+:host {
+  display: block;
+}
+
+.filters-sidebar {
+  position: sticky;
+  top: $paddingM;
+  padding: $paddingXL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusXL;
+}
+
+.filters-content {
+  @include flexbox(column, center, center, 30px);
+  width: 100%;
+}
+.filters-section {
+  width: 100%;
+}
+.filters-section + .filters-section {
+  padding-top: 10px;
+  border-top: 1px solid $primary-border-clr;
+}
+
+.filters-title {
+  color: $secondary-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.filters-group {
+  @include flexbox(column, flex-start, stretch, $paddingXS);
+  margin-top: $paddingM;
+}
+
+.filters-label {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeXS;
+}
+
+.filters-input {
+  width: 100%;
+  min-width: 0;
+  padding: $paddingS $paddingM;
+  color: $secondary-font-clr;
+  font: inherit;
+  font-size: $font-sizeXS;
+  background-color: $secondary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  outline: none;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &::placeholder {
+    color: $quaternary-font-clr;
+  }
+
+  &:focus {
+    border-color: $accent-clr;
+    box-shadow: 0 0 0 $paddingXXS $optional-border-clr;
+  }
+}
+
+select.filters-input {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, $quaternary-font-clr 50%),
+    linear-gradient(135deg, $quaternary-font-clr 50%, transparent 50%);
+  background-position:
+    calc(100% - $paddingM) 50%,
+    calc(100% - $paddingS) 50%;
+  background-repeat: no-repeat;
+  background-size:
+    $paddingXS $paddingXS,
+    $paddingXS $paddingXS;
+}
+
+.filters-actions {
+  @include flexbox(column, flex-start, stretch, $paddingS);
+  margin-top: $paddingXS;
+}
+
+.filters-button {
+  @include flexbox(row, center, center, $paddingXS);
+  width: 100%;
+  padding: $paddingS $paddingM;
+  font: inherit;
+  font-size: $font-sizeXS;
+  font-weight: 700;
+  border: 1px solid transparent;
+  border-radius: $radiusM;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  svg {
+    width: $font-sizeS;
+    height: $font-sizeS;
+  }
+}
+
+.filters-button-primary {
+  color: $tertiary-font-clr;
+  background-color: $accent-clr;
+
+  &:hover {
+    background-color: $accent-clr-hover;
+    box-shadow: $shadow-button-hover;
+  }
+}
+
+.filters-button-ghost {
+  color: $quaternary-font-clr;
+  background-color: transparent;
+  border-color: $primary-border-clr;
+
+  &:hover {
+    color: $accent-clr;
+    border-color: $accent-clr;
+  }
+}
+
+@media (max-width: $breakpointM) {
+  .filters-sidebar {
+    position: static;
+    padding: $paddingL;
+  }
+}
+
+@media (max-width: $breakpointS) {
+  .filters-sidebar {
+    padding: $paddingM;
+  }
+}

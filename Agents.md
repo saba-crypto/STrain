@@ -26,6 +26,7 @@ this project doesn't have to be exact 1 to 1 copy of the original project, since
 - **do not touch or modify /node_modules, /.angular, /.vscode, /dist or any documentation file(.md)**
 - always use svg icons whenever you want to create icon, avoid using html tags except 'svg' to "draw" icons.
 - always use kebab-case when writing markup class names, if original project uses different naming convention, convert it to kebab-case.
+- don't use form and label tags outside of their usual use case(login form, signup form, etc.)
 
 ## Useful information and links you might need
 
