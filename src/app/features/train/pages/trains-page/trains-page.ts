@@ -1,6 +1,6 @@
 import { Component, signal, inject } from '@angular/core';
-import { PageHeading } from '../../components/page-heading/page-heading';
-import { PageContent } from '../../components/page-content/page-content';
+import { PageHeading } from '../../components/trains/page-heading/page-heading';
+import { PageContent } from '../../components/trains/page-content/page-content';
 import { TrainService } from '../../services/train.service';
 import { map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';

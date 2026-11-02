@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Train } from '../../models/train.model';
+import { Train } from '../../../models/train.model';
 
 @Component({
   selector: 'app-train-card',

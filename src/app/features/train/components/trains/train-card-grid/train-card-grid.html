@@ -2,6 +2,6 @@
   @if (trains() || trains().length > 0) { @for (train of trains(); track train.id) {
   <app-train-card [train]="train"></app-train-card>
   } } @else {
-  <p>couldn't find any trains</p>
+  <p style="color: red">couldn't find any trains</p>
   }
 </div>
