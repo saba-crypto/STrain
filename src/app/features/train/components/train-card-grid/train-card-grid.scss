@@ -1,0 +1,5 @@
+@use '../../../../../styles/index' as *;
+
+.trains-grid {
+  @include grid(repeat(4, 1fr), repeat(3, 1fr), 15px);
+}

@@ -13,6 +13,7 @@ project is about train booking and train traveling in country of Georgia.
 
 goal for this project is to recreate already created application as close as possible to the original one  
 (https://trains.stepacademy.ge/)
+this project doesn't have to be exact 1 to 1 copy of the original project, since I'm using slightly different variables and different conventions.
 
 ## Rules
 
@@ -20,10 +21,11 @@ goal for this project is to recreate already created application as close as pos
 - avoid nesting scss code beyond 4 levels to make code easy to read and maintainable
 - always prioritize signals over behavior subjects(only write behavior subjects when its necessary).
 - use Observables and async pipes when working with backend APIs.
-- read Architecture.md and follow conventions written there
+- read Architecture.md and follow every single convention written there.
 - I don't want you to make any git commits or git push, this job is only for owner of this project.
-- **do not touch or modify /node_modules, /.angular, /.vscode or any documentation file(.md)**
-- always use svg icons whenever you want to create icon, avoid using html tags to "draw" icons.
+- **do not touch or modify /node_modules, /.angular, /.vscode, /dist or any documentation file(.md)**
+- always use svg icons whenever you want to create icon, avoid using html tags except 'svg' to "draw" icons.
+- always use kebab-case when writing markup class names, if original project uses different naming convention, convert it to kebab-case.
 
 ## Useful information and links you might need
 

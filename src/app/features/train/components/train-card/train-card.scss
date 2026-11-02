@@ -1,0 +1,121 @@
+@use '../../../../../styles/index' as *;
+
+$image-height: clamp(9rem, 18vw, 10rem);
+$card-transition: 0.3s ease;
+
+:host {
+  display: block;
+}
+
+.train-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusXL;
+  transition:
+    border-color $card-transition,
+    transform $card-transition,
+    box-shadow $card-transition;
+
+  &:hover {
+    border-color: $optional-border-clr;
+    transform: translateY(-2px);
+    box-shadow: $shadowXL;
+
+    .train-card-arrow {
+      color: $accent-clr;
+      transform: translateX($paddingXS);
+    }
+  }
+}
+
+.train-card-image {
+  @include flexbox(row, center, center);
+  flex-shrink: 0;
+  height: $image-height;
+  color: $quaternary-font-clr;
+  background-color: $secondary-clr;
+  img {
+    width: 100%;
+  }
+}
+
+.train-card-body {
+  flex: 1;
+  padding: $paddingM $paddingM $paddingS;
+}
+
+.train-card-header {
+  @include flexbox(row, space-between, center, $paddingS);
+  margin-bottom: $paddingS;
+}
+
+.train-card-number {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeXXS;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.train-card-badge {
+  padding: $paddingXXS $paddingXS;
+  color: $tertiary-font-clr;
+  font-size: $font-sizeXXS;
+  font-weight: 700;
+  background-color: $accent-clr;
+  border-radius: $radiusM;
+}
+
+.train-card-name {
+  margin-bottom: $paddingS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 700;
+}
+
+.train-card-stats {
+  @include flexbox(row, flex-start, center, $paddingM, wrap);
+}
+
+.train-card-stat {
+  @include flexbox(row, flex-start, center, $paddingXXS);
+  color: $quaternary-font-clr;
+  font-size: $font-sizeXXS;
+}
+
+.train-card-stat svg {
+  flex: 0 0 auto;
+  width: $font-sizeS;
+  height: $font-sizeS;
+}
+
+.train-card-arrow {
+  align-self: flex-end;
+  width: $paddingXL;
+  height: $paddingXL;
+  padding: $paddingS;
+  color: $faded-tertiary-font-clr;
+  transition:
+    color $card-transition,
+    transform $card-transition;
+}
+
+@media (max-width: $breakpointS) {
+  .train-card-body {
+    padding: $paddingS;
+  }
+
+  .train-card-stats {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: $paddingXS;
+  }
+}
