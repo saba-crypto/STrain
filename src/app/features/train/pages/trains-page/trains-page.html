@@ -1,2 +1,2 @@
 <app-page-heading></app-page-heading>
-<app-page-content></app-page-content>
+<app-page-content [trains]="(trains$ | async) ?? []"></app-page-content>

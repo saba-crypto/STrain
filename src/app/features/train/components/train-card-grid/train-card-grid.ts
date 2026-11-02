@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { TrainCard } from '../train-card/train-card';
+import { Train } from '../../models/train.model';
 
 @Component({
   selector: 'app-train-card-grid',
@@ -7,4 +8,6 @@ import { TrainCard } from '../train-card/train-card';
   templateUrl: './train-card-grid.html',
   styleUrl: './train-card-grid.scss',
 })
-export class TrainCardGrid {}
+export class TrainCardGrid {
+  public trains = input<Train[]>([]);
+}

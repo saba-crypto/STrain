@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Train } from '../../models/train.model';
 
 @Component({
   selector: 'app-train-card',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './train-card.html',
   styleUrl: './train-card.scss',
 })
-export class TrainCard {}
+export class TrainCard {
+  public train = input.required<Train>();
+}

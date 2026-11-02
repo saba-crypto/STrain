@@ -1,18 +1,15 @@
 <article class="train-card">
   <div class="train-card-image" aria-hidden="true">
-    <img
-      src="https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/b4/b6/ba/3b/33/v1_E10/E108V3V5.jpg?w=1600&cf_fit=scale-down&q=85&format=auto&s=90657bc91abc9175c52a90e703d14c91200d10ac61622b5685185d51160a3f65"
-      alt=""
-    />
+    <img [src]="train().thumbnail" alt="" />
   </div>
 
   <div class="train-card-body">
     <header class="train-card-header">
-      <span class="train-card-number">Train #42</span>
+      <span class="train-card-number">Train #{{train().number}}</span>
       <span class="train-card-badge">Express</span>
     </header>
 
-    <h3 class="train-card-name">Tbilisi - Batumi</h3>
+    <h3 class="train-card-name">{{train().name}}</h3>
 
     <div class="train-card-stats">
       <span class="train-card-stat">
@@ -24,7 +21,7 @@
             stroke-linecap="round"
           />
         </svg>
-        500 coaches
+        {{train().coachesCount}} coaches
       </span>
       <span class="train-card-stat">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -36,7 +33,7 @@
             stroke-linejoin="round"
           />
         </svg>
-        1,200 seats
+        {{train().totalSeats}} seats
       </span>
     </div>
   </div>
