@@ -1,4 +1,4 @@
-@use '../../../../../../styles/index' as *;
+@use '../../../../../shared/styles/index' as *;
 
 $image-height: clamp(9rem, 18vw, 10rem);
 $card-transition: 0.3s ease;

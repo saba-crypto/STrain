@@ -1,4 +1,4 @@
-@use '../../../../../../styles/index' as *;
+@use '../../../../../shared/styles/index' as *;
 
 .trains-grid {
   @include grid(repeat(3, 1fr), auto, 15px);

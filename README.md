@@ -6,7 +6,7 @@ STrain Represents one of the **Fastest**, **Modern**, **Scalable**, **Maintainab
 
 in This Project You Will be Able to Book Specific Seat(s) in a Specific Train Coach.  
 You Can Create, Modify, Delete Train Booking and so Much More.
-Project Communicated with REST API Backend
+Project Communicates with REST API Backend
 
 ## Technologies Used
 
@@ -36,6 +36,6 @@ Project Communicated with REST API Backend
 
 ## My Priorities
 
-1. excellent User Experience
+1. Excellent User Experience
 2. Maintainable and Scalable Code
 3. Optimization
