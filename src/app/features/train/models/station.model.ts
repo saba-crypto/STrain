@@ -5,4 +5,4 @@ export interface Station {
   name: string;
 }
 
-export type StationsResponse = ApiResponse<PaginatedResponse<Station[]>>;
+export type StationsResponse = ApiResponse<Station[]>;

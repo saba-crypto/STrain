@@ -1,2 +1,6 @@
 <app-page-heading></app-page-heading>
-<app-page-content [trains]="(trains$ | async) ?? []"></app-page-content>
+<app-page-content
+  (search)="searchTrains($event)"
+  [trains]="(trains$ | async) ?? []"
+  [stations]="(stations$ | async) ?? []"
+></app-page-content>

@@ -6,12 +6,17 @@
       <div class="filters-group">
         <p class="filters-label">Train number</p>
         <input
+          #searchInput
           class="filters-input"
           id="train-search"
           type="search"
           placeholder="e.g. Express, 42..."
         />
-        <button class="filters-button filters-button-primary" type="button">
+        <button
+          (click)="onSearch(searchInput.value)"
+          class="filters-button filters-button-primary"
+          type="button"
+        >
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.5" />
             <path d="m16 16 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
@@ -27,20 +32,24 @@
       <div class="filters-group">
         <p class="filters-label">From</p>
         <select class="filters-input" id="origin">
-          <option value="">Any origin</option>
+          <option selected value="">Any origin</option>
+          @for (station of stations(); track station.id) {
+          <option [value]="station.name">{{station.name}}</option>
+          }
+          <!--<option value="">Any origin</option>
           <option value="tbilisi">Tbilisi</option>
           <option value="batumi">Batumi</option>
-          <option value="kutaisi">Kutaisi</option>
+          <option value="kutaisi">Kutaisi</option>-->
         </select>
       </div>
 
       <div class="filters-group">
         <p class="filters-label">To</p>
         <select class="filters-input" id="destination">
-          <option value="">Any destination</option>
-          <option value="tbilisi">Tbilisi</option>
-          <option value="batumi">Batumi</option>
-          <option value="kutaisi">Kutaisi</option>
+          <option selected value="">Any destination</option>
+          @for (station of stations(); track station.id) {
+          <option [value]="station.name">{{station.name}}</option>
+          }
         </select>
       </div>
 

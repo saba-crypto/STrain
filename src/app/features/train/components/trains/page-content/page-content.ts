@@ -1,7 +1,8 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FiltersSidebar } from '../filters-sidebar/filters-sidebar';
 import { TrainCardGrid } from '../train-card-grid/train-card-grid';
 import { Train } from '../../../models/train.model';
+import { Station } from '../../../models/station.model';
 
 @Component({
   selector: 'app-page-content',
@@ -11,4 +12,6 @@ import { Train } from '../../../models/train.model';
 })
 export class PageContent {
   public trains = input<Train[]>([]);
+  public stations = input<Station[]>([]);
+  public search = output<string>();
 }
