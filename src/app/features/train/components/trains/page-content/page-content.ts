@@ -14,4 +14,6 @@ export class PageContent {
   public trains = input<Train[]>([]);
   public stations = input<Station[]>([]);
   public search = output<string>();
+  public origin = output<string>();
+  public destination = output<string>();
 }

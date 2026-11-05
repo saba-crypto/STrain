@@ -5,18 +5,7 @@ import { TrainService } from '../../services/train.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { map, switchMap } from 'rxjs';
-import de from '@angular/common/locales/extra/de';
 import { StationService } from '../../services/station.service';
-
-interface TrainsState {
-  currentPage: number;
-  trainsPerPage: number;
-  filterState: {
-    origin: string;
-    destination: string;
-  };
-  searchState: string;
-}
 
 @Component({
   selector: 'app-trains-page',
@@ -27,29 +16,36 @@ interface TrainsState {
 export class TrainsPage {
   private readonly trainServices = inject(TrainService);
   private readonly stationServices = inject(StationService);
-  public injector = inject(Injector); //injecting injector :/
+  public injector = inject(Injector); //injecting an injector :/
 
   //filterStates
   public currentPage = signal<number>(1);
   public trainsPerPage = signal<number>(10);
-  public filterState = signal({
-    origin: '',
-    destination: '',
-  });
+  public origin = signal<string>('');
+  public destination = signal<string>('');
   public searchState = signal<string>('');
 
   //filterStates bundle
   public trainsState = computed(() => ({
     currentPage: this.currentPage(),
     trainsPerPage: this.trainsPerPage(),
-    filterState: this.filterState(),
+    origin: this.origin(),
+    destination: this.destination(),
     searchState: this.searchState(),
   }));
 
-  public stations$ = this.stationServices.getStations().pipe(
-    map((res) => {
-      return res.data;
-    }),
+  public filterState = computed(() => ({
+    origin: this.origin(),
+    destination: this.destination(),
+  }));
+
+  // public stations$ = this.stationServices.getStations().pipe(
+  //   map((res) => {
+  //     return res.data;
+  //   }),
+  // );
+  public stations$ = toObservable(this.filterState, { injector: this.injector }).pipe(
+    switchMap((state) => {}),
   );
 
   public trains$ = toObservable(this.trainsState, { injector: this.injector }).pipe(
@@ -60,10 +56,10 @@ export class TrainsPage {
           state.trainsPerPage,
           state.currentPage,
         );
-      } else if (state.filterState.origin.length > 0) {
+      } else if (state.origin || state.destination) {
         return this.trainServices.getTrainsByFilter(
-          state.filterState.origin,
-          state.filterState.destination,
+          state.origin,
+          state.destination,
           state.trainsPerPage,
           state.currentPage,
         );
@@ -75,18 +71,20 @@ export class TrainsPage {
   );
 
   //methods
+
+  //trains
   searchTrains(query: string) {
-    if (query.length > 0) {
-      this.currentPage.set(1);
-      this.searchState.set(query);
-    }
+    this.currentPage.set(1);
+    this.searchState.set(query);
   }
 
-  filterTrains(origin: string, destination: string) {
-    if (origin.length > 0 || destination.length > 0) {
-      this.currentPage.set(1);
-      this.filterState.set({ origin: origin, destination: destination });
-    }
+  changeOrigin(origin: string) {
+    this.origin.set(origin);
+  }
+
+  changeDestination(destination: string) {
+    this.destination.set(destination);
+    console.log(this.destination());
   }
 
   changeCurrentPage(page: number) {
@@ -102,7 +100,8 @@ export class TrainsPage {
   }
 
   clearFilters() {
-    this.filterState.set({ origin: '', destination: '' });
+    this.origin.set('');
+    this.destination.set('');
     this.searchState.set('');
   }
 }

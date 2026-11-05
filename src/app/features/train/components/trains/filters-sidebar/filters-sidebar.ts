@@ -9,9 +9,19 @@ import { Station } from '../../../models/station.model';
 })
 export class FiltersSidebar {
   public search = output<string>();
+  public origin = output<string>();
+  public destination = output<string>();
   public stations = input<Station[]>([]);
 
   public onSearch(query: string): void {
     this.search.emit(query.trim());
+  }
+
+  public onOriginChange(query: string): void {
+    this.origin.emit(query);
+  }
+
+  public onDestinationChange(query: string) {
+    this.destination.emit(query);
   }
 }

@@ -32,23 +32,23 @@
       <div class="filters-group">
         <p class="filters-label">From</p>
         <select class="filters-input" id="origin">
-          <option selected value="">Any origin</option>
+          <option (click)="onOriginChange('')" selected value="">Any origin</option>
           @for (station of stations(); track station.id) {
-          <option [value]="station.name">{{station.name}}</option>
+          <option (click)="onOriginChange(station.name)" [value]="station.name">
+            {{station.name}}
+          </option>
           }
-          <!--<option value="">Any origin</option>
-          <option value="tbilisi">Tbilisi</option>
-          <option value="batumi">Batumi</option>
-          <option value="kutaisi">Kutaisi</option>-->
         </select>
       </div>
 
       <div class="filters-group">
         <p class="filters-label">To</p>
         <select class="filters-input" id="destination">
-          <option selected value="">Any destination</option>
+          <option (click)="onDestinationChange('')" selected>Any destination</option>
           @for (station of stations(); track station.id) {
-          <option [value]="station.name">{{station.name}}</option>
+          <option (click)="onDestinationChange(station.name)" [value]="station.name">
+            {{station.name}}
+          </option>
           }
         </select>
       </div>

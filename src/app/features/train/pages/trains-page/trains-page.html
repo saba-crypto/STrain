@@ -1,6 +1,8 @@
 <app-page-heading></app-page-heading>
 <app-page-content
   (search)="searchTrains($event)"
+  (origin)="changeOrigin($event)"
+  (destination)="changeDestination($event)"
   [trains]="(trains$ | async) ?? []"
   [stations]="(stations$ | async) ?? []"
 ></app-page-content>
