@@ -39,14 +39,20 @@ export class TrainsPage {
     destination: this.destination(),
   }));
 
-  // public stations$ = this.stationServices.getStations().pipe(
-  //   map((res) => {
-  //     return res.data;
+  public stations$ = this.stationServices.getStations().pipe(
+    map((res) => {
+      return res.data;
+    }),
+  );
+  // public stations$ = toObservable(this.filterState, { injector: this.injector }).pipe(
+  //   switchMap((state) => {
+
+  //     if (state.destination.length === 0 && state.origin.length > 0) {
+  //       this.stationServices.getStationsFromById(6)
+  //     }
+
   //   }),
   // );
-  public stations$ = toObservable(this.filterState, { injector: this.injector }).pipe(
-    switchMap((state) => {}),
-  );
 
   public trains$ = toObservable(this.trainsState, { injector: this.injector }).pipe(
     switchMap((state) => {

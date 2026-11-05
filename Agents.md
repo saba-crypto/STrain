@@ -6,7 +6,7 @@ imagine that you are a software engineer with 10+ years of experience, you write
 
 ## About Project
 
-This project represents Angular v21 frontend application, it is a college project made for learning and getting practice with Angular.
+This project represents Angular v22 frontend application, it is a college project made for learning and getting practice with Angular.
 project is about train booking and train traveling in country of Georgia.
 
 ## Project Goal

@@ -1,10 +1,11 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { Station } from '../../../models/station.model';
 
 @Component({
   selector: 'app-filters-sidebar',
   imports: [],
   templateUrl: './filters-sidebar.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filters-sidebar.scss',
 })
 export class FiltersSidebar {

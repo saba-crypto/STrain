@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 interface Feature {
   icon: 'classes' | 'dates' | 'seat' | 'confirmation';
@@ -10,6 +10,7 @@ interface Feature {
   selector: 'app-feature-card',
   imports: [],
   templateUrl: './feature-card.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './feature-card.scss',
 })
 export class FeatureCard {

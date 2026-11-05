@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FeatureCard } from '../../other/feature-card/feature-card';
 
 @Component({
   selector: 'app-features-section',
   imports: [FeatureCard],
   templateUrl: './features-section.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './features-section.scss',
 })
 export class FeaturesSection {
@@ -27,7 +28,8 @@ export class FeaturesSection {
     {
       icon: 'confirmation',
       title: 'Instant Confirmation',
-      description: 'Your booking is confirmed immediately. View and manage all trips in your profile.',
+      description:
+        'Your booking is confirmed immediately. View and manage all trips in your profile.',
     },
   ] as const;
 }

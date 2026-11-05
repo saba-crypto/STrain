@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { TrainCard } from '../train-card/train-card';
 import { Train } from '../../../models/train.model';
 
@@ -6,6 +6,7 @@ import { Train } from '../../../models/train.model';
   selector: 'app-train-card-grid',
   imports: [TrainCard],
   templateUrl: './train-card-grid.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './train-card-grid.scss',
 })
 export class TrainCardGrid {
