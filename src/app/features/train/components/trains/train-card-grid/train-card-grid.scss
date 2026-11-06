@@ -16,6 +16,7 @@
   border: 1px solid $primary-border-clr;
   border-radius: $radiusL;
   box-shadow: $shadowXL;
+  box-sizing: border-box;
 }
 
 .state-icon {
@@ -31,11 +32,6 @@
   .state-icon {
     color: $error-clr;
   }
-}
-.empty-state,
-.error-state {
-  min-height: 230px;
-  padding: $paddingL $paddingM;
 }
 
 h2 {

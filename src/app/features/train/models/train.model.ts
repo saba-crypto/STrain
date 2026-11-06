@@ -30,4 +30,4 @@ export interface Coach {
 }
 
 export type TrainsResponse = ApiResponse<PaginatedResponse<Train[]>>;
-export type TrainResponse = ApiResponse<Train[]>;
+export type TrainResponse = ApiResponse<Train>;

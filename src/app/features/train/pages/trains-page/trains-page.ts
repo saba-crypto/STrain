@@ -4,7 +4,7 @@ import { PageContent } from '../../components/trains/page-content/page-content';
 import { TrainService } from '../../services/train.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
-import { debounce, debounceTime, map, switchMap } from 'rxjs';
+import { debounceTime, map, switchMap } from 'rxjs';
 import { StationService } from '../../services/station.service';
 
 @Component({
