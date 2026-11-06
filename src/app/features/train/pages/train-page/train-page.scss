@@ -1,0 +1,14 @@
+@use '../../../../shared/styles/index' as *;
+
+:host {
+  display: block;
+  width: min(100% - 3.5rem, 70.8rem);
+  padding: $padding2XL 0 $padding3XL;
+  margin: 80px auto;
+}
+
+.train-page-status {
+  padding: $padding3XL 0;
+  color: $quaternary-font-clr;
+  text-align: center;
+}

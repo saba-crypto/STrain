@@ -1,10 +1,16 @@
-import { Component, input, inject } from '@angular/core';
+import { Component, input, inject, signal } from '@angular/core';
 import { TrainService } from '../../services/train.service';
 import { map } from 'rxjs';
 import { rxResource } from '@angular/core/rxjs-interop';
+import {
+  TrainDetailTab,
+  TrainInfoDashboard,
+} from '../../components/train/train-info-dashboard/train-info-dashboard';
+import { SchedulesList } from '../../components/train/schedules-list/schedules-list';
+import { CoachesList } from '../../components/train/coaches-list/coaches-list';
 
 @Component({
-  imports: [],
+  imports: [TrainInfoDashboard, SchedulesList, CoachesList],
   selector: 'app-train-page',
   styleUrl: './train-page.scss',
   templateUrl: './train-page.html',
@@ -20,4 +26,6 @@ export class TrainPage {
     params: () => this.id(),
     stream: ({ params: id }) => this.trainService.getTrainById(id).pipe(map((res) => res.data)),
   });
+
+  public listDetailsState = signal<TrainDetailTab>('schedules');
 }

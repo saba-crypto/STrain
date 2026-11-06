@@ -1,0 +1,29 @@
+<section class="coaches-list" aria-labelledby="coaches-title">
+  @if (coaches(); as coachList) { @if (coachList.length > 0) {
+  <div class="coach-list">
+    @for (coach of coachList; track coach.id) {
+    <article class="coach-card">
+      <div class="coach-primary-information">
+        <h2 class="coach-title">Coach {{ coach.number }}</h2>
+        <span
+          class="coach-class-badge"
+          [class.second-class]="coach.class === 'Second'"
+          [class.business-class]="coach.class === 'Business'"
+        >
+          {{ coach.class }}
+        </span>
+      </div>
+
+      <div class="coach-secondary-information">
+        <span class="coach-seat-count">
+          {{ coach.seatCount }} {{ coach.seatCount === 1 ? 'seat' : 'seats' }}
+        </span>
+        <strong class="coach-price">${{ coach.price }}</strong>
+      </div>
+    </article>
+    }
+  </div>
+  } @else {
+  <p class="coaches-empty">No coach information is available for this train.</p>
+  } }
+</section>

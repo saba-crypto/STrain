@@ -1,0 +1,59 @@
+<section class="train-info-dashboard">
+  <a class="back-link" routerLink="/trains">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="m15 18-6-6 6-6"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    Back to trains
+  </a>
+
+  <article class="details-hero">
+    <div class="details-hero-image">
+      <img [src]="train().thumbnail" [alt]="train().name" />
+    </div>
+
+    <div class="details-hero-content">
+      <span class="details-hero-label">Train #{{ train().number }}</span>
+      <h1 class="details-hero-title">{{ train().name }}</h1>
+
+      <dl class="details-hero-stats">
+        <div class="details-hero-stat">
+          <dt>Total seats</dt>
+          <dd>{{ train().totalSeats }}</dd>
+        </div>
+        <div class="details-hero-stat">
+          <dt>Coaches</dt>
+          <dd>{{ train().coachesCount }}</dd>
+        </div>
+      </dl>
+    </div>
+  </article>
+
+  <nav class="detail-tabs" role="tablist" aria-label="Train details">
+    <button
+      type="button"
+      role="tab"
+      class="detail-tab"
+      [class.detail-tab-active]="activeTab() === 'schedules'"
+      [attr.aria-selected]="activeTab() === 'schedules'"
+      (click)="selectTab('schedules')"
+    >
+      Schedules({{train().schedules.length}})
+    </button>
+    <button
+      type="button"
+      role="tab"
+      class="detail-tab"
+      [class.detail-tab-active]="activeTab() === 'coaches'"
+      [attr.aria-selected]="activeTab() === 'coaches'"
+      (click)="selectTab('coaches')"
+    >
+      Coaches({{train().coaches.length}})
+    </button>
+  </nav>
+</section>

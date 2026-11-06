@@ -1,0 +1,172 @@
+@use '../../../../../shared/styles/index' as *;
+
+:host {
+  display: block;
+}
+
+.schedule-list {
+  @include flexbox(column, flex-start, stretch, 20px);
+}
+
+.schedule-card {
+  @include flexbox(row, space-between, center, $paddingL);
+  width: 100%;
+  padding: $paddingM $paddingL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  box-shadow: $shadowXL;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    border-color: $optional-border-clr;
+    box-shadow: $shadowXL;
+    transform: translateY(-2px);
+  }
+}
+
+.schedule-route {
+  @include flexbox(row, flex-start, center, $paddingM);
+  min-width: 0;
+  color: $secondary-font-clr;
+  font-size: $font-sizeS;
+
+  strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+.route-arrow {
+  flex: 0 0 auto;
+  width: $font-sizeM;
+  height: $font-sizeM;
+  color: $accent-clr;
+}
+
+.schedule-actions {
+  @include flexbox(row, flex-start, center, $paddingL);
+  flex: 0 0 auto;
+}
+
+.departure-information {
+  @include flexbox(row, flex-start, center, $paddingXS);
+  color: $optional-font-clr;
+}
+
+.departure-information svg {
+  flex: 0 0 auto;
+  width: $font-sizeS;
+  height: $font-sizeS;
+}
+
+.departure-time {
+  font-size: $font-sizeXS;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.book-button {
+  min-height: 44px;
+  padding: $paddingS $paddingL;
+  color: $tertiary-font-clr;
+  font: inherit;
+  font-size: $font-sizeXS;
+  font-weight: 800;
+  background-color: $accent-clr;
+  border: 1px solid $accent-clr;
+  border-radius: $radiusM;
+  box-shadow: $shadow-button-hover;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    background-color: $accent-clr-hover;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $faded-accent-clr;
+    outline-offset: 3px;
+  }
+}
+
+.empty-schedule {
+  @include flexbox(column, center, center, $paddingS);
+  min-height: 260px;
+  padding: $padding2XL;
+  color: $quaternary-font-clr;
+  text-align: center;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+}
+
+.empty-schedule-icon {
+  @include flexbox(row, center, center);
+  width: 62px;
+  height: 62px;
+  margin-bottom: $paddingS;
+  color: $accent-clr;
+  background-color: $faded-accent-clr;
+  border-radius: $radiusL;
+
+  svg {
+    width: $font-sizeL;
+    height: $font-sizeL;
+  }
+}
+
+.empty-schedule h2 {
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+}
+
+.empty-schedule p {
+  max-width: 32rem;
+  color: $optional-font-clr;
+  font-size: $font-sizeXS;
+}
+
+@media (max-width: $breakpointS) {
+  .schedule-actions {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .schedule-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .schedule-route {
+    @include flexbox(row, space-between, center, 10px);
+    width: 100%;
+    gap: $paddingXS;
+  }
+}
+
+@media (max-width: $breakpointXS) {
+  .schedule-card {
+    padding: $paddingL;
+  }
+
+  .schedule-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: $paddingS;
+  }
+
+  .book-button {
+    width: 100%;
+    padding: 0;
+  }
+}

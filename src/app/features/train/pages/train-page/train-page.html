@@ -1,0 +1,15 @@
+@if (trainResource.value(); as train) {
+<app-train-info-dashboard
+  [train]="train"
+  [activeTab]="listDetailsState()"
+  (tabChange)="listDetailsState.set($event)"
+></app-train-info-dashboard>
+@if (listDetailsState() === "schedules") {
+<app-schedules-list [schedules]="train.schedules"></app-schedules-list>
+} @else {
+<app-coaches-list [coaches]="train.coaches"></app-coaches-list>
+} } @else if (trainResource.isLoading()) {
+<p class="train-page-status">Loading train details...</p>
+} @else if (trainResource.error()) {
+<p class="train-page-status">Unable to load this train. Please try again later.</p>
+}

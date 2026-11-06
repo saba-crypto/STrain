@@ -1,0 +1,59 @@
+@if (schedules(); as scheduleList) {
+  @if (scheduleList.length > 0) {
+    <div class="schedule-list">
+      @for (schedule of scheduleList; track schedule.id) {
+        <article class="schedule-card">
+          <div class="schedule-route">
+            <strong>{{ schedule.origin }}</strong>
+
+            <svg class="route-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14m-5-5 5 5-5 5"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <strong>{{ schedule.destination }}</strong>
+          </div>
+
+          <div class="schedule-actions">
+            <div class="departure-information">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.7" />
+                <path
+                  d="M12 8v4l3 2"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <time class="departure-time">{{ schedule.departureTime }}</time>
+            </div>
+
+            <button class="book-button" type="button">Book</button>
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="empty-schedule" role="status">
+      <div class="empty-schedule-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.7" />
+          <path
+            d="M8 3v4m8-4v4M4 10h16"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+          />
+        </svg>
+      </div>
+      <h2>No schedules available</h2>
+      <p>There are no schedules available for this train right now.</p>
+    </div>
+  }
+}

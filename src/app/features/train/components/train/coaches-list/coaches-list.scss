@@ -1,0 +1,123 @@
+@use '../../../../../shared/styles/index' as *;
+
+:host {
+  display: block;
+}
+
+.coaches-list {
+  @include flexbox(column, flex-start, flex-start);
+  width: 100%;
+}
+
+.coach-list {
+  @include flexbox(column, flex-start, stretch, 20px);
+  width: 100%;
+}
+
+.coach-card {
+  @include flexbox(row, space-between, center, $paddingL);
+  width: 100%;
+  padding: $paddingM $paddingL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    border-color: $optional-border-clr;
+    transform: translateY(-2px);
+    box-shadow: $shadowXL;
+  }
+}
+
+.coach-primary-information {
+  @include flexbox(row, flex-start, center, $paddingM, wrap);
+}
+
+.coach-title {
+  margin: 0;
+  color: $secondary-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 800;
+}
+
+.coach-class-badge {
+  @include flexbox(row, center, center);
+  min-height: 28px;
+  padding: 0 $paddingS;
+  color: $tertiary-font-clr;
+  font-weight: 700;
+  font-size: $font-sizeXXS;
+  background-color: $faded-accent-clr;
+  border-radius: $radius-full;
+}
+
+.coach-class-badge.second-class {
+  color: $success-clr;
+  background-color: $faded-success-clr;
+}
+
+.coach-class-badge.business-class {
+  color: $optional-font-clr;
+  background-color: rgba(67, 105, 168, 0.2);
+}
+
+.coach-secondary-information {
+  @include flexbox(row, flex-start, center, $paddingXL);
+  flex-shrink: 0;
+}
+
+.coach-seat-count {
+  color: $optional-font-clr;
+  font-size: $font-sizeXS;
+  font-weight: 600;
+}
+
+.coach-price {
+  min-width: 70px;
+  color: $accent-clr;
+  font-size: $font-sizeM;
+  font-weight: 900;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.coaches-empty {
+  padding: $paddingXL;
+  color: $quaternary-font-clr;
+  text-align: center;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+}
+
+@media (max-width: $breakpointS) {
+  .coach-card {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: $paddingL;
+  }
+
+  .coach-secondary-information {
+    justify-content: space-between;
+    width: 100%;
+    padding-top: $paddingM;
+    border-top: 1px solid $primary-border-clr;
+  }
+}
+
+@media (max-width: $breakpointXS) {
+  .coach-secondary-information {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: $paddingS;
+  }
+
+  .coach-price {
+    text-align: left;
+  }
+}
