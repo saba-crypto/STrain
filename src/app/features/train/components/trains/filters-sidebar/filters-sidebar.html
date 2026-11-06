@@ -7,6 +7,7 @@
         <p class="filters-label">Train number</p>
         <input
           #searchInput
+          (input)="onSearch(searchInput.value)"
           class="filters-input"
           id="train-search"
           type="search"

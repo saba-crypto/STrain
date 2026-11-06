@@ -4,7 +4,7 @@ import { PageContent } from '../../components/trains/page-content/page-content';
 import { TrainService } from '../../services/train.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
-import { map, switchMap } from 'rxjs';
+import { debounce, debounceTime, map, switchMap } from 'rxjs';
 import { StationService } from '../../services/station.service';
 
 @Component({
@@ -44,17 +44,9 @@ export class TrainsPage {
       return res.data;
     }),
   );
-  // public stations$ = toObservable(this.filterState, { injector: this.injector }).pipe(
-  //   switchMap((state) => {
-
-  //     if (state.destination.length === 0 && state.origin.length > 0) {
-  //       this.stationServices.getStationsFromById(6)
-  //     }
-
-  //   }),
-  // );
 
   public trains$ = toObservable(this.trainsState, { injector: this.injector }).pipe(
+    debounceTime(400),
     switchMap((state) => {
       if (state.searchState.length > 0) {
         return this.trainServices.getTrainsBySearch(

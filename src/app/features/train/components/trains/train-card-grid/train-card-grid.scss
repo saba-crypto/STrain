@@ -4,6 +4,55 @@
   @include grid(repeat(3, 1fr), auto, 15px);
 }
 
+.empty-state,
+.error-state {
+  @include flexbox(column, center, center, 10px);
+  grid-column: 1 / -1;
+  min-height: 260px;
+  padding: $paddingXL $paddingL;
+  color: $secondary-font-clr;
+  text-align: center;
+  background: linear-gradient(145deg, $primary-clr, $primary-hover-clr);
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  box-shadow: $shadowXL;
+}
+
+.state-icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: $paddingXS;
+  color: $accent-clr;
+}
+
+.error-state {
+  border-color: $faded-error-clr;
+
+  .state-icon {
+    color: $error-clr;
+  }
+}
+.empty-state,
+.error-state {
+  min-height: 230px;
+  padding: $paddingL $paddingM;
+}
+
+h2 {
+  margin: 0;
+  color: $secondary-font-clr;
+  font-size: $font-sizeL;
+  font-weight: 600;
+}
+
+p {
+  max-width: 440px;
+  margin: 0;
+  color: $optional-font-clr;
+  font-size: $font-sizeS;
+  line-height: 1.6;
+}
+
 @media (max-width: $breakpointXL) {
   .trains-grid {
     grid-template-columns: repeat(2, 1fr);
