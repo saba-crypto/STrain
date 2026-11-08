@@ -3,6 +3,8 @@
   (search)="searchTrains($event)"
   (origin)="changeOrigin($event)"
   (destination)="changeDestination($event)"
+  (filterClear)="clearFilters()"
   [trains]="(trains$ | async) ?? []"
   [stations]="(stations$ | async) ?? []"
+  [searchState]="searchState()"
 ></app-page-content>

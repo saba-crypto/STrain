@@ -6,6 +6,7 @@
       <div class="filters-group">
         <p class="filters-label">Train number</p>
         <input
+          [value]="searchState()"
           #searchInput
           (input)="onSearch(searchInput.value)"
           class="filters-input"
@@ -32,31 +33,43 @@
 
       <div class="filters-group">
         <p class="filters-label">From</p>
-        <select class="filters-input" id="origin">
-          <option (click)="onOriginChange('')" selected value="">Any origin</option>
+        <select
+          #originSelect
+          (change)="onOriginChange(originSelect.value)"
+          class="filters-input"
+          id="origin"
+        >
+          <option selected value="">Any origin</option>
           @for (station of stations(); track station.id) {
-          <option (click)="onOriginChange(station.name)" [value]="station.name">
-            {{station.name}}
-          </option>
+          <option [value]="station.name">{{station.name}}</option>
           }
         </select>
       </div>
 
       <div class="filters-group">
         <p class="filters-label">To</p>
-        <select class="filters-input" id="destination">
-          <option (click)="onDestinationChange('')" selected>Any destination</option>
+        <select
+          #destinationSelect
+          (change)="onDestinationChange(destinationSelect.value)"
+          class="filters-input"
+          id="destination"
+        >
+          <option value="" selected>Any destination</option>
           @for (station of stations(); track station.id) {
-          <option (click)="onDestinationChange(station.name)" [value]="station.name">
-            {{station.name}}
-          </option>
+          <option [value]="station.name">{{station.name}}</option>
           }
         </select>
       </div>
 
       <div class="filters-actions">
         <button class="filters-button filters-button-primary" type="button">Apply filter</button>
-        <button class="filters-button filters-button-ghost" type="button">Clear</button>
+        <button
+          (click)="onFilterClear(originSelect, destinationSelect)"
+          class="filters-button filters-button-ghost"
+          type="button"
+        >
+          Clear
+        </button>
       </div>
     </div>
   </div>

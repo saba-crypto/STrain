@@ -14,7 +14,9 @@ import { Station } from '../../../models/station.model';
 export class PageContent {
   public trains = input<Train[]>([]);
   public stations = input<Station[]>([]);
+  public searchState = input<string>();
   public search = output<string>();
   public origin = output<string>();
+  public filterClear = output<void>();
   public destination = output<string>();
 }

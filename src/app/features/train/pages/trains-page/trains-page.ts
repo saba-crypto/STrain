@@ -45,6 +45,7 @@ export class TrainsPage {
     }),
   );
 
+  //filtration logic
   public trains$ = toObservable(this.trainsState, { injector: this.injector }).pipe(
     debounceTime(400),
     switchMap((state) => {

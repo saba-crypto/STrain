@@ -1,7 +1,9 @@
 <app-filters-sidebar
   [stations]="stations()"
+  [searchState]="searchState()"
   (origin)="origin.emit($event)"
   (destination)="destination.emit($event)"
   (search)="search.emit($event)"
+  (filterClear)="filterClear.emit()"
 ></app-filters-sidebar>
 <app-train-card-grid [trains]="trains()"></app-train-card-grid>
