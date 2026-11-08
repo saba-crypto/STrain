@@ -1,4 +1,4 @@
-import { inject, Service, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 import { LoginCredentials, LoginResponse, RegisterCredentials } from '../models/auth.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
@@ -8,7 +8,10 @@ import { tap, Observable } from 'rxjs';
 export class AuthService {
   private readonly http = inject(HttpClient);
   private baseUrl = environment.apiBaseUrl;
-  private isAuthenticated = signal<boolean>(false);
+  private authenticated = signal<boolean>(false);
+  public isAuthenticated = computed(() => {
+    return this.authenticated.asReadonly();
+  });
 
   register(credentials: RegisterCredentials) {
     return this.http.post(`${this.baseUrl}/auth/register`, credentials);
@@ -18,7 +21,7 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${this.baseUrl}/auth.login`, credentials).pipe(
       tap((res) => {
         this.saveTokensToStorage(res.data.accessToken, res.data.refreshToken);
-        this.isAuthenticated.set(true);
+        this.authenticated.set(true);
       }),
     );
   }
@@ -26,7 +29,7 @@ export class AuthService {
   init() {
     this.http.get(`${this.baseUrl}/users/me`).pipe(
       tap(() => {
-        this.isAuthenticated.set(true);
+        this.authenticated.set(true);
       }),
     );
   }

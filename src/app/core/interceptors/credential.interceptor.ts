@@ -7,6 +7,5 @@ export const credentialInterceptor: HttpInterceptorFn = (req, next) => {
       apiKey: environment.apiKey,
     },
   });
-
   return next(clonedRequest);
 };
