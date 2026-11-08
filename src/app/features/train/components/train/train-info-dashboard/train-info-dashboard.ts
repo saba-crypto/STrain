@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Train } from '../../../models/train.model';
 
@@ -15,6 +15,9 @@ export class TrainInfoDashboard {
   public train = input.required<Train>();
   public activeTab = input<TrainDetailTab>('schedules');
   public tabChange = output<TrainDetailTab>();
+
+  public totalCouchesCount = computed(() => this.train().coaches!.length);
+  public totalSchedulesCount = computed(() => this.train().schedules!.length);
 
   public selectTab(tab: TrainDetailTab): void {
     this.tabChange.emit(tab);

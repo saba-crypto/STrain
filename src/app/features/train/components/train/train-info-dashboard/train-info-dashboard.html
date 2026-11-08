@@ -43,7 +43,7 @@
       [attr.aria-selected]="activeTab() === 'schedules'"
       (click)="selectTab('schedules')"
     >
-      Schedules({{train().schedules.length}})
+      Schedules({{totalSchedulesCount()}})
     </button>
     <button
       type="button"
@@ -53,7 +53,7 @@
       [attr.aria-selected]="activeTab() === 'coaches'"
       (click)="selectTab('coaches')"
     >
-      Coaches({{train().coaches.length}})
+      Coaches({{totalCouchesCount()}})
     </button>
   </nav>
 </section>
