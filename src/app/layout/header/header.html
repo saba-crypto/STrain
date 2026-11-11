@@ -44,14 +44,30 @@
         </div>
       </a>
     </div>
+    <div class="header-center">
+      @if (!isAuthenticated()) {
+      <ul class="nav-list">
+        <li class="list-item"><a routerLink="/">Home</a></li>
+        <li class="list-item"><a routerLink="/trains">Trains</a></li>
+      </ul>
+      }
+    </div>
 
     <div class="header-right">
       <nav>
+        @if (isAuthenticated()) {
         <ul class="nav-list">
           <li class="list-item"><a routerLink="/">Home</a></li>
           <li class="list-item"><a routerLink="/trains">Trains</a></li>
+
           <li class="list-item"><a>My Profile</a></li>
         </ul>
+        } @else {
+        <div class="auth-actions">
+          <button routerLink="/login" class="login-button" type="button">Login</button>
+          <button routerLink="/login" class="get-started-button" type="button">Get Started</button>
+        </div>
+        }
       </nav>
       <button class="menu-toggle" type="button" aria-label="Open navigation menu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">

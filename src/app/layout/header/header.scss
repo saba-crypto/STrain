@@ -31,18 +31,8 @@ header {
     font-weight: 700;
     letter-spacing: 0.08em;
   }
-
-  .header-logo-name-suffix {
-    color: $secondary-font-clr;
-  }
-
-  .header-right {
-    @include flexbox(row, center, center, 30px);
-
-    .nav-list {
-      @include flexbox(row, center, center, min(40px));
-    }
-
+  .nav-list {
+    @include flexbox(row, center, center, min(40px));
     a {
       color: $secondary-font-clr;
       font-size: $font-sizeXS;
@@ -54,6 +44,92 @@ header {
       &:hover {
         color: $accent-clr;
         transform: translateY(-1px);
+      }
+    }
+  }
+
+  .header-logo-name-suffix {
+    color: $secondary-font-clr;
+  }
+
+  .header-right {
+    @include flexbox(row, center, center, 30px);
+    nav {
+      @include flexbox(row, center, center, 20px);
+    }
+
+    .auth-actions {
+      @include flexbox(row, center, center, 10px);
+    }
+
+    .login-button {
+      padding: $paddingS $paddingM;
+      color: $accent-clr;
+      font-size: $font-sizeXS;
+      font-weight: 600;
+      font-family: inherit;
+      line-height: 1.2;
+      background-color: transparent;
+      border: 1px solid $accent-clr;
+      border-radius: $radiusM;
+      cursor: pointer;
+      transition:
+        background-color 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s,
+        transform 0.25s;
+
+      &:hover {
+        color: $tertiary-font-clr;
+        background-color: $accent-clr-hover;
+        border-color: $accent-clr-hover;
+        box-shadow: $shadow-button-hover;
+        transform: translateY(-1px);
+      }
+
+      &:focus-visible {
+        outline: 2px solid $accent-clr-hover;
+        outline-offset: 3px;
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+    }
+
+    .get-started-button {
+      padding: $paddingS $paddingM;
+      color: $tertiary-font-clr;
+      font-size: $font-sizeXS;
+      font-weight: 600;
+      font-family: inherit;
+      line-height: 1.2;
+      background-color: $accent-clr;
+      border: 1px solid $accent-clr;
+      border-radius: $radiusM;
+      cursor: pointer;
+      transition:
+        background-color 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s,
+        transform 0.25s;
+
+      &:hover {
+        background-color: $accent-clr-hover;
+        border-color: $accent-clr-hover;
+        box-shadow: $shadow-button-hover;
+        transform: translateY(-1px);
+      }
+
+      &:focus-visible {
+        outline: 2px solid $accent-clr-hover;
+        outline-offset: 3px;
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: none;
       }
     }
   }
@@ -84,7 +160,8 @@ header {
     width: min(100% - 2rem, 70.8rem);
 
     .header-right {
-      .nav-list {
+      .nav-list,
+      .auth-actions {
         display: none;
       }
 

@@ -1,5 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import is from '@angular/common/locales/is';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +10,10 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header.scss',
 })
-export class Header {}
+export class Header {
+  public authService = inject(AuthService);
+  public isAuthenticated = this.authService.isAuthenticated;
+  ngOnInit() {
+    console.log(this.isAuthenticated);
+  }
+}
