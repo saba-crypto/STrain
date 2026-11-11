@@ -1,0 +1,161 @@
+@use '../../../../../shared/styles/index' as *;
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.banner-section {
+  @include flexbox(column, center, center);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: $primary-clr;
+  padding: $padding3XL;
+  box-sizing: border-box;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201, 168, 76, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 168, 76, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background:
+      radial-gradient(circle at 20% 50%, $accent-clr 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, $accent-clr 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .section-container {
+    @include flexbox(column, center, center);
+    width: 100%;
+    max-width: 500px;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .logo {
+    @include flexbox(row, center, center);
+    width: 80px;
+    height: 80px;
+    margin: 0 auto $paddingXL;
+    background: linear-gradient(135deg, $accent-clr 0%, $accent-clr-hover 100%);
+    border-radius: $radiusXL;
+    box-shadow: 0 0 32px rgba(201, 168, 76, 0.4);
+    color: $tertiary-font-clr;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .banner-title {
+    font-size: $font-sizeL;
+    font-weight: 700;
+    color: $secondary-font-clr;
+    margin-bottom: $paddingM;
+    line-height: 1.25;
+    letter-spacing: 0.05em;
+  }
+
+  .banner-description {
+    font-size: $font-sizeM;
+    color: $optional-font-clr;
+    line-height: 1.6;
+    margin-bottom: $paddingXL;
+  }
+
+  .stats {
+    @include grid(repeat(3, 1fr), auto, $paddingL);
+    margin-top: $padding2XL;
+    box-sizing: border-box;
+  }
+
+  .stat-item {
+    @include flexbox(column, center, center);
+    padding: $paddingL $paddingM;
+    background-color: rgba(13, 18, 38, 0.55);
+    backdrop-filter: blur(10px);
+    border: 1px solid $primary-border-clr;
+    border-radius: $radiusL;
+    box-sizing: border-box;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: $optional-border-clr;
+    }
+  }
+
+  .stat-value {
+    font-size: $font-sizeM;
+    font-weight: 700;
+    color: $primary-font-clr;
+    margin-bottom: $paddingXS;
+  }
+
+  .stat-label {
+    font-size: $font-sizeXXS;
+    color: $quaternary-font-clr;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+@media (max-width: $breakpointXL) {
+  .banner-section {
+    min-height: auto;
+    padding: $padding2XL $paddingXL;
+  }
+}
+
+@media (max-width: $breakpointS) {
+  .banner-section {
+    padding: $paddingXL $paddingM;
+
+    .stats {
+      grid-template-columns: 1fr;
+      gap: $paddingM;
+    }
+  }
+}
