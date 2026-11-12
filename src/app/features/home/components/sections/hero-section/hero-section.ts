@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { DefaultButton } from '../../../../../shared/buttons/default-button/default-button';
+import { DefaultButton } from '../../../../../shared/ui/buttons/default-button/default-button';
 
 @Component({
   selector: 'app-hero-section',
