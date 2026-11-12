@@ -27,7 +27,7 @@
           <p class="subtitle">Sign in to manage bookings and travel across Georgia</p>
         </header>
 
-        <form class="login-form">
+        <form (submit)="onSubmit($event)" class="login-form">
           <div class="form-group">
             <label class="form-label" for="login-email">Email address</label>
             <div class="input-wrapper">
@@ -47,14 +47,21 @@
                 </svg>
               </span>
               <input
+                [formField]="loginForm.email"
                 type="email"
                 id="login-email"
-                name="email"
                 class="form-input"
                 placeholder="example@mail.com"
                 autocomplete="email"
               />
             </div>
+            @if (loginForm.email().touched() && loginForm.email().invalid()) {
+            <ul class="error-list">
+              @for (error of loginForm.email().errors(); track error) {
+              <li>{{ error.message }}</li>
+              }
+            </ul>
+            }
           </div>
 
           <div class="form-group">
@@ -76,14 +83,21 @@
                 </svg>
               </span>
               <input
+                [formField]="loginForm.password"
                 type="password"
                 id="login-password"
-                name="password"
                 class="form-input"
                 placeholder="••••••••"
                 autocomplete="current-password"
               />
             </div>
+            @if (loginForm.password().touched() && loginForm.password().invalid()) {
+            <ul class="error-list">
+              @for (error of loginForm.password().errors(); track error) {
+              <li>{{ error.message }}</li>
+              }
+            </ul>
+            }
           </div>
 
           <div class="form-options">
@@ -94,7 +108,7 @@
             <a routerLink="/forgot-password" class="forgot-link">Forgot password?</a>
           </div>
 
-          <button type="submit" class="submit-button">
+          <button [disabled]="loginForm().invalid()" type="submit" class="submit-button">
             <span class="button-content">Sign In</span>
           </button>
 

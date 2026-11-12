@@ -108,6 +108,10 @@
         }
       }
     }
+    .error-list {
+      color: $error-clr;
+      font-size: $font-sizeXS;
+    }
 
     .input-icon {
       @include flexbox(row, center, center);
@@ -197,7 +201,6 @@
       border: 1px solid $accent-clr;
       color: $tertiary-font-clr;
       box-shadow: $shadow-button-hover;
-      cursor: pointer;
       position: relative;
       overflow: hidden;
       box-sizing: border-box;
@@ -207,14 +210,20 @@
         box-shadow 0.2s ease,
         transform 0.2s ease;
 
-      &:hover {
+      &:hover:not(:disabled) {
         background-color: $accent-clr-hover;
         border-color: $accent-clr-hover;
         transform: translateY(-2px);
+        cursor: pointer;
       }
 
-      &:active {
+      &:active:not(:disabled) {
         transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
       }
     }
 
