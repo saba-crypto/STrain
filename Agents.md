@@ -32,6 +32,7 @@ this project doesn't have to be exact 1 to 1 copy of the original project, since
 
 [original project demo](https://trains.stepacademy.ge/)  
 [backend documentation](https://hackmd.io/@ITStep/trains)  
+[another documentation](https://projects.stepacademy.ge/docs/trains)
 [project architecture, patterns and conventions](./docs/Architecture.md)
 
 #### email and password if original website tells you to register:

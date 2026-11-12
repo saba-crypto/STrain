@@ -18,7 +18,7 @@ export const routes: Routes = [
     component: TrainPage,
   },
   {
-    path: 'login',
+    path: 'auth/login',
     component: Login,
   },
 ];
