@@ -1,0 +1,12 @@
+@use './shared/styles/index' as *;
+.toasts-list {
+  @include flexbox(column, center, center, 20px);
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  z-index: 9999;
+  transform: translateX(-50%);
+  width: min(92vw, 460px);
+  pointer-events: none;
+  box-sizing: border-box;
+}

@@ -4,6 +4,7 @@ import { LoginBanner } from '../../components/login/login-banner/login-banner';
 import { email, form, FormField, minLength, required } from '@angular/forms/signals';
 import { AuthService } from '../../../../core/services/auth.service';
 import { pipe, tap } from 'rxjs';
+import { ToastService } from '../../../../core/services/toast.service';
 
 @Component({
   imports: [RouterLink, LoginBanner, FormField],
@@ -13,6 +14,7 @@ import { pipe, tap } from 'rxjs';
 })
 export class Login {
   private authService = inject(AuthService);
+  private toastService = inject(ToastService);
   private router = inject(Router);
   private loginModel = signal({
     email: '',
@@ -31,6 +33,7 @@ export class Login {
     event.preventDefault();
     console.log('Hello');
     this.authService.login(this.loginModel()).subscribe(() => {
+      this.toastService.show('Login Successful!', 'success');
       this.router.navigate(['/']);
     });
   }
