@@ -1,8 +1,8 @@
-import { computed, inject, Injectable, Service, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { LoginCredentials, LoginResponse, RegisterCredentials } from '../models/auth.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
-import { tap, Observable } from 'rxjs';
+import { tap, Observable, of, catchError, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,10 +27,27 @@ export class AuthService {
   }
 
   init() {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    if (!accessToken && !refreshToken) {
+      return of(null);
+    }
+
     return this.http.get(`${this.baseUrl}/users/me`).pipe(
       tap(() => {
         this.authenticated.set(true);
       }),
+    );
+  }
+  refreshToken() {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (!refreshToken) {
+      return of(null);
+    }
+    return this.http.post<LoginResponse>(
+      `${this.baseUrl}/api/auth/refresh-access-token/${refreshToken}`,
+      {},
     );
   }
 
