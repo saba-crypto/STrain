@@ -108,7 +108,11 @@
             <a routerLink="/forgot-password" class="forgot-link">Forgot password?</a>
           </div>
 
-          <button [disabled]="loginForm().invalid()" type="submit" class="submit-button">
+          <button
+            [disabled]="loginForm().invalid() || isLoading()"
+            type="submit"
+            class="submit-button"
+          >
             <span class="button-content">Sign In</span>
           </button>
 

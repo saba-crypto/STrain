@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { LoginBanner } from '../../components/login/login-banner/login-banner';
 import { email, form, FormField, minLength, required } from '@angular/forms/signals';
 import { AuthService } from '../../../../core/services/auth.service';
-import { pipe, tap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { ToastService } from '../../../../core/services/toast.service';
 
 @Component({
@@ -29,12 +29,20 @@ export class Login {
     required(path.password, { message: 'Password is required' });
   });
 
+  public isLoading = signal<boolean>(false);
+
   onSubmit(event: Event) {
     event.preventDefault();
-    console.log('Hello');
-    this.authService.login(this.loginModel()).subscribe(() => {
-      this.toastService.show('Login Successful!', 'success');
-      this.router.navigate(['/']);
+    this.isLoading.set(true);
+
+    this.authService.login(this.loginModel()).subscribe({
+      next: () => {
+        this.toastService.show('Login Successful!', 'success');
+        this.router.navigate(['/']);
+      },
+      complete: () => {
+        this.isLoading.set(false);
+      },
     });
   }
 }
