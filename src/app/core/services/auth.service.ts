@@ -29,16 +29,9 @@ export class AuthService {
   init() {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
-
-    if (!accessToken && !refreshToken) {
-      return of(null);
-    }
-
-    return this.http.get(`${this.baseUrl}/users/me`).pipe(
-      tap(() => {
-        this.authenticated.set(true);
-      }),
-    );
+    this.http.get(`${this.baseUrl}/users/me`).subscribe(() => {
+      this.authenticated.set(true);
+    });
   }
   refreshToken() {
     const refreshToken = localStorage.getItem('refreshToken');
