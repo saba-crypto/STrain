@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { LoginBanner } from '../../components/login/login-banner/login-banner';
 import { email, form, FormField, minLength, required } from '@angular/forms/signals';
 import { AuthService } from '../../../../core/services/auth.service';
-import { finalize, switchMap } from 'rxjs';
+import { finalize } from 'rxjs';
 import { ToastService } from '../../../../core/services/toast.service';
 
 @Component({

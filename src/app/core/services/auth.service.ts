@@ -2,7 +2,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { LoginCredentials, LoginResponse, RegisterCredentials } from '../models/auth.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';
-import { tap, Observable, of, catchError, switchMap } from 'rxjs';
+import { tap, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +27,6 @@ export class AuthService {
   }
 
   init() {
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
     this.http.get(`${this.baseUrl}/users/me`).subscribe(() => {
       this.authenticated.set(true);
     });
