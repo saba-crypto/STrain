@@ -9,6 +9,7 @@ import { ProfilePage } from './features/profile/pages/profile-page/profile-page'
 import { ProfileContent } from './features/profile/pages/profile-content/profile-content';
 import { SettingsContent } from './features/profile/pages/settings-content/settings-content';
 import { BookingsContent } from './features/profile/pages/bookings-content/bookings-content';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,7 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfilePage,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
