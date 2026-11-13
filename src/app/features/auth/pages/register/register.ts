@@ -47,8 +47,8 @@ export class Register {
         }),
       )
       .subscribe(() => {
-        this.toastService.show('Registration Successful!', 'success');
-        this.router.navigate(['/auth/login']);
+        this.toastService.show('Please verify your email', 'success');
+        this.router.navigate(['/auth/verification/', this.registerModel().email]);
       });
   }
 }

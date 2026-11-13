@@ -39,9 +39,13 @@ export class AuthService {
       return of(null);
     }
     return this.http.post<LoginResponse>(
-      `${this.baseUrl}/api/auth/refresh-access-token/${refreshToken}`,
+      `${this.baseUrl}/auth/refresh-access-token/${refreshToken}`,
       {},
     );
+  }
+
+  verifyEmail(code: string, email: string) {
+    return this.http.put(`${this.baseUrl}/auth/verify-email`, { email, code });
   }
 
   saveTokensToStorage(accessToken: string, refreshToken: string) {
