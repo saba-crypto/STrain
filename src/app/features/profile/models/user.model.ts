@@ -13,4 +13,19 @@ export interface User {
   };
 }
 
+export interface UserUpdateInfo {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  address: string;
+  pictureUrl: string;
+  dateOfBirth: string;
+}
+
+export interface PasswordChangeInfo {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export type UserResponse = ApiResponse<User>;
