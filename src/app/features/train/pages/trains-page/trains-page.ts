@@ -104,24 +104,3 @@ export class TrainsPage {
     this.searchState.set('');
   }
 }
-
-// if (state.searchState.length > 0) {
-//   return this.trainServices.getTrainsBySearch(
-//     state.searchState,
-//     state.trainsPerPage,
-//     state.currentPage,
-//   );
-// } else if (state.filterState.origin.length > 0) {
-//   return this.trainServices.getTrainsByFilter(
-//     state.filterState.origin,
-//     state.filterState.destination,
-//     state.trainsPerPage,
-//     state.currentPage,
-//   );
-// } else {
-//   return this.trainServices.getTrains(state.trainsPerPage, state.currentPage);
-// }
-
-// public trains$ = this.trainServices
-//   .getTrains(this.trainsPerPage(), this.currentPage())
-//   .pipe(map((res) => res.data.items));

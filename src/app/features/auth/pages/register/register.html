@@ -1,0 +1,164 @@
+<div class="register-page">
+  <div class="banner-wrapper">
+    <app-login-banner></app-login-banner>
+  </div>
+
+  <section class="form-section" aria-label="Create account form">
+    <div class="section-container form-container">
+      <div class="register-card">
+        <header class="header-section">
+          <div class="icon-wrapper" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="28"
+              height="28"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <line x1="19" y1="8" x2="19" y2="14"></line>
+              <line x1="22" y1="11" x2="16" y2="11"></line>
+            </svg>
+          </div>
+          <h2 class="form-title">Create Your Account</h2>
+          <p class="subtitle">Join us and start planning your journeys across Georgia</p>
+        </header>
+
+        <form (submit)="onSubmit($event)" class="register-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="register-first-name">First name</label>
+              <input
+                [formField]="registerForm.firstName"
+                type="text"
+                id="register-first-name"
+                class="form-input"
+                placeholder="Your first name"
+                autocomplete="given-name"
+              />
+              @if (registerForm.firstName().touched() && registerForm.firstName().invalid()) {
+              <ul class="error-list">
+                @for (error of registerForm.firstName().errors(); track error) {
+                <li>{{ error.message }}</li>
+                }
+              </ul>
+              }
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="register-last-name">Last name</label>
+              <input
+                [formField]="registerForm.lastName"
+                type="text"
+                id="register-last-name"
+                class="form-input"
+                placeholder="Your last name"
+                autocomplete="family-name"
+              />
+              @if (registerForm.lastName().touched() && registerForm.lastName().invalid()) {
+              <ul class="error-list">
+                @for (error of registerForm.lastName().errors(); track error) {
+                <li>{{ error.message }}</li>
+                }
+              </ul>
+              }
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="register-email">Email address</label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+              </span>
+              <input
+                [formField]="registerForm.email"
+                type="email"
+                id="register-email"
+                class="form-input"
+                placeholder="example@mail.com"
+                autocomplete="email"
+              />
+            </div>
+            @if (registerForm.email().touched() && registerForm.email().invalid()) {
+            <ul class="error-list">
+              @for (error of registerForm.email().errors(); track error) {
+              <li>{{ error.message }}</li>
+              }
+            </ul>
+            }
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="register-password">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </span>
+              <input
+                [formField]="registerForm.password"
+                type="password"
+                id="register-password"
+                class="form-input"
+                placeholder="••••••••"
+                autocomplete="new-password"
+              />
+            </div>
+            @if (registerForm.password().touched() && registerForm.password().invalid()) {
+            <ul class="error-list">
+              @for (error of registerForm.password().errors(); track error) {
+              <li>{{ error.message }}</li>
+              }
+            </ul>
+            }
+          </div>
+
+          <button
+            [disabled]="registerForm().invalid() || isLoading()"
+            type="submit"
+            class="submit-button"
+          >
+            <span class="button-content">Create Account</span>
+          </button>
+
+          <div class="divider" role="separator">
+            <span class="divider-text">or</span>
+          </div>
+
+          <p class="footer-text">
+            Already have an account?
+            <a routerLink="/auth/login" class="login-link">Sign in</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
