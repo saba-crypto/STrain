@@ -67,14 +67,16 @@
   border-radius: $radiusM;
   font-size: $font-sizeS;
   font-weight: 500;
-  transition: background-color 150ms ease, color 150ms ease;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
 }
 
 .profile-navigation-link {
   color: $quaternary-font-clr;
 }
 
-.profile-navigation-link:hover {
+.profile-navigation-link:not(.profile-navigation-link-active):hover {
   color: $secondary-font-clr;
   background-color: $primary-hover-clr;
 }
