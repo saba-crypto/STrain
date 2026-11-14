@@ -1,0 +1,104 @@
+@use '../../../../shared/styles' as *;
+
+:host {
+  display: block;
+}
+
+.profile-sidebar {
+  position: sticky;
+  top: $paddingL;
+  display: flex;
+  flex-direction: column;
+  padding: $paddingXL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+}
+
+.profile-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto $paddingM;
+  color: $tertiary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 700;
+  background: linear-gradient(135deg, $accent-clr, $accent-clr-hover);
+  border-radius: $radius-full;
+}
+
+.profile-info {
+  padding-bottom: $paddingXL;
+  margin-bottom: $paddingL;
+  text-align: center;
+  border-bottom: 1px solid $primary-border-clr;
+}
+
+.profile-name {
+  margin: 0 0 $paddingXXS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 600;
+}
+
+.profile-email {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+}
+
+.profile-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: $paddingXXS;
+  margin-bottom: $paddingXL;
+}
+
+.profile-navigation-link,
+.profile-logout {
+  display: flex;
+  align-items: center;
+  gap: $paddingXS;
+  width: 100%;
+  padding: $paddingS $paddingM;
+  border-radius: $radiusM;
+  font-size: $font-sizeS;
+  font-weight: 500;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.profile-navigation-link {
+  color: $quaternary-font-clr;
+}
+
+.profile-navigation-link:hover {
+  color: $secondary-font-clr;
+  background-color: $primary-hover-clr;
+}
+
+.profile-navigation-link-active {
+  color: $accent-clr;
+  background-color: rgba($accent-clr, 0.08);
+}
+
+.profile-logout {
+  color: $error-clr;
+  font-family: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.profile-logout:hover {
+  background-color: rgba($error-clr, 0.08);
+}
+
+@media (max-width: $breakpointM) {
+  .profile-sidebar {
+    position: static;
+  }
+}
