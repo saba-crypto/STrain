@@ -1,0 +1,135 @@
+@use '../../../../shared/styles' as *;
+
+:host {
+  display: block;
+}
+
+.profile-content {
+  @include flexbox(column, center, flex-start, 10px);
+  min-height: 400px;
+  padding: $padding2XL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  box-sizing: border-box;
+}
+
+.section-header {
+  @include flexbox(column, center, flex-start, 10px);
+  margin-bottom: $paddingXL;
+}
+
+.section-title {
+  margin: 0 0 $paddingXXS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 700;
+}
+
+.section-description {
+  margin: 0;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeXS;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $paddingM;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $paddingXS;
+  margin-bottom: $paddingM;
+}
+
+.field-label {
+  color: $optional-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 500;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 44px;
+  padding: $paddingS $paddingM;
+  color: $secondary-font-clr;
+  font: inherit;
+  font-size: $font-sizeS;
+  background-color: $secondary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.field-input::placeholder {
+  color: $quaternary-font-clr;
+}
+
+.field-input:focus {
+  border-color: $accent-clr;
+  box-shadow: 0 0 0 3px rgba($accent-clr, 0.12);
+}
+
+.field-input:disabled {
+  color: $quaternary-font-clr;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: $paddingL;
+}
+
+.save-button {
+  min-height: 44px;
+  padding: $paddingS $paddingL;
+  color: $tertiary-font-clr;
+  font: inherit;
+  font-size: $font-sizeS;
+  font-weight: 600;
+  background-color: $accent-clr;
+  border: 1px solid $accent-clr;
+  border-radius: $radiusM;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.save-button:hover {
+  background-color: $accent-clr-hover;
+  border-color: $accent-clr-hover;
+}
+
+@media (max-width: $breakpointS) {
+  .profile-content {
+    padding: $paddingXL;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .save-button {
+    width: 100%;
+  }
+}

@@ -9,9 +9,4 @@ import { AuthService } from '../../../../core/services/auth.service';
   styleUrl: './profile-page.scss',
   templateUrl: './profile-page.html',
 })
-export class ProfilePage {
-  private readonly authService = inject(AuthService);
-  logout() {
-    this.authService.logout();
-  }
-}
+export class ProfilePage {}

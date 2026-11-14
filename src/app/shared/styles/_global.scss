@@ -2,10 +2,14 @@
 html {
   font-family: $primary-font;
   background-color: $bg-clr;
+  box-sizing: border-box;
 }
 a {
   color: unset;
   text-decoration: none;
+}
+* {
+  box-sizing: border-box;
 }
 
 section {

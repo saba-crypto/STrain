@@ -1,7 +1,16 @@
 @use '../../../../shared/styles/index' as *;
 :host {
-  @include grid(250px 1fr, 1fr, 20px);
+  @include grid(minmax(0, 250px) minmax(0, 1fr), 1fr, 20px);
   width: min(100% - 3.5rem, 70.8rem);
   padding: $padding2XL 0 $padding3XL;
   margin: 80px auto;
+  padding-top: 50px;
+}
+
+@media (max-width: $breakpointM) {
+  :host {
+    grid-template-columns: minmax(0, 1fr);
+    gap: $paddingL;
+    margin-top: $paddingXL;
+  }
 }
