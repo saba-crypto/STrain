@@ -1,1 +1,48 @@
-<p>settings-content works!</p>
+<div class="app-settings">
+  <div class="section-header">
+    <h1 class="section-title">Security Settings</h1>
+    <p class="section-description">Manage your password and account.</p>
+  </div>
+
+  <div class="settings-section" aria-labelledby="password-title">
+    <h2 class="settings-section-title" id="password-title">Change Password</h2>
+
+    <form class="settings-form">
+      <div class="form-group">
+        <label class="field-label" for="current-password">Current Password</label>
+        <input
+          class="field-input"
+          id="current-password"
+          name="current-password"
+          type="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="field-label" for="new-password">New Password</label>
+        <input
+          class="field-input"
+          id="new-password"
+          name="new-password"
+          type="password"
+          placeholder="••••••••"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <button class="settings-button settings-button-primary" type="submit">Update Password</button>
+    </form>
+  </div>
+
+  <div class="settings-section settings-section-danger" aria-labelledby="danger-title">
+    <h2 class="settings-section-title" id="danger-title">Danger Zone</h2>
+    <p class="settings-section-description">
+      Once you delete your account, all data will be permanently removed. This action cannot be
+      undone.
+    </p>
+
+    <button class="settings-button settings-button-danger" type="button">Delete Account</button>
+  </div>
+</div>

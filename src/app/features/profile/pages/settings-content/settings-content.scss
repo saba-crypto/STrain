@@ -1,0 +1,157 @@
+@use '../../../../shared/styles' as *;
+
+:host {
+  display: block;
+}
+
+.app-settings {
+  @include flexbox(column, center, flex-start, 20px);
+  width: 100%;
+  padding: $padding2XL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+}
+
+.section-header {
+  @include flexbox(column, center, flex-start, 10px);
+  margin-bottom: $paddingXL;
+}
+
+.section-title {
+  margin: 0 0 $paddingXXS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeL;
+  font-weight: 700;
+}
+
+.section-description,
+.settings-section-description {
+  margin: 0;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+}
+
+.settings-section {
+  @include flexbox(column, center, flex-start, 15px);
+  width: 100%;
+  padding-bottom: $padding2XL;
+  margin-bottom: $padding2XL;
+  border-bottom: 1px solid $primary-border-clr;
+}
+
+.settings-section:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.settings-section-title {
+  margin: 0 0 $paddingS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 600;
+}
+
+.settings-section-description {
+  max-width: 480px;
+  margin-bottom: $paddingL;
+  line-height: 1.75;
+}
+
+.settings-section-danger .settings-section-title {
+  color: $error-clr;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $paddingXS;
+  margin-bottom: $paddingM;
+}
+
+.field-label {
+  color: $optional-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 500;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 44px;
+  padding: $paddingS $paddingM;
+  color: $secondary-font-clr;
+  font: inherit;
+  font-size: $font-sizeS;
+  background-color: $secondary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.field-input::placeholder {
+  color: $quaternary-font-clr;
+}
+
+.field-input:focus {
+  border-color: $accent-clr;
+  box-shadow: 0 0 0 3px rgba($accent-clr, 0.12);
+}
+
+.settings-button {
+  min-height: 44px;
+  padding: $paddingS $paddingL;
+  font: inherit;
+  font-size: $font-sizeS;
+  font-weight: 600;
+  border-radius: $radiusM;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.settings-button-primary {
+  align-self: flex-end;
+  color: $tertiary-font-clr;
+  background-color: $accent-clr;
+  border: 1px solid $accent-clr;
+}
+
+.settings-button-primary:hover {
+  background-color: $accent-clr-hover;
+  border-color: $accent-clr-hover;
+}
+
+.settings-button-danger {
+  color: $error-clr;
+  background-color: transparent;
+  border: 1px solid $error-clr;
+}
+
+.settings-button-danger:hover {
+  color: $secondary-font-clr;
+  background-color: $error-clr;
+}
+
+@media (max-width: $breakpointS) {
+  .app-settings {
+    padding: $paddingXL;
+  }
+
+  .settings-button-primary,
+  .settings-button-danger {
+    align-self: stretch;
+    width: 100%;
+  }
+}
