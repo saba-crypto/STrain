@@ -8,19 +8,19 @@ export interface User {
   details: {
     phoneNumber: string;
     address: string;
-    dob: string;
+    dob: Date;
     pictureUrl: string;
   };
 }
 
 export interface UserUpdateInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  address: string;
-  pictureUrl: string;
-  dateOfBirth: string;
+  firstName: string | null;
+  lastName: string | null;
+  email: string | null;
+  phoneNumber: string | null;
+  address: string | null;
+  pictureUrl: string | null;
+  dateOfBirth: Date | null;
 }
 
 export interface PasswordChangeInfo {

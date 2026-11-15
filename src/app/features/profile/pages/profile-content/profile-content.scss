@@ -44,6 +44,11 @@
   gap: $paddingM;
 }
 
+.form-error {
+  color: $error-clr;
+  font-size: $font-sizeS;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -104,15 +109,19 @@
   background-color: $accent-clr;
   border: 1px solid $accent-clr;
   border-radius: $radiusM;
-  cursor: pointer;
   transition:
     background-color 150ms ease,
     border-color 150ms ease;
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 
-.save-button:hover {
+.save-button:not(:disabled):hover {
   background-color: $accent-clr-hover;
   border-color: $accent-clr-hover;
+  cursor: pointer;
 }
 
 @media (max-width: $breakpointS) {

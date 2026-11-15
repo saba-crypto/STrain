@@ -1,18 +1,16 @@
-<section class="profile-content" aria-labelledby="profile-title">
-  <header class="section-header">
+<div class="profile-content" aria-labelledby="profile-title">
+  <div class="section-header">
     <h1 class="section-title" id="profile-title">Personal Information</h1>
-    <p class="section-description">
-      Update your name, contact details and date of birth.
-    </p>
-  </header>
+    <p class="section-description">Update your name, contact details and date of birth.</p>
+  </div>
 
   <form class="profile-form">
     <div class="form-group">
       <label class="field-label" for="picture-url">Picture URL</label>
       <input
+        [formField]="profileForm.pictureUrl"
         class="field-input"
         id="picture-url"
-        name="picture-url"
         type="url"
         placeholder="https://"
       />
@@ -22,9 +20,9 @@
       <div class="form-group">
         <label class="field-label" for="first-name">First Name</label>
         <input
+          [formField]="profileForm.firstName"
           class="field-input"
           id="first-name"
-          name="first-name"
           type="text"
           placeholder="First name"
           autocomplete="given-name"
@@ -34,9 +32,9 @@
       <div class="form-group">
         <label class="field-label" for="last-name">Last Name</label>
         <input
+          [formField]="profileForm.lastName"
           class="field-input"
           id="last-name"
-          name="last-name"
           type="text"
           placeholder="Last name"
           autocomplete="family-name"
@@ -47,53 +45,66 @@
     <div class="form-group">
       <label class="field-label" for="email">Email Address</label>
       <input
+        [formField]="profileForm.email"
         class="field-input"
         id="email"
-        name="email"
         type="email"
-        value="user@example.com"
         autocomplete="email"
-        disabled
       />
     </div>
 
     <div class="form-group">
       <label class="field-label" for="phone-number">Phone Number</label>
       <input
+        [formField]="profileForm.phoneNumber"
         class="field-input"
         id="phone-number"
-        name="phone-number"
         type="tel"
         placeholder="e.g. +995 555 010 010"
         autocomplete="tel"
       />
+      @if (profileForm.phoneNumber().invalid()) { @for (error of profileForm.phoneNumber().errors();
+      track error) {
+      <p class="form-error">{{error.message}}</p>
+      } }
     </div>
 
     <div class="form-group">
       <label class="field-label" for="address">Address</label>
       <input
+        [formField]="profileForm.address"
         class="field-input"
         id="address"
-        name="address"
         type="text"
         placeholder="Your address"
         autocomplete="street-address"
       />
+      @if (profileForm.address().invalid()) { @for (error of profileForm.address().errors(); track
+      error) {
+      <p class="form-error">{{error.message}}</p>
+      } }
     </div>
 
     <div class="form-group">
       <label class="field-label" for="date-of-birth">Date of Birth</label>
       <input
+        [formField]="profileForm.dateOfBirth"
         class="field-input"
         id="date-of-birth"
-        name="date-of-birth"
         type="date"
         autocomplete="bday"
       />
     </div>
 
     <div class="form-actions">
-      <button class="save-button" type="submit">Save Changes</button>
+      <button
+        [disabled]="isLoading() || profileForm().invalid() || !profileForm().dirty()"
+        (click)="onSubmit($event)"
+        class="save-button"
+        type="submit"
+      >
+        Save Changes
+      </button>
     </div>
   </form>
-</section>
+</div>
