@@ -1,0 +1,293 @@
+@use '../../../../shared/styles' as *;
+
+:host {
+  display: block;
+}
+
+.bookings-content {
+  min-height: 400px;
+  padding: $padding2XL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+}
+
+.section-header {
+  margin-bottom: $paddingXL;
+}
+
+.section-title {
+  margin: 0 0 $paddingXXS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 700;
+}
+
+.section-description {
+  margin: 0;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeXS;
+}
+
+.bookings-filter {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: $paddingM;
+  margin-bottom: $paddingXL;
+}
+
+.filter-field {
+  flex: 1;
+  min-width: 140px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: $paddingXS;
+  color: $optional-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 500;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 44px;
+  padding: $paddingS $paddingM;
+  color: $secondary-font-clr;
+  font: inherit;
+  font-size: $font-sizeS;
+  background-color: $secondary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.field-input:focus {
+  border-color: $accent-clr;
+  box-shadow: 0 0 0 3px rgba($accent-clr, 0.12);
+}
+
+.filter-actions,
+.booking-actions,
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: $paddingXS;
+}
+
+.filter-actions {
+  padding-bottom: 1px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: $paddingXS $paddingM;
+  font: inherit;
+  font-size: $font-sizeS;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: $radiusM;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.button--primary {
+  color: $tertiary-font-clr;
+  background-color: $accent-clr;
+  border-color: $accent-clr;
+}
+
+.button--primary:hover {
+  background-color: $accent-clr-hover;
+  border-color: $accent-clr-hover;
+}
+
+.button--ghost {
+  color: $optional-font-clr;
+  background-color: transparent;
+  border-color: $primary-border-clr;
+}
+
+.button--ghost:hover,
+.button--outline:hover {
+  color: $secondary-font-clr;
+  border-color: $accent-clr;
+}
+
+.button--outline {
+  color: $optional-font-clr;
+  background-color: transparent;
+  border-color: $primary-border-clr;
+}
+
+.button--danger {
+  color: $error-clr;
+  background-color: transparent;
+  border-color: rgba($error-clr, 0.5);
+}
+
+.button--danger:hover {
+  color: $secondary-font-clr;
+  background-color: $error-clr;
+  border-color: $error-clr;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: $paddingM;
+}
+
+.booking-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $paddingL;
+  padding: $paddingL;
+  background-color: $secondary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  transition: border-color 150ms ease;
+}
+
+.booking-card:hover {
+  border-color: $optional-border-clr;
+}
+
+.booking-main {
+  flex: 1;
+  min-width: 200px;
+}
+
+.booking-route {
+  display: flex;
+  align-items: center;
+  gap: $paddingXS;
+  margin-bottom: $paddingXXS;
+  color: $faded-tertiary-font-clr;
+}
+
+.booking-city {
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 600;
+}
+
+.route-icon {
+  flex: 0 0 auto;
+}
+
+.booking-meta,
+.booking-details,
+.booking-seat {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $paddingXS;
+}
+
+.booking-train {
+  color: $optional-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 500;
+}
+
+.booking-separator {
+  color: $faded-tertiary-font-clr;
+}
+
+.booking-time,
+.booking-date,
+.coach-number {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+}
+
+.booking-details {
+  gap: $paddingL;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px $paddingXS;
+  border-radius: $radiusM;
+  font-size: $font-sizeXXS;
+  font-weight: 600;
+}
+
+.badge--gold {
+  color: $accent-clr;
+  background-color: rgba($accent-clr, 0.12);
+}
+
+.seat-number {
+  color: $secondary-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 600;
+}
+
+.booking-price {
+  color: $accent-clr;
+  font-size: $font-sizeM;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pagination {
+  justify-content: center;
+  margin-top: $paddingXL;
+}
+
+.pagination-info {
+  min-width: 50px;
+  color: $optional-font-clr;
+  font-size: $font-sizeS;
+  text-align: center;
+}
+
+@media (max-width: $breakpointS) {
+  .bookings-content {
+    padding: $paddingXL;
+  }
+
+  .filter-field,
+  .filter-actions,
+  .booking-main,
+  .booking-details,
+  .booking-actions {
+    width: 100%;
+  }
+
+  .filter-actions,
+  .booking-actions {
+    justify-content: stretch;
+  }
+
+  .filter-actions .button,
+  .booking-actions .button {
+    flex: 1;
+  }
+
+  .booking-details {
+    justify-content: space-between;
+    gap: $paddingS;
+  }
+}
