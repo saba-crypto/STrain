@@ -1,5 +1,5 @@
 import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
-import { email, form, FormField, maxDate, maxLength, minLength } from '@angular/forms/signals';
+import { disabled, email, form, FormField, maxLength, minLength } from '@angular/forms/signals';
 import { UserUpdateInfo } from '../../models/user.model';
 import { ProfileService } from '../../services/profile.service';
 import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -13,7 +13,7 @@ export interface UserUpdateForm {
   phoneNumber: string;
   address: string;
   pictureUrl: string;
-  dateOfBirth: Date;
+  dateOfBirth: string;
 }
 
 @Component({
@@ -37,7 +37,7 @@ export class ProfileContent {
     email: '',
     phoneNumber: '',
     address: '',
-    dateOfBirth: new Date(),
+    dateOfBirth: '',
   });
 
   constructor() {
@@ -54,7 +54,7 @@ export class ProfileContent {
         email: user.email ?? '',
         phoneNumber: user.details.phoneNumber ?? '',
         address: user.details.address ?? '',
-        dateOfBirth: user.details.dob,
+        dateOfBirth: user.details.dob ? String(user.details.dob).split('T')[0] : '',
       });
     });
   }
@@ -62,11 +62,11 @@ export class ProfileContent {
 
   public profileForm = form(this.profileModel, (path) => {
     email(path.email, { message: 'Please enter a valid Email address' });
-    maxDate(path.dateOfBirth, new Date());
     minLength(path.phoneNumber, 9, { message: 'Phone number cannot have less than 9 digits' });
     maxLength(path.phoneNumber, 9, { message: 'Phone number cannot have more than 9 digits' });
     minLength(path.address, 5, { message: 'Address must contain at least 5 characters' });
     maxLength(path.address, 200);
+    disabled(path.email);
   });
 
   onSubmit(event: Event) {
