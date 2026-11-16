@@ -72,7 +72,6 @@
 }
 
 .filter-actions,
-.booking-actions,
 .pagination {
   display: flex;
   align-items: center;
@@ -90,7 +89,7 @@
   min-height: 36px;
   padding: $paddingXS $paddingM;
   font: inherit;
-  font-size: $font-sizeS;
+  font-size: $font-sizeXS;
   font-weight: 600;
   border: 1px solid transparent;
   border-radius: $radiusM;
@@ -131,18 +130,6 @@
   border-color: $primary-border-clr;
 }
 
-.button--danger {
-  color: $error-clr;
-  background-color: transparent;
-  border-color: rgba($error-clr, 0.5);
-}
-
-.button--danger:hover {
-  color: $secondary-font-clr;
-  background-color: $error-clr;
-  border-color: $error-clr;
-}
-
 .button:disabled {
   cursor: not-allowed;
   opacity: 0.45;
@@ -152,103 +139,6 @@
   display: flex;
   flex-direction: column;
   gap: $paddingM;
-}
-
-.booking-card {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: $paddingL;
-  padding: $paddingL;
-  background-color: $secondary-clr;
-  border: 1px solid $primary-border-clr;
-  border-radius: $radiusL;
-  transition: border-color 150ms ease;
-}
-
-.booking-card:hover {
-  border-color: $optional-border-clr;
-}
-
-.booking-main {
-  flex: 1;
-  min-width: 200px;
-}
-
-.booking-route {
-  display: flex;
-  align-items: center;
-  gap: $paddingXS;
-  margin-bottom: $paddingXXS;
-  color: $faded-tertiary-font-clr;
-}
-
-.booking-city {
-  color: $secondary-font-clr;
-  font-size: $font-sizeM;
-  font-weight: 600;
-}
-
-.route-icon {
-  flex: 0 0 auto;
-}
-
-.booking-meta,
-.booking-details,
-.booking-seat {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: $paddingXS;
-}
-
-.booking-train {
-  color: $optional-font-clr;
-  font-size: $font-sizeS;
-  font-weight: 500;
-}
-
-.booking-separator {
-  color: $faded-tertiary-font-clr;
-}
-
-.booking-time,
-.booking-date,
-.coach-number {
-  color: $quaternary-font-clr;
-  font-size: $font-sizeS;
-}
-
-.booking-details {
-  gap: $paddingL;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding: 2px $paddingXS;
-  border-radius: $radiusM;
-  font-size: $font-sizeXXS;
-  font-weight: 600;
-}
-
-.badge--gold {
-  color: $accent-clr;
-  background-color: rgba($accent-clr, 0.12);
-}
-
-.seat-number {
-  color: $secondary-font-clr;
-  font-size: $font-sizeS;
-  font-weight: 600;
-}
-
-.booking-price {
-  color: $accent-clr;
-  font-size: $font-sizeM;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .pagination {
@@ -269,25 +159,15 @@
   }
 
   .filter-field,
-  .filter-actions,
-  .booking-main,
-  .booking-details,
-  .booking-actions {
+  .filter-actions {
     width: 100%;
   }
 
-  .filter-actions,
-  .booking-actions {
+  .filter-actions {
     justify-content: stretch;
   }
 
-  .filter-actions .button,
-  .booking-actions .button {
+  .filter-actions .button {
     flex: 1;
-  }
-
-  .booking-details {
-    justify-content: space-between;
-    gap: $paddingS;
   }
 }
