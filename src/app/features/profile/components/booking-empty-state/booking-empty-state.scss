@@ -1,0 +1,78 @@
+@use '../../../../shared/styles' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.booking-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $padding3XL $paddingXL;
+  text-align: center;
+  background-color: $secondary-clr;
+  border: 1px dashed $primary-border-clr;
+  border-radius: $radiusL;
+}
+
+.empty-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: $paddingM;
+  color: $accent-clr;
+  background-color: rgba($accent-clr, 0.1);
+  border-radius: $radiusL;
+}
+
+.empty-icon {
+  flex-shrink: 0;
+}
+
+.empty-title {
+  margin: 0 0 $paddingXS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 700;
+}
+
+.empty-description {
+  max-width: 420px;
+  margin: 0 0 $paddingXL;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  line-height: 1.5;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: $paddingS $paddingXL;
+  font: inherit;
+  font-size: $font-sizeS;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: $radiusM;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.button--primary {
+  color: $tertiary-font-clr;
+  background-color: $accent-clr;
+  border-color: $accent-clr;
+
+  &:hover {
+    background-color: $accent-clr-hover;
+    border-color: $accent-clr-hover;
+  }
+}

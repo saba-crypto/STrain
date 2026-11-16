@@ -24,12 +24,17 @@
   <div class="bookings-list">
     @if (bookingsResource.value(); as data) { @for (booking of data.items; track booking.id) {
     <app-booking-card [booking]="booking"></app-booking-card>
+
+    } @empty {
+    <app-booking-empty-state></app-booking-empty-state>
     } }
   </div>
 
+  @if (bookingsResource.value()?.items?.length) {
   <nav class="pagination" aria-label="Bookings pagination">
     <button class="button button--outline button--small" type="button" disabled>Prev</button>
     <span class="pagination-info">1 / 1</span>
     <button class="button button--outline button--small" type="button" disabled>Next</button>
   </nav>
+  }
 </div>
