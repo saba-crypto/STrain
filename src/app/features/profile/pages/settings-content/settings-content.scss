@@ -97,6 +97,10 @@
     border-color 150ms ease,
     box-shadow 150ms ease;
 }
+.form-error {
+  color: $error-clr;
+  font-size: $font-sizeS;
+}
 
 .field-input::placeholder {
   color: $quaternary-font-clr;
@@ -119,6 +123,10 @@
     background-color 150ms ease,
     border-color 150ms ease,
     color 150ms ease;
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 
 .settings-button-primary {
@@ -128,7 +136,7 @@
   border: 1px solid $accent-clr;
 }
 
-.settings-button-primary:hover {
+.settings-button-primary:not(:disabled):hover {
   background-color: $accent-clr-hover;
   border-color: $accent-clr-hover;
 }

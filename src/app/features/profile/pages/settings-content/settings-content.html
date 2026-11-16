@@ -13,11 +13,16 @@
         <input
           class="field-input"
           id="current-password"
-          name="current-password"
           type="password"
           placeholder="••••••••"
           autocomplete="current-password"
+          [formField]="passwordForm.currentPassword"
         />
+        @if (passwordForm.currentPassword().invalid() && passwordForm.currentPassword().touched()) {
+          @for (error of passwordForm.currentPassword().errors(); track error) {
+            <p class="form-error">{{error.message}}</p>
+          }
+        }
       </div>
 
       <div class="form-group">
@@ -25,14 +30,26 @@
         <input
           class="field-input"
           id="new-password"
-          name="new-password"
           type="password"
           placeholder="••••••••"
           autocomplete="new-password"
+          [formField]="passwordForm.newPassword"
         />
+        @if (passwordForm.newPassword().invalid() && passwordForm.newPassword().touched()) {
+          @for (error of passwordForm.newPassword().errors(); track error) {
+            <p class="form-error">{{error.message}}</p>
+          }
+        }
       </div>
 
-      <button class="settings-button settings-button-primary" type="submit">Update Password</button>
+      <button
+        [disabled]="isLoading() || passwordForm().invalid() || !passwordForm().dirty()"
+        (click)="onSubmit($event)"
+        class="settings-button settings-button-primary"
+        type="submit"
+      >
+        Update Password
+      </button>
     </form>
   </div>
 
@@ -43,7 +60,12 @@
       undone.
     </p>
 
-    <button (click)="deleteAccount()" class="settings-button settings-button-danger" type="button">
+    <button
+      [disabled]="isLoading()"
+      (click)="deleteAccount()"
+      class="settings-button settings-button-danger"
+      type="button"
+    >
       Delete Account
     </button>
   </div>
