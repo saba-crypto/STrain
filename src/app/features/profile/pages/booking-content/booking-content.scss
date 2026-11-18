@@ -1,0 +1,185 @@
+@use '../../../../shared/styles' as *;
+
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.booking-content {
+  width: 100%;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $paddingXXS;
+  margin-bottom: $paddingL;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeXS;
+  transition: color 150ms ease;
+}
+
+.back-link:hover {
+  color: $secondary-font-clr;
+}
+
+.booking-card {
+  width: 100%;
+  overflow: hidden;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  padding: $padding2XL;
+}
+
+.train-image {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  border-bottom: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+}
+
+.booking-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: $paddingM;
+  min-height: 88px;
+  padding: $paddingL;
+  border-bottom: 1px solid $primary-border-clr;
+}
+
+.booking-route {
+  margin: 0;
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 700;
+}
+
+.booking-price {
+  color: $accent-clr;
+  font-size: $font-sizeL;
+  white-space: nowrap;
+}
+
+.booking-details {
+  margin: 0;
+  padding: 0 $paddingL;
+  border-bottom: 1px solid $primary-border-clr;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 1fr) minmax(0, 1fr);
+  align-items: center;
+  min-height: 62px;
+  border-bottom: 1px solid $primary-border-clr;
+}
+
+.detail-row:last-child {
+  border-bottom: 0;
+}
+
+.detail-row dt,
+.detail-row dd {
+  font-size: $font-sizeS;
+}
+
+.detail-row dt {
+  color: $quaternary-font-clr;
+}
+
+.detail-row dd {
+  margin: 0;
+  color: $secondary-font-clr;
+  font-weight: 600;
+  text-align: right;
+}
+
+.booking-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $paddingS;
+  padding: $paddingL;
+}
+
+.action-button {
+  min-height: 36px;
+  padding: $paddingXS $paddingM;
+  font: inherit;
+  font-size: $font-sizeS;
+  border-radius: $radiusM;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.action-button-secondary {
+  color: $optional-font-clr;
+  background-color: transparent;
+  border: 1px solid $primary-border-clr;
+}
+
+.action-button-secondary:hover {
+  color: $secondary-font-clr;
+  border-color: $accent-clr;
+}
+
+.action-button-danger {
+  color: $error-clr;
+  background-color: transparent;
+  border: 1px solid rgba($error-clr, 0.5);
+}
+
+.action-button-danger:hover {
+  color: $secondary-font-clr;
+  background-color: $error-clr;
+  border-color: $error-clr;
+}
+
+@media (max-width: $breakpointS) {
+  .train-image {
+    height: 150px;
+  }
+
+  .booking-header {
+    align-items: start;
+  }
+
+  .booking-route {
+    line-height: 1.5;
+  }
+
+  .detail-row {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: $breakpointXS) {
+  .booking-header {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-actions {
+    flex-direction: column;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+
+  .detail-row {
+    grid-template-columns: 1fr;
+    gap: $paddingXXS;
+    padding: $paddingS 0;
+  }
+
+  .detail-row dd {
+    text-align: left;
+  }
+}

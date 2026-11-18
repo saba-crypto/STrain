@@ -41,7 +41,10 @@
   </div>
 
   <div class="booking-actions">
-    <a class="button button--outline button--small" [routerLink]="['/bookings', booking.id]">
+    <a
+      class="button button--outline button--small"
+      [routerLink]="['/profile/bookings', booking.id]"
+    >
       Details
     </a>
     <button

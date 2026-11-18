@@ -14,6 +14,7 @@
   border: 1px solid $primary-border-clr;
   border-radius: $radiusL;
   transition: border-color 150ms ease;
+  box-sizing: border-box;
 }
 
 .booking-card:hover {

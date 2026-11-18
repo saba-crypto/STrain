@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BookingsResponse } from '../models/booking.model';
+import { BookingResponse, BookingsResponse } from '../models/booking.model';
 import { environment } from '../../../../environments/environments';
 
 @Injectable({ providedIn: 'root' })
@@ -11,6 +11,10 @@ export class BookingService {
 
   getBookings(): Observable<BookingsResponse> {
     return this.http.get<BookingsResponse>(`${this.baseUrl}/bookings`);
+  }
+
+  getBookingById(id: number): Observable<BookingResponse> {
+    return this.http.get<BookingResponse>(`${this.baseUrl}/bookings/${id}`);
   }
 
   removeBooking(id: number) {

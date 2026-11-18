@@ -18,14 +18,13 @@ this project doesn't have to be exact 1 to 1 copy of the original project, since
 ## Rules
 
 - avoid any non-necessary, logic and complexity when writing code.
-- avoid nesting scss code beyond 4 levels to make code easy to read and maintainable
-- always prioritize signals over behavior subjects(only write behavior subjects when its necessary).
-- use Observables and async pipes when working with backend APIs.
+- you should nest scss code but not beyond 4 indents
+- always prioritize signals over subjects(all types of subjects), reactive or template driven forms.
 - read Architecture.md and follow every single convention written there.
 - I don't want you to make any git commits or git push, this job is only for owner of this project.
 - **do not touch or modify /node_modules, /.angular, /.vscode, /dist or any documentation file(.md)**
 - always use svg icons whenever you want to create icon, avoid using html tags except 'svg' to "draw" icons.
-- always use kebab-case when writing markup class names, if original project uses different naming convention, convert it to kebab-case.
+- always use kebab-case when writing markup class names, if original project uses different naming convention, convert it to kebab-case. avoid writing double dashes(--)
 - don't use form and label tags outside of their usual use case(login form, signup form, etc.)
 
 ## Useful information and links you might need
