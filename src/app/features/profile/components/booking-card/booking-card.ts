@@ -1,9 +1,10 @@
 import { Component, input, output } from '@angular/core';
 import { Booking } from '../../../booking/models/booking.model';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [DatePipe, CurrencyPipe],
+  imports: [DatePipe, CurrencyPipe, RouterLink],
   selector: 'app-booking-card',
   styleUrl: './booking-card.scss',
   templateUrl: './booking-card.html',

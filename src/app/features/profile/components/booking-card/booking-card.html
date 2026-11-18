@@ -41,7 +41,9 @@
   </div>
 
   <div class="booking-actions">
-    <a class="button button--outline button--small"> Details </a>
+    <a class="button button--outline button--small" [routerLink]="['/bookings', booking.id]">
+      Details
+    </a>
     <button
       (click)="removeBooking(booking.id)"
       class="button button--danger button--small"
