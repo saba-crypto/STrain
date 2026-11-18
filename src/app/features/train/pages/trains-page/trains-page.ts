@@ -71,7 +71,6 @@ export class TrainsPage {
 
   //methods
 
-  //trains
   searchTrains(query: string) {
     this.currentPage.set(1);
     this.searchState.set(query);

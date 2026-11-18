@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environments';
 import { Observable, tap } from 'rxjs';
 import { UserResponse, UserUpdateInfo, PasswordChangeInfo } from '../models/user.model';
 import { AuthService } from '../../../core/services/auth.service';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
@@ -11,13 +12,23 @@ export class ProfileService {
   private readonly authService = inject(AuthService);
   private baseUrl = environment.apiBaseUrl;
 
+  public userResource = rxResource({
+    stream: () => {
+      return this.getUser();
+    },
+  });
+
   //methods
-  getUser(): Observable<UserResponse> {
+  private getUser(): Observable<UserResponse> {
     return this.http.get<UserResponse>(`${this.baseUrl}/users/me`);
   }
 
   updateUser(updateInfo: UserUpdateInfo) {
-    return this.http.put(`${this.baseUrl}/users`, updateInfo);
+    return this.http.put(`${this.baseUrl}/users`, updateInfo).pipe(
+      tap(() => {
+        this.userResource.reload();
+      }),
+    );
   }
 
   updateUserPassword(passwordInfo: PasswordChangeInfo) {

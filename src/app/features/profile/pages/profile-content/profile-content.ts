@@ -26,9 +26,7 @@ export class ProfileContent {
   private readonly profileService = inject(ProfileService);
   private toastService = inject(ToastService);
   private destroyRef = inject(DestroyRef);
-  protected userResource = rxResource({
-    stream: () => this.profileService.getUser(),
-  });
+  protected userResource = this.profileService.userResource;
 
   private profileModel = signal<UserUpdateForm>({
     pictureUrl: '',
@@ -80,7 +78,7 @@ export class ProfileContent {
       return;
     }
     this.isLoading.set(true);
-    const processedModel = this.processProfileModel(this.profileModel());
+    const processedModel = this.processProfileModel(this.profileModel()); //replcate "" values with null
     this.profileService
       .updateUser(processedModel)
       .pipe(
@@ -92,7 +90,6 @@ export class ProfileContent {
       .subscribe({
         next: () => {
           this.toastService.show('Account info was updated successfully!', 'success');
-          this.userResource.reload();
         },
         error: (errorResponse) => {
           console.log(errorResponse);

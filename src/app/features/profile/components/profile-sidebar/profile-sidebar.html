@@ -1,5 +1,10 @@
 <aside class="profile-sidebar">
+  @if (!profileImageUrl) {
   <div class="profile-avatar" aria-hidden="true">PU</div>
+
+  } @else {
+  <img class="profile-avatar" [src]="profileImageUrl()" alt="userProfileImage" />
+  }
 
   <div class="profile-info">
     <h2 class="profile-name">Profile User</h2>
