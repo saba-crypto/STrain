@@ -12,4 +12,8 @@ export class BookingService {
   getBookings(): Observable<BookingsResponse> {
     return this.http.get<BookingsResponse>(`${this.baseUrl}/bookings`);
   }
+
+  removeBooking(id: number) {
+    return this.http.delete(`${this.baseUrl}/bookings/${id}`);
+  }
 }

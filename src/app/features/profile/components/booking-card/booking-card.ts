@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Booking } from '../../../booking/models/booking.model';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 
@@ -10,4 +10,13 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 })
 export class BookingCard {
   public booking = input.required<Booking>();
+  public onBookingRemove = output<number>();
+
+  public removeBooking(id: number | void) {
+    if (!id) {
+      return;
+    } else {
+      return this.onBookingRemove.emit(Number(id));
+    }
+  }
 }

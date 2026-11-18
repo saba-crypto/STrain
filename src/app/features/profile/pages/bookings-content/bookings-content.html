@@ -23,7 +23,10 @@
 
   <div class="bookings-list">
     @if (bookingsResource.value(); as data) { @for (booking of data.items; track booking.id) {
-    <app-booking-card [booking]="booking"></app-booking-card>
+    <app-booking-card
+      (onBookingRemove)="removeBooking($event)"
+      [booking]="booking"
+    ></app-booking-card>
 
     } @empty {
     <app-booking-empty-state></app-booking-empty-state>

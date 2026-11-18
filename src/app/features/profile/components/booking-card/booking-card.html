@@ -42,7 +42,13 @@
 
   <div class="booking-actions">
     <a class="button button--outline button--small"> Details </a>
-    <button class="button button--danger button--small" type="button">Delete</button>
+    <button
+      (click)="removeBooking(booking.id)"
+      class="button button--danger button--small"
+      type="button"
+    >
+      Delete
+    </button>
   </div>
 </article>
 }
