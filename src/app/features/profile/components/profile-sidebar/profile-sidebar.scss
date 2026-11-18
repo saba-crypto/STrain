@@ -37,9 +37,9 @@
 }
 
 .profile-name {
-  margin: 0 0 $paddingXXS;
+  margin-bottom: 10px;
   color: $secondary-font-clr;
-  font-size: $font-sizeM;
+  font-size: $font-sizeS;
   font-weight: 600;
 }
 
@@ -47,7 +47,7 @@
   margin: 0;
   overflow-wrap: anywhere;
   color: $quaternary-font-clr;
-  font-size: $font-sizeS;
+  font-size: $font-sizeXS;
 }
 
 .profile-navigation {

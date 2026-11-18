@@ -1,14 +1,16 @@
+@if (user(); as user) {
 <aside class="profile-sidebar">
-  @if (!profileImageUrl) {
+  @if (!user.details.pictureUrl) {
   <div class="profile-avatar" aria-hidden="true">PU</div>
 
   } @else {
-  <img class="profile-avatar" [src]="profileImageUrl()" alt="userProfileImage" />
+  <img class="profile-avatar" [src]="user.details.pictureUrl" alt="user profile image" />
   }
 
   <div class="profile-info">
-    <h2 class="profile-name">Profile User</h2>
-    <p class="profile-email">user@example.com</p>
+    <h2 class="profile-name">{{user.firstName}} {{user.lastName}}</h2>
+
+    <p class="profile-email">{{user.email}}</p>
   </div>
 
   <nav class="profile-navigation" aria-label="Profile navigation">
@@ -77,3 +79,4 @@
     <span>Sign Out</span>
   </button>
 </aside>
+}

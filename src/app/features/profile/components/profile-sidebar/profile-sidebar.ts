@@ -4,6 +4,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { ProfileService } from '../../services/profile.service';
+import { User } from '../../models/user.model';
 
 @Component({
   imports: [RouterLink, RouterLinkActive],
@@ -22,14 +23,14 @@ export class ProfileSidebar {
     this.router.navigate(['/']);
   }
 
-  public profileImageUrl = signal<string>('');
+  public user = signal<User | null>(null);
   constructor() {
     effect(() => {
       const user = this.profileService.userResource.value();
       if (!user) {
         return;
       }
-      this.profileImageUrl.set(user.data.details.pictureUrl);
+      this.user.set(user.data);
     });
   }
 }
