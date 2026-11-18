@@ -142,6 +142,73 @@
   border-color: $error-clr;
 }
 
+.date-change-panel {
+  padding: $paddingL;
+  background-color: $secondary-clr;
+  border-radius: $radiusL;
+  margin-top: 20px;
+}
+
+.date-change-title {
+  margin: 0;
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+  font-weight: 700;
+}
+
+.date-change-fields {
+  display: flex;
+  flex-direction: column;
+  gap: $paddingXS;
+  margin-top: $paddingM;
+}
+
+.date-label {
+  color: $secondary-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 600;
+}
+
+.date-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 $paddingM;
+  color: $secondary-font-clr;
+  font: inherit;
+  font-size: $font-sizeS;
+  background-color: $secondary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  outline: none;
+  color-scheme: dark;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.date-input:focus {
+  border-color: $accent-clr;
+  box-shadow: 0 0 0 3px $optional-border-clr;
+}
+
+.date-change-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $paddingS;
+  margin-top: $paddingM;
+}
+
+.action-button-primary {
+  color: $tertiary-font-clr;
+  background-color: $accent-clr;
+  border: 1px solid $accent-clr;
+}
+
+.action-button-primary:hover {
+  background-color: $accent-clr-hover;
+  border-color: $accent-clr-hover;
+}
+
 @media (max-width: $breakpointS) {
   .train-image {
     height: 150px;
@@ -181,5 +248,15 @@
 
   .detail-row dd {
     text-align: left;
+  }
+}
+
+@media (max-width: $breakpointXS) {
+  .date-change-actions {
+    flex-direction: column;
+  }
+
+  .date-change-actions .action-button {
+    width: 100%;
   }
 }

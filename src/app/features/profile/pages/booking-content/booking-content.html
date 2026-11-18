@@ -1,12 +1,6 @@
 <div class="booking-content">
   <a class="back-link" routerLink="/profile/bookings">
-    <svg
-      aria-hidden="true"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-    >
+    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none">
       <path
         d="m15 18-6-6 6-6"
         stroke="currentColor"
@@ -20,18 +14,14 @@
 
   @if (bookingResource.value(); as booking) {
   <article class="booking-card">
-    <img
-      class="train-image"
-      [src]="booking.trainThumbnail"
-      [alt]="booking.trainName"
-    />
+    <img class="train-image" [src]="booking.trainThumbnail" [alt]="booking.trainName" />
 
-    <header class="booking-header">
+    <div class="booking-header">
       <h1 class="booking-route">
         {{ booking.origin }} <span aria-hidden="true">–</span> {{ booking.destination }}
       </h1>
       <strong class="booking-price">{{ booking.price | currency }}</strong>
-    </header>
+    </div>
 
     <dl class="booking-details">
       <div class="detail-row">
@@ -64,18 +54,47 @@
       </div>
     </dl>
 
-    <footer class="booking-actions">
-      <button class="action-button action-button-secondary" type="button">
+    @if (isChangingDate()) {
+    <div class="date-change-panel">
+      <h2 class="date-change-title">Change Travel Date</h2>
+      <div class="date-change-fields">
+        <label class="date-label" for="booking-travel-date">Travel Date</label>
+        <input
+          class="date-input"
+          id="booking-travel-date"
+          name="travelDate"
+          type="date"
+          [value]="booking.travelDate | date: 'yyyy-MM-dd'"
+        />
+      </div>
+      <div class="date-change-actions">
+        <button
+          class="action-button action-button-secondary"
+          type="button"
+          (click)="isChangingDate.set(false)"
+        >
+          Cancel
+        </button>
+        <button class="action-button action-button-primary" type="button">Save Date</button>
+      </div>
+    </div>
+    }
+
+    <div class="booking-actions">
+      @if (!isChangingDate()) {
+      <button
+        class="action-button action-button-secondary"
+        type="button"
+        (click)="isChangingDate.set(true)"
+      >
         Change Date
       </button>
-      <button
-        class="action-button action-button-danger"
-        type="button"
-        (click)="removeBooking()"
-      >
+      }
+
+      <button class="action-button action-button-danger" type="button" (click)="removeBooking()">
         Delete Booking
       </button>
-    </footer>
+    </div>
   </article>
   }
 </div>
