@@ -17,6 +17,22 @@ export class BookingService {
     return this.http.get<BookingResponse>(`${this.baseUrl}/bookings/${id}`);
   }
 
+  getBookingsByFilter(
+    fromDate: string,
+    toDate: string,
+    take: number = 10,
+    page: number = 1,
+  ): Observable<BookingsResponse> {
+    return this.http.get<BookingsResponse>(`${this.baseUrl}/bookings/filter`, {
+      params: {
+        from: fromDate,
+        to: toDate,
+        take,
+        page,
+      },
+    });
+  }
+
   removeBooking(id: number) {
     return this.http.delete(`${this.baseUrl}/bookings/${id}`);
   }
@@ -31,5 +47,6 @@ export class BookingService {
       seatId,
       travelDate: travelDate.getDate(),
     });
+    ``;
   }
 }

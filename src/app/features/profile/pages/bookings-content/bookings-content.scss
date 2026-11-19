@@ -99,6 +99,9 @@
     background-color 150ms ease,
     border-color 150ms ease,
     color 150ms ease;
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 
 .button--primary {
@@ -107,7 +110,7 @@
   border-color: $accent-clr;
 }
 
-.button--primary:hover {
+.button--primary:not(:disabled):hover {
   background-color: $accent-clr-hover;
   border-color: $accent-clr-hover;
 }

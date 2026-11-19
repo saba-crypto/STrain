@@ -4,22 +4,48 @@
     <p class="section-description">View and manage all your train reservations.</p>
   </div>
 
-  <form class="bookings-filter">
+  <div class="bookings-filter">
     <div class="filter-field">
       <label class="field-label" for="from-date">From Date</label>
-      <input class="field-input field-input--small" id="from-date" name="from-date" type="date" />
+      <input
+        #fromDateInput
+        class="field-input field-input--small"
+        id="from-date"
+        name="from-date"
+        type="date"
+        [min]="minDate()"
+      />
     </div>
 
     <div class="filter-field">
       <label class="field-label" for="to-date">To Date</label>
-      <input class="field-input field-input--small" id="to-date" name="to-date" type="date" />
+      <input
+        #toDateInput
+        class="field-input field-input--small"
+        id="to-date"
+        name="to-date"
+        type="date"
+        [min]="minDate()"
+      />
     </div>
 
     <div class="filter-actions">
-      <button class="button button--primary button--small" type="submit">Filter</button>
-      <button class="button button--ghost button--small" type="reset">Clear</button>
+      <button
+        (click)="updateBookingsFilterState(fromDateInput.value, toDateInput.value)"
+        class="button button--primary button--small"
+        type="button"
+      >
+        Filter
+      </button>
+      <button
+        (click)="clearBookingsFilterState(fromDateInput, toDateInput)"
+        class="button button--ghost button--small"
+        type="button"
+      >
+        Clear
+      </button>
     </div>
-  </form>
+  </div>
 
   <div class="bookings-list">
     @if (bookingsResource.value(); as data) { @for (booking of data.items; track booking.id) {

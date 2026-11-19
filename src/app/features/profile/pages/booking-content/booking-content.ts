@@ -13,11 +13,17 @@ import { ToastService } from '../../../../core/services/toast.service';
   templateUrl: './booking-content.html',
 })
 export class BookingContent {
+  //DI
   private readonly bookingService = inject(BookingService);
   private readonly router = inject(Router);
   private toastService = inject(ToastService);
   private destroyRef = inject(DestroyRef);
-  //gets id from query params
+
+  //states
+  public isChangingDate = signal<boolean>(false);
+  public minDate = signal<string>(new Date().toISOString().split('T')[0]);
+
+  //data
   id = input.required<number, string | number>({
     transform: (value) => {
       return Number(value);
@@ -34,9 +40,7 @@ export class BookingContent {
     },
   });
 
-  public isChangingDate = signal<boolean>(false);
-  public minDate = signal<string>(new Date().toISOString().split('T')[0]);
-
+  //methods
   removeBooking(): void {
     this.bookingService
       .removeBooking(this.id())
