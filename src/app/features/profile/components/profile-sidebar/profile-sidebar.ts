@@ -24,6 +24,7 @@ export class ProfileSidebar {
   }
 
   public user = signal<User | null>(null);
+  public isLoading = this.profileService.userResource.isLoading;
   constructor() {
     effect(() => {
       const user = this.profileService.userResource.value();

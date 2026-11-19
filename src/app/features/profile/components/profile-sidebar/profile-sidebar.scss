@@ -29,6 +29,50 @@
   border-radius: $radius-full;
 }
 
+.skeleton-wave {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba($primary-border-clr, 0.45);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba($accent-clr, 0.12) 50%,
+      transparent 100%
+    );
+    animation: skeleton-wave 1.6s ease-in-out infinite;
+  }
+}
+
+.skeleton-avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto $paddingM;
+  border-radius: $radius-full;
+}
+
+.skeleton-name {
+  width: 140px;
+  height: 18px;
+  margin: 0 auto 10px;
+  border-radius: $radiusM;
+}
+
+.skeleton-email {
+  width: 180px;
+  height: 14px;
+  margin: 0 auto;
+  border-radius: $radiusM;
+}
+
 .profile-info {
   padding-bottom: $paddingXL;
   margin-bottom: $paddingL;
@@ -102,5 +146,11 @@
 @media (max-width: $breakpointM) {
   .profile-sidebar {
     position: static;
+  }
+}
+
+@keyframes skeleton-wave {
+  100% {
+    transform: translateX(100%);
   }
 }

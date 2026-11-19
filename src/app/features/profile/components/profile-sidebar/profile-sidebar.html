@@ -1,17 +1,24 @@
-@if (user(); as user) {
 <aside class="profile-sidebar">
-  @if (!user.details.pictureUrl) {
-  <div class="profile-avatar" aria-hidden="true">PU</div>
+  @if (isLoading() || !user()) {
+  <div class="skeleton-avatar skeleton-wave" aria-hidden="true"></div>
 
+  <div class="profile-info">
+    <div class="skeleton-name skeleton-wave" aria-hidden="true"></div>
+    <div class="skeleton-email skeleton-wave" aria-hidden="true"></div>
+  </div>
   } @else {
-  <img class="profile-avatar" [src]="user.details.pictureUrl" alt="user profile image" />
+  @let currentUser = user()!;
+  @if (!currentUser.details.pictureUrl) {
+  <div class="profile-avatar" aria-hidden="true">PU</div>
+  } @else {
+  <img class="profile-avatar" [src]="currentUser.details.pictureUrl" alt="user profile image" />
   }
 
   <div class="profile-info">
-    <h2 class="profile-name">{{user.firstName}} {{user.lastName}}</h2>
-
-    <p class="profile-email">{{user.email}}</p>
+    <h2 class="profile-name">{{currentUser.firstName}} {{currentUser.lastName}}</h2>
+    <p class="profile-email">{{currentUser.email}}</p>
   </div>
+  }
 
   <nav class="profile-navigation" aria-label="Profile navigation">
     <a
@@ -79,4 +86,3 @@
     <span>Sign Out</span>
   </button>
 </aside>
-}
