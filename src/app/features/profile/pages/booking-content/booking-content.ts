@@ -35,6 +35,7 @@ export class BookingContent {
   });
 
   public isChangingDate = signal<boolean>(false);
+  public minDate = signal<string>(new Date().toISOString().split('T')[0]);
 
   removeBooking(): void {
     this.bookingService
@@ -47,6 +48,25 @@ export class BookingContent {
         },
         error: () => {
           this.toastService.show('Failed to delete booking, try again later bro', 'error');
+        },
+      });
+  }
+
+  changeTravelDate(travelDate: string): void {
+    this.bookingService
+      .changeBookingTravelDate(this.id(), travelDate)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          this.toastService.show('Date was changed successfully', 'success');
+          this.isChangingDate.set(false);
+          this.bookingResource.reload();
+        },
+        error: (errorResponse) => {
+          this.toastService.show(
+            `${errorResponse.error.title}: ${errorResponse.error.detail}`,
+            'error',
+          );
         },
       });
   }

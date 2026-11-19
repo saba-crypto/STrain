@@ -60,10 +60,12 @@
       <div class="date-change-fields">
         <label class="date-label" for="booking-travel-date">Travel Date</label>
         <input
+          #dateInput
           class="date-input"
           id="booking-travel-date"
           name="travelDate"
           type="date"
+          [min]="minDate()"
           [value]="booking.travelDate | date: 'yyyy-MM-dd'"
         />
       </div>
@@ -75,7 +77,13 @@
         >
           Cancel
         </button>
-        <button class="action-button action-button-primary" type="button">Save Date</button>
+        <button
+          (click)="changeTravelDate(dateInput.value)"
+          class="action-button action-button-primary"
+          type="button"
+        >
+          Save Date
+        </button>
       </div>
     </div>
     }

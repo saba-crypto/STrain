@@ -21,8 +21,8 @@ export class BookingService {
     return this.http.delete(`${this.baseUrl}/bookings/${id}`);
   }
 
-  changeBookingTravelDate(id: number, travelDate: Date) {
-    return this.http.put(`${this.baseUrl}/bookings${id}`, { travelDate: travelDate.getDate() });
+  changeBookingTravelDate(id: number, travelDate: string) {
+    return this.http.put(`${this.baseUrl}/bookings/${id}`, { travelDate });
   }
 
   createBooking(scheduleId: string, seatId: number[], travelDate: Date) {
