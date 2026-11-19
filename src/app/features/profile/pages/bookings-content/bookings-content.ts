@@ -1,10 +1,13 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { BookingService } from '../../../booking/services/booking.service';
 import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { BookingCard } from '../../components/booking-card/booking-card';
 import { BookingEmptyState } from '../../components/booking-empty-state/booking-empty-state';
 import { ToastService } from '../../../../core/services/toast.service';
+
+const BOOKINGS_COUNT_KEY = 'previousBookingsCount';
+const MAX_SKELETONS_COUNT = 6;
 
 interface BookingsFilterState {
   from: string;
@@ -26,23 +29,28 @@ export class BookingsContent {
   //states
   public bookingsFilterState = signal<BookingsFilterState | null>(null);
   public minDate = signal<string>(new Date().toISOString().split('T')[0]);
+  public skeletonCount = signal<number>(this.getStoredSkeletonCount());
+  public skeletonItems = computed(() => {
+    return Array.from({ length: this.skeletonCount() }, (_, i) => i + 1);
+  });
 
   //data
   public bookingsResource = rxResource({
     params: () => this.bookingsFilterState(),
     stream: () => {
-      if (this.bookingsFilterState()) {
-        return this.bookingService
-          .getBookingsByFilter(this.bookingsFilterState()!.from, this.bookingsFilterState()!.to)
-          .pipe(
-            map((res) => {
-              return res.data;
-            }),
-          );
-      }
-      return this.bookingService.getBookings().pipe(
-        map((res) => {
-          return res.data;
+      const request$ = this.bookingsFilterState()
+        ? this.bookingService.getBookingsByFilter(
+            this.bookingsFilterState()!.from,
+            this.bookingsFilterState()!.to,
+          )
+        : this.bookingService.getBookings();
+
+      return request$.pipe(
+        map((res) => res.data),
+        tap((data) => {
+          const count = Math.min(data.items.length, MAX_SKELETONS_COUNT);
+          localStorage.setItem(BOOKINGS_COUNT_KEY, count.toString());
+          this.skeletonCount.set(count);
         }),
       );
     },
@@ -99,5 +107,17 @@ export class BookingsContent {
     if (this.bookingsFilterState()) {
       this.bookingsFilterState.set(null);
     }
+  }
+
+  private getStoredSkeletonCount(): number {
+    const stored = localStorage.getItem(BOOKINGS_COUNT_KEY);
+    if (stored === null) {
+      return 0;
+    }
+    const parsed = parseInt(stored, 10);
+    if (isNaN(parsed) || parsed <= 0) {
+      return 0;
+    }
+    return Math.min(parsed, MAX_SKELETONS_COUNT);
   }
 }

@@ -144,6 +144,96 @@
   gap: $paddingM;
 }
 
+.booking-card-skeleton {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $paddingL;
+  padding: $paddingL;
+  background-color: $secondary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  box-sizing: border-box;
+}
+
+.booking-skeleton-main {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: $paddingXS;
+}
+
+.booking-skeleton-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $paddingL;
+}
+
+.booking-skeleton-actions {
+  display: flex;
+  align-items: center;
+  gap: $paddingXS;
+}
+
+.skeleton-wave {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba($primary-border-clr, 0.45);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba($accent-clr, 0.12) 50%,
+      transparent 100%
+    );
+    animation: skeleton-wave 1.6s ease-in-out infinite;
+  }
+}
+
+.skeleton-pill {
+  border-radius: $radiusM;
+
+  &.skeleton-route {
+    width: 180px;
+    height: 18px;
+  }
+
+  &.skeleton-meta {
+    width: 240px;
+    height: 14px;
+  }
+
+  &.skeleton-badge {
+    width: 90px;
+    height: 24px;
+  }
+
+  &.skeleton-coach {
+    width: 65px;
+    height: 16px;
+  }
+
+  &.skeleton-price {
+    width: 55px;
+    height: 18px;
+  }
+
+  &.skeleton-button {
+    width: 72px;
+    height: 36px;
+  }
+}
+
 .pagination {
   justify-content: center;
   margin-top: $paddingXL;
@@ -161,6 +251,25 @@
     padding: $paddingXL;
   }
 
+  .booking-skeleton-main,
+  .booking-skeleton-details,
+  .booking-skeleton-actions {
+    width: 100%;
+  }
+
+  .booking-skeleton-details {
+    justify-content: space-between;
+    gap: $paddingS;
+  }
+
+  .booking-skeleton-actions {
+    justify-content: stretch;
+
+    .skeleton-button {
+      flex: 1;
+    }
+  }
+
   .filter-field,
   .filter-actions {
     width: 100%;
@@ -172,5 +281,11 @@
 
   .filter-actions .button {
     flex: 1;
+  }
+}
+
+@keyframes skeleton-wave {
+  100% {
+    transform: translateX(100%);
   }
 }

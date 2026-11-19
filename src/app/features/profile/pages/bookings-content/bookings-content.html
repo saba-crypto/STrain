@@ -48,15 +48,37 @@
   </div>
 
   <div class="bookings-list">
-    @if (bookingsResource.value(); as data) { @for (booking of data.items; track booking.id) {
-    <app-booking-card
-      (onBookingRemove)="removeBooking($event)"
-      [booking]="booking"
-    ></app-booking-card>
+    @if (bookingsResource.isLoading() && !bookingsResource.value()) {
+      @for (item of skeletonItems(); track item) {
+      <div class="booking-card-skeleton" aria-hidden="true">
+        <div class="booking-skeleton-main">
+          <div class="skeleton-pill skeleton-route skeleton-wave"></div>
+          <div class="skeleton-pill skeleton-meta skeleton-wave"></div>
+        </div>
 
-    } @empty {
-    <app-booking-empty-state></app-booking-empty-state>
-    } }
+        <div class="booking-skeleton-details">
+          <div class="skeleton-pill skeleton-badge skeleton-wave"></div>
+          <div class="skeleton-pill skeleton-coach skeleton-wave"></div>
+          <div class="skeleton-pill skeleton-price skeleton-wave"></div>
+        </div>
+
+        <div class="booking-skeleton-actions">
+          <div class="skeleton-pill skeleton-button skeleton-wave"></div>
+          <div class="skeleton-pill skeleton-button skeleton-wave"></div>
+        </div>
+      </div>
+      }
+    } @else if (bookingsResource.value(); as data) {
+      @for (booking of data.items; track booking.id) {
+      <app-booking-card
+        (onBookingRemove)="removeBooking($event)"
+        [booking]="booking"
+      ></app-booking-card>
+
+      } @empty {
+      <app-booking-empty-state></app-booking-empty-state>
+      }
+    }
   </div>
 
   @if (bookingsResource.value()?.items?.length) {
