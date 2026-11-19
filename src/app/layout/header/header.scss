@@ -52,6 +52,48 @@ header {
     color: $secondary-font-clr;
   }
 
+  .skeleton-nav {
+    @include flexbox(row, center, center, 40px);
+  }
+
+  .skeleton-actions {
+    @include flexbox(row, center, center, 10px);
+  }
+
+  .skeleton-pill {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba($primary-border-clr, 0.45);
+    border-radius: $radiusM;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba($accent-clr, 0.12) 50%,
+        transparent 100%
+      );
+      animation: skeleton-wave 1.6s ease-in-out infinite;
+    }
+
+    &.skeleton-link {
+      width: 52px;
+      height: 16px;
+    }
+
+    &.skeleton-btn {
+      width: 82px;
+      height: 34px;
+    }
+  }
+
   .header-right {
     @include flexbox(row, center, center, 30px);
     nav {
@@ -161,7 +203,8 @@ header {
 
     .header-right {
       .nav-list,
-      .auth-actions {
+      .auth-actions,
+      .skeleton-actions {
         display: none;
       }
 
@@ -169,5 +212,11 @@ header {
         display: flex;
       }
     }
+  }
+}
+
+@keyframes skeleton-wave {
+  100% {
+    transform: translateX(100%);
   }
 }

@@ -12,4 +12,5 @@ import { AuthService } from '../../core/services/auth.service';
 export class Header {
   public authService = inject(AuthService);
   public isAuthenticated = this.authService.isAuthenticated;
+  public isLoading = this.authService.isLoading;
 }

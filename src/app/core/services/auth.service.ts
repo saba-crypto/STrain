@@ -12,6 +12,8 @@ export class AuthService {
   private baseUrl = environment.apiBaseUrl;
   private authenticated = signal<boolean>(false);
   public isAuthenticated = this.authenticated.asReadonly();
+  private authLoading = signal<boolean>(true);
+  public isLoading = this.authLoading.asReadonly();
 
   register(credentials: RegisterCredentials) {
     return this.http.post(`${this.baseUrl}/auth/register`, credentials);
@@ -27,8 +29,21 @@ export class AuthService {
   }
 
   init() {
-    this.http.get(`${this.baseUrl}/users/me`).subscribe(() => {
-      this.authenticated.set(true);
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+      this.authLoading.set(false);
+      return;
+    }
+
+    this.http.get(`${this.baseUrl}/users/me`).subscribe({
+      next: () => {
+        this.authenticated.set(true);
+        this.authLoading.set(false);
+      },
+      error: () => {
+        this.authenticated.set(false);
+        this.authLoading.set(false);
+      },
     });
   }
   refreshToken() {

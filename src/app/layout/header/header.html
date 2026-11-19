@@ -45,7 +45,12 @@
       </a>
     </div>
     <div class="header-center">
-      @if (!isAuthenticated()) {
+      @if (isLoading()) {
+      <div class="skeleton-nav" aria-hidden="true">
+        <span class="skeleton-pill skeleton-link"></span>
+        <span class="skeleton-pill skeleton-link"></span>
+      </div>
+      } @else if (!isAuthenticated()) {
       <ul class="nav-list">
         <li class="list-item"><a routerLink="/">Home</a></li>
         <li class="list-item"><a routerLink="/trains">Trains</a></li>
@@ -55,7 +60,12 @@
 
     <div class="header-right">
       <nav>
-        @if (isAuthenticated()) {
+        @if (isLoading()) {
+        <div class="skeleton-actions" aria-hidden="true">
+          <span class="skeleton-pill skeleton-btn"></span>
+          <span class="skeleton-pill skeleton-btn"></span>
+        </div>
+        } @else if (isAuthenticated()) {
         <ul class="nav-list">
           <li class="list-item"><a routerLink="/">Home</a></li>
           <li class="list-item"><a routerLink="/trains">Trains</a></li>
