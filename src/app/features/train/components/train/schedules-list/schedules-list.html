@@ -33,7 +33,13 @@
         <time class="departure-time">{{ schedule.departureTime }}</time>
       </div>
       @if (isAuthenticated) {
-      <button class="book-button" type="button">Book</button>
+      <a
+        routerLink="/book"
+        [queryParams]="{scheduleId: schedule.id, trainId: trainId()}"
+        class="book-button"
+        type="button"
+        >Book</a
+      >
       } @else {
       <a routerLink="/auth/register" class="sign-in-button">Sign in to book</a>
       }

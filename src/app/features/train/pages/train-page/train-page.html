@@ -5,7 +5,7 @@
   (tabChange)="listDetailsState.set($event)"
 ></app-train-info-dashboard>
 @if (listDetailsState() === "schedules") {
-<app-schedules-list [schedules]="train.schedules"></app-schedules-list>
+<app-schedules-list [trainId]="id()" [schedules]="train.schedules"></app-schedules-list>
 } @else {
 <app-coaches-list [coaches]="train.coaches"></app-coaches-list>
 } } @else if (trainResource.isLoading()) {

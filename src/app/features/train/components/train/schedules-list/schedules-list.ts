@@ -11,5 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class SchedulesList {
   public schedules = input<Schedule[] | undefined>([]);
+  public trainId = input();
+
   public isAuthenticated = inject(AuthService).isAuthenticated();
 }

@@ -10,6 +10,7 @@ import { ProfileContent } from './features/profile/pages/profile-content/profile
 import { SettingsContent } from './features/profile/pages/settings-content/settings-content';
 import { BookingsContent } from './features/profile/pages/bookings-content/bookings-content';
 import { BookingContent } from './features/profile/pages/booking-content/booking-content';
+import { BookingPage } from './features/booking/pages/booking-page/booking-page';
 // import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: 'trains',
     component: TrainsPage,
+  },
+  {
+    path: 'book',
+    component: BookingPage,
   },
   {
     path: 'trains/:id',
