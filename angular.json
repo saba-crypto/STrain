@@ -11,6 +11,10 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:service": {
+          "injectable": true,
+          "type": "service"
         }
       },
       "root": "",
