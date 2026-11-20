@@ -1,1 +1,12 @@
-<p>booking-page works!</p>
+<section class="booking-section">
+  @if (coachesResource.isLoading()) {
+    <div class="loading-state">Loading coaches...</div>
+  } @else if (coachesResource.hasValue() && coachesResource.value(); as coachesList) {
+    <app-train-composition
+      [coaches]="coachesList"
+      [selectedCoach]="selectedCoach()"
+      (coachSelect)="onCoachSelect($event)"
+    />
+  }
+</section>
+

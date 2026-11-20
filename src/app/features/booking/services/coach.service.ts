@@ -11,7 +11,12 @@ export class CoachService {
   private readonly http = inject(HttpClient);
   private baseUrl = environment.apiBaseUrl;
 
-  getCoaches(trainId: number): Observable<CoachesResponse> {
-    return this.http.get<CoachesResponse>(`${this.baseUrl}/coaches/train/${trainId}`);
+  getCoaches(trainId: number, take: number = 10, page: number = 1): Observable<CoachesResponse> {
+    return this.http.get<CoachesResponse>(`${this.baseUrl}/coaches/train/${trainId}`, {
+      params: {
+        take,
+        page,
+      },
+    });
   }
 }

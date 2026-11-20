@@ -1,1 +1,36 @@
-<p>train-composition works!</p>
+<div
+  class="train-composition"
+  #carousel
+  (mousedown)="onCarouselMouseDown($event)"
+  (wheel)="onCarouselWheel($event)"
+>
+  <div class="train-composition__track" #carouselTrack>
+    <div class="train-composition__end" aria-hidden="true">
+      <img ngSrc="/1.webp" width="880" height="248" alt="" draggable="false" />
+    </div>
+
+    @for (coach of coaches(); track coach.id) {
+    <button
+      type="button"
+      class="train-carriage"
+      [class.selected]="selectedCoach()?.id === coach.id"
+      (click)="onCoachClick(coach)"
+    >
+      <img ngSrc="/2.webp" width="1008" height="222" alt="" draggable="false" />
+      <div class="train-carriage__overlay">
+        <span class="train-carriage__num">Coach {{ coach.number }}</span>
+        <span class="badge" [ngClass]="getCoachClassBadge(coach.class)"> {{ coach.class }} </span>
+        <span class="train-carriage__seats">{{ coach.seatCount }} seats</span>
+        <span class="train-carriage__price">${{ coach.price }}</span>
+      </div>
+    </button>
+    }
+
+    <div class="train-composition__end" aria-hidden="true">
+      <img ngSrc="/3.webp" width="880" height="248" alt="" draggable="false" />
+    </div>
+  </div>
+
+  <div class="train-composition__fade train-composition__fade-left" aria-hidden="true"></div>
+  <div class="train-composition__fade train-composition__fade-right" aria-hidden="true"></div>
+</div>

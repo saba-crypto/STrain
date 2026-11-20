@@ -8,6 +8,8 @@ interface Schedule {
   trainId: number;
   trainName: string;
   trainNumber: number;
+  trainThumbnail?: string;
 }
 
+export type ScheduleResponse = ApiResponse<Schedule>;
 export type SchedulesResponse = ApiResponse<PaginatedResponse<Schedule[]>>;
