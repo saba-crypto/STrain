@@ -1,0 +1,58 @@
+<div class="stage-header">
+  <button type="button" class="back-stage-button" (click)="onBack()">
+    <svg
+      class="back-icon"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M19 12H5M5 12l7 7M5 12l7-7"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    Back to coaches
+  </button>
+
+  <h2 class="stage-title">Choose Travel Date</h2>
+  <p class="stage-desc">
+    @if (selectedCoach(); as coach) {
+    Coach {{ coach.number }} — {{ coach.class }} class
+    } @else {
+    Select the date you wish to travel
+    }
+  </p>
+</div>
+
+<div class="date-selection-box">
+  <div class="date-field">
+    <div class="field-label">Travel Date</div>
+    <input
+      id="travelDate"
+      type="date"
+      class="field-input"
+      [min]="today()"
+      [value]="dateValue()"
+      (input)="onDateChange($event)"
+    />
+    @if (!isDateValid() && dateValue().length > 0) {
+    <span class="field-error">Please select a valid travel date.</span>
+    }
+  </div>
+
+  <div class="date-actions">
+    <button
+      type="button"
+      class="continue-button"
+      [disabled]="!isDateValid()"
+      (click)="onContinue()"
+    >
+      Continue to Seats
+    </button>
+  </div>
+</div>

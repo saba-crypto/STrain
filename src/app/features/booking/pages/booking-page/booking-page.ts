@@ -6,11 +6,12 @@ import { CoachService } from '../../services/coach.service';
 import { ScheduleService } from '../../services/schedule.service';
 import { Coach } from '../../models/coach.model';
 import { CoachStage } from '../../components/coach-stage/coach-stage';
+import { DateStage } from '../../components/date-stage/date-stage';
 
 type BookingProgress = 'coach' | 'date' | 'seats' | 'confirm';
 
 @Component({
-  imports: [CoachStage, RouterLink],
+  imports: [CoachStage, DateStage, RouterLink],
   selector: 'app-booking-page',
   styleUrl: './booking-page.scss',
   templateUrl: './booking-page.html',
@@ -25,7 +26,7 @@ export class BookingPage {
   public trainId = input.required<number>();
   public scheduleId = input.required<number>();
   private selectedCoachId = signal<number | null>(null);
-  private travelDate = signal<string | null>(null);
+  public travelDate = signal<string | null>(null);
   private selectedSeats = signal<number[]>([]);
 
   public currentStepNumber = computed(() => {
@@ -117,9 +118,24 @@ export class BookingPage {
     },
   });
 
+  public selectedCoach = computed(() => {
+    const coachId = this.selectedCoachId();
+    const coaches = this.coachesResource.hasValue() ? this.coachesResource.value() : null;
+    if (!coachId || !coaches) {
+      return null;
+    }
+    return coaches.find((c) => c.id === coachId) ?? null;
+  });
+
   //methods
   onCoachSelect(coachId: number) {
     this.selectedCoachId.set(coachId);
+    this.nextStep();
+  }
+
+  onDateSelect(date: string) {
+    this.travelDate.set(date);
+    this.nextStep();
   }
 
   formatTime(time: string | undefined): string {

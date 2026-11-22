@@ -19,6 +19,7 @@
       type="button"
       class="train-carriage"
       [class.selected]="selectedCoach()?.id === coach.id"
+      (click)="onCoachClick(coach.id)"
     >
       <img ngSrc="/2.webp" width="1008" height="222" alt="" draggable="false" />
       <div class="train-carriage__overlay">

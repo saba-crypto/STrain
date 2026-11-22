@@ -1,0 +1,137 @@
+@use '../../../../shared/styles/index' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.stage-header {
+  margin-bottom: $paddingL;
+}
+
+.back-stage-button {
+  @include flexbox(row, flex-start, center, $paddingXS);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  margin-bottom: $paddingM;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $accent-clr;
+  }
+}
+
+.back-icon {
+  flex-shrink: 0;
+}
+
+.stage-title {
+  color: $secondary-font-clr;
+  font-size: $font-sizeL;
+  font-weight: 700;
+  margin: 0 0 $paddingXS 0;
+}
+
+.stage-desc {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  margin: 0;
+}
+
+.date-selection-box {
+  max-width: 440px;
+  @include flexbox(column, flex-start, stretch, $paddingL);
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  padding: $paddingXL;
+  box-shadow: $shadowXL;
+  box-sizing: border-box;
+}
+
+.date-field {
+  width: 100%;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: $paddingXS;
+  color: $secondary-font-clr;
+  font-size: $font-sizeS;
+  font-weight: 500;
+}
+
+.field-input {
+  width: 100%;
+  min-height: 44px;
+  padding: $paddingS $paddingM;
+  color: $secondary-font-clr;
+  font: inherit;
+  font-size: $font-sizeS;
+  background-color: $secondary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  outline: none;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:focus {
+    border-color: $accent-clr;
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(0.8) sepia(50%) saturate(500%) hue-rotate(5deg);
+    cursor: pointer;
+  }
+}
+
+.field-error {
+  display: block;
+  margin-top: $paddingXS;
+  color: $error-clr;
+  font-size: $font-sizeXS;
+}
+
+.date-actions {
+  @include flexbox(row, flex-end, center);
+}
+
+.continue-button {
+  @include flexbox(row, center, center);
+  padding: $paddingS $paddingXL;
+  min-height: 44px;
+  background-color: $accent-clr;
+  color: $tertiary-font-clr;
+  border: none;
+  border-radius: $radiusM;
+  font-size: $font-sizeS;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: $shadow-button-hover;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: $accent-clr-hover;
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
