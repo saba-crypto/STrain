@@ -41,12 +41,11 @@ export class BookingService {
     return this.http.put(`${this.baseUrl}/bookings/${id}`, { travelDate });
   }
 
-  createBooking(scheduleId: string, seatId: number[], travelDate: Date) {
+  createBooking(scheduleId: string, seatId: number[], travelDate: string) {
     return this.http.post(`${this.baseUrl}/bookings`, {
       scheduleId,
       seatId,
-      travelDate: travelDate.getDate(),
+      travelDate: travelDate,
     });
-    ``;
   }
 }
