@@ -1,3 +1,8 @@
+<div class="stage-header">
+  <h2 class="stage-title">Select Coach</h2>
+  <p class="stage-desc">Choose a coach class and number for your journey</p>
+</div>
+
 <div
   class="train-composition"
   #carousel
@@ -14,7 +19,6 @@
       type="button"
       class="train-carriage"
       [class.selected]="selectedCoach()?.id === coach.id"
-      (click)="onCoachClick(coach)"
     >
       <img ngSrc="/2.webp" width="1008" height="222" alt="" draggable="false" />
       <div class="train-carriage__overlay">

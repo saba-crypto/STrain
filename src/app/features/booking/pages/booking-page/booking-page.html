@@ -1,12 +1,168 @@
 <section class="booking-section">
-  @if (coachesResource.isLoading()) {
-    <div class="loading-state">Loading coaches...</div>
-  } @else if (coachesResource.hasValue() && coachesResource.value(); as coachesList) {
-    <app-train-composition
-      [coaches]="coachesList"
-      [selectedCoach]="selectedCoach()"
-      (coachSelect)="onCoachSelect($event)"
-    />
-  }
-</section>
+  <div class="booking-container">
+    <a routerLink="/trains" class="back-link">
+      <svg
+        class="back-icon"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M19 12H5M5 12l7 7M5 12l7-7"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      Back to trains
+    </a>
 
+    <!-- Step Progress Indicator -->
+    <div class="booking-steps">
+      <div
+        class="step-item"
+        [class.step-item-active]="currentStepNumber() >= 1"
+        [class.step-item-done]="currentStepNumber() > 1"
+      >
+        <span class="step-num">1</span>
+        <span class="step-label">Coach</span>
+      </div>
+
+      <div
+        class="step-line"
+        [class.step-line-done]="currentStepNumber() > 1"
+      ></div>
+
+      <div
+        class="step-item"
+        [class.step-item-active]="currentStepNumber() >= 2"
+        [class.step-item-done]="currentStepNumber() > 2"
+      >
+        <span class="step-num">2</span>
+        <span class="step-label">Date</span>
+      </div>
+
+      <div
+        class="step-line"
+        [class.step-line-done]="currentStepNumber() > 2"
+      ></div>
+
+      <div
+        class="step-item"
+        [class.step-item-active]="currentStepNumber() >= 3"
+        [class.step-item-done]="currentStepNumber() > 3"
+      >
+        <span class="step-num">3</span>
+        <span class="step-label">Seats</span>
+      </div>
+
+      <div
+        class="step-line"
+        [class.step-line-done]="currentStepNumber() > 3"
+      ></div>
+
+      <div
+        class="step-item"
+        [class.step-item-active]="currentStepNumber() >= 4"
+        [class.step-item-done]="currentStepNumber() > 4"
+      >
+        <span class="step-num">4</span>
+        <span class="step-label">Confirm</span>
+      </div>
+    </div>
+
+    <!-- Persistent Schedule Summary Card -->
+    @if (scheduleResource.isLoading()) {
+    <div class="schedule-summary-skeleton">Loading schedule details...</div>
+    } @else if (scheduleResource.hasValue() && scheduleResource.value(); as
+    schedule) {
+    <div class="schedule-summary-card">
+      <div class="schedule-summary-route">
+        <strong>{{ schedule.origin }}</strong>
+        <svg
+          class="route-arrow"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M5 12h14m-5-5 5 5-5 5"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <strong>{{ schedule.destination }}</strong>
+      </div>
+      <div class="schedule-summary-details">
+        <div class="departure-info">
+          <svg
+            class="clock-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="8"
+              stroke="currentColor"
+              stroke-width="1.7"
+            />
+            <path
+              d="M12 8v4l3 2"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <time class="departure-time">{{
+            formatTime(schedule.departureTime)
+          }}</time>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Dynamic Stage Content -->
+    @switch (bookingProgress()) { @case ('coach') {
+    <div class="stage-section">
+      @if (coachesResource.isLoading()) {
+      <div class="loading-state">Loading coaches...</div>
+      } @else if (coachesResource.hasValue() && coachesResource.value(); as
+      coachesList) {
+      <app-coach-stage
+        (coachSelect)="onCoachSelect($event)"
+        [coaches]="coachesList"
+      />
+      }
+    </div>
+    } @case ('date') {
+    <div class="stage-section">
+      <div class="stage-header">
+        <h2 class="stage-title">Select Date</h2>
+        <p class="stage-desc">Pick your travel date</p>
+      </div>
+    </div>
+    } @case ('seats') {
+    <div class="stage-section">
+      <div class="stage-header">
+        <h2 class="stage-title">Select Seats</h2>
+        <p class="stage-desc">Pick your preferred seats</p>
+      </div>
+    </div>
+    } @case ('confirm') {
+    <div class="stage-section">
+      <div class="stage-header">
+        <h2 class="stage-title">Confirm Booking</h2>
+        <p class="stage-desc">Review and confirm your reservation</p>
+      </div>
+    </div>
+    } }
+  </div>
+</section>

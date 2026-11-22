@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TrainComposition } from './train-composition';
+import { CoachStage } from './coach-stage';
 
-describe('TrainComposition', () => {
-  let component: TrainComposition;
-  let fixture: ComponentFixture<TrainComposition>;
+describe('CoachStage', () => {
+  let component: CoachStage;
+  let fixture: ComponentFixture<CoachStage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TrainComposition],
+      imports: [CoachStage],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TrainComposition);
+    fixture = TestBed.createComponent(CoachStage);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

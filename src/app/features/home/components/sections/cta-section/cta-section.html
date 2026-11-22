@@ -9,9 +9,15 @@
 
         <div class="call-to-action-actions">
           <default-button routerLink="/trains" class="btn--medium">Browse Trains</default-button>
+          @if (isAuthenticated()) {
+          <outline-button routerLink="/profile/bookings" class="btn--medium"
+            >My Bookings</outline-button
+          >
+          } @else {
           <outline-button routerLink="/auth/register" class="btn--medium"
             >Create Account</outline-button
           >
+          }
         </div>
       </div>
     </div>

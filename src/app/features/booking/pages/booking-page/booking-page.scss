@@ -1,3 +1,221 @@
+@use '../../../../shared/styles/index' as *;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: $bg-clr;
+}
+
 .booking-section {
-  margin-top: 100px;
+  display: block;
+  padding-top: 100px;
+  padding-bottom: $paddingXL;
+  min-height: 100vh;
+}
+
+.booking-container {
+  @include flexbox(column, center, flex-start, 50px);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $paddingL;
+  box-sizing: border-box;
+}
+
+// Back navigation link
+.back-link {
+  @include flexbox(row, flex-start, center, $paddingXS);
+  display: inline-flex;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  text-decoration: none;
+  margin-bottom: $paddingM;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $accent-clr;
+  }
+}
+
+.back-icon {
+  flex-shrink: 0;
+}
+
+// Step Indicator / Wizard Bar
+.booking-steps {
+  @include flexbox(row, center, center, 0px);
+  width: 100%;
+  margin-bottom: $paddingL;
+  padding: $paddingM 0;
+}
+
+.step-item {
+  @include flexbox(column, center, center, $paddingXS);
+  flex-shrink: 0;
+  user-select: none;
+
+  .step-num {
+    @include flexbox(row, center, center);
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-full;
+    background-color: $primary-clr;
+    border: 2px solid $primary-border-clr;
+    color: $faded-tertiary-font-clr;
+    font-size: $font-sizeS;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+
+  .step-label {
+    font-size: $font-sizeXS;
+    color: $quaternary-font-clr;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+  }
+
+  &.step-item-active {
+    .step-num {
+      border-color: $accent-clr;
+      color: $accent-clr;
+      background-color: rgba(201, 168, 76, 0.08);
+    }
+
+    .step-label {
+      color: $accent-clr;
+      font-weight: 600;
+    }
+  }
+
+  &.step-item-done {
+    .step-num {
+      border-color: $success-clr;
+      background-color: rgba(29, 185, 84, 0.1);
+      color: $success-clr;
+    }
+
+    .step-label {
+      color: $quaternary-font-clr;
+    }
+  }
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background-color: $primary-border-clr;
+  margin: 0 $paddingS 20px $paddingS;
+  transition: background-color 0.3s ease;
+
+  &.step-line-done {
+    background-color: $success-clr;
+  }
+}
+
+// Persistent Schedule Summary Card
+.schedule-summary-card {
+  @include flexbox(row, space-between, center, $paddingM, wrap);
+  width: 100%;
+  padding: $paddingM $paddingL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  box-shadow: $shadowXL;
+  box-sizing: border-box;
+  margin-bottom: $paddingXL;
+}
+
+.schedule-summary-skeleton {
+  width: 100%;
+  padding: $paddingM $paddingL;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusL;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  margin-bottom: $paddingXL;
+  box-sizing: border-box;
+}
+
+.schedule-summary-route {
+  @include flexbox(row, flex-start, center, $paddingM);
+  color: $secondary-font-clr;
+  font-size: $font-sizeM;
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.route-arrow {
+  width: $font-sizeM;
+  height: $font-sizeM;
+  color: $accent-clr;
+  flex-shrink: 0;
+}
+
+.schedule-summary-details {
+  @include flexbox(row, flex-end, center, $paddingM);
+}
+
+.departure-info {
+  @include flexbox(row, flex-start, center, $paddingXS);
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+
+  .clock-icon {
+    width: 16px;
+    height: 16px;
+    color: $accent-clr;
+  }
+
+  .departure-time {
+    color: $secondary-font-clr;
+    font-weight: 500;
+  }
+}
+
+// Stage Titles & Common Elements
+.stage-section {
+  width: 100%;
+}
+
+.stage-header {
+  margin-bottom: $paddingM;
+}
+
+.stage-title {
+  color: $secondary-font-clr;
+  font-size: $font-sizeL;
+  font-weight: 700;
+  margin: 0 0 $paddingXS 0;
+}
+
+.stage-desc {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  margin: 0;
+}
+
+.loading-state {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  padding: $paddingM 0;
+}
+
+@media (max-width: 600px) {
+  .booking-steps {
+    .step-label {
+      display: none;
+    }
+  }
+
+  .step-line {
+    margin-bottom: 0;
+  }
+
+  .schedule-summary-card {
+    @include flexbox(column, flex-start, flex-start, $paddingS);
+  }
 }

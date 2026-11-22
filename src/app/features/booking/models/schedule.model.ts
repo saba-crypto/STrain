@@ -1,6 +1,6 @@
 import { ApiResponse, PaginatedResponse } from '../../../shared/models/api.model';
 
-interface Schedule {
+export interface Schedule {
   id: number;
   origin: string;
   destination: string;

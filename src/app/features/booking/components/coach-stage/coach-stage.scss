@@ -5,6 +5,23 @@
   width: 100%;
 }
 
+.stage-header {
+  margin-bottom: $paddingM;
+}
+
+.stage-title {
+  color: $secondary-font-clr;
+  font-size: $font-sizeL;
+  font-weight: 700;
+  margin: 0 0 $paddingXS 0;
+}
+
+.stage-desc {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  margin: 0;
+}
+
 .train-composition {
   position: relative;
   overflow: hidden;

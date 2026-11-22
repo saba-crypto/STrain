@@ -11,16 +11,20 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Coach } from '../../models/coach.model';
 
 @Component({
-  selector: 'app-train-composition',
+  selector: 'app-coach-stage',
   imports: [CommonModule, NgOptimizedImage],
-  templateUrl: './train-composition.html',
-  styleUrl: './train-composition.scss',
+  templateUrl: './coach-stage.html',
+  styleUrl: './coach-stage.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TrainComposition implements OnDestroy {
+export class CoachStage implements OnDestroy {
   public coaches = input<Coach[]>([]);
   public selectedCoach = input<Coach | null>(null);
-  public coachSelect = output<Coach>();
+  public coachSelect = output<number>();
+
+  public onCoachClick(coachId: number): void {
+    this.coachSelect.emit(coachId);
+  }
 
   public readonly carousel = viewChild<ElementRef<HTMLDivElement>>('carousel');
   public readonly carouselTrack = viewChild<ElementRef<HTMLDivElement>>('carouselTrack');
@@ -132,10 +136,6 @@ export class TrainComposition implements OnDestroy {
     this.carouselOffset += diff * 0.1;
     trackEl.style.transform = `translateX(-${this.carouselOffset}px)`;
     this.carouselAnimId = requestAnimationFrame(() => this.runCarousel());
-  }
-
-  public onCoachClick(coach: Coach): void {
-    this.coachSelect.emit(coach);
   }
 
   public getCoachClassBadge(coachClass: number | string): string {
