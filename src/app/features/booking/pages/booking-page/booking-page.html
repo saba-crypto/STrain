@@ -117,10 +117,14 @@
     </div>
     } @case ('seats') {
     <div class="stage-section">
-      <div class="stage-header">
-        <h2 class="stage-title">Select Seats</h2>
-        <p class="stage-desc">Pick your preferred seats</p>
-      </div>
+      <app-seats-stage
+        [seats]="seatsList()"
+        [selectedCoach]="selectedCoach()"
+        [travelDate]="travelDate()"
+        [isLoading]="availabilityResource.isLoading()"
+        (seatSelect)="onSeatsSelect($event)"
+        (backToDate)="prevStep()"
+      />
     </div>
     } @case ('confirm') {
     <div class="stage-section">

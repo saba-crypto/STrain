@@ -1,17 +1,20 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { map, of } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { CoachService } from '../../services/coach.service';
 import { ScheduleService } from '../../services/schedule.service';
+import { SeatService } from '../../services/seat.service';
 import { Coach } from '../../models/coach.model';
+import { Seat } from '../../models/seat.model';
 import { CoachStage } from '../../components/coach-stage/coach-stage';
 import { DateStage } from '../../components/date-stage/date-stage';
+import { SeatsStage } from '../../components/seats-stage/seats-stage';
 
 type BookingProgress = 'coach' | 'date' | 'seats' | 'confirm';
 
 @Component({
-  imports: [CoachStage, DateStage, RouterLink],
+  imports: [CoachStage, DateStage, SeatsStage, RouterLink],
   selector: 'app-booking-page',
   styleUrl: './booking-page.scss',
   templateUrl: './booking-page.html',
@@ -20,6 +23,7 @@ export class BookingPage {
   //DI
   private readonly coachService = inject(CoachService);
   private readonly scheduleService = inject(ScheduleService);
+  private readonly seatService = inject(SeatService);
 
   //data
   public bookingProgress = signal<BookingProgress>('coach');
@@ -27,7 +31,7 @@ export class BookingPage {
   public scheduleId = input.required<number>();
   private selectedCoachId = signal<number | null>(null);
   public travelDate = signal<string | null>(null);
-  private selectedSeats = signal<number[]>([]);
+  public selectedSeats = signal<Seat[]>([]);
 
   public currentStepNumber = computed(() => {
     switch (this.bookingProgress()) {
@@ -118,6 +122,26 @@ export class BookingPage {
     },
   });
 
+  public availabilityResource = rxResource({
+    params: () => ({
+      scheduleId: this.scheduleId(),
+      travelDate: this.travelDate(),
+      coachId: this.selectedCoachId(),
+    }),
+    stream: ({ params }) => {
+      if (!params.coachId || !params.travelDate) {
+        return of<Seat[]>([]);
+      }
+      return this.seatService
+        .getAvailableSeats(params.scheduleId, params.travelDate, params.coachId)
+        .pipe(
+          map((res) => {
+            return res.data;
+          }),
+        );
+    },
+  });
+
   public selectedCoach = computed(() => {
     const coachId = this.selectedCoachId();
     const coaches = this.coachesResource.hasValue() ? this.coachesResource.value() : null;
@@ -127,14 +151,25 @@ export class BookingPage {
     return coaches.find((c) => c.id === coachId) ?? null;
   });
 
+  public seatsList = computed<Seat[]>(() => {
+    return this.availabilityResource.value() ?? [];
+  });
+
   //methods
   onCoachSelect(coachId: number) {
     this.selectedCoachId.set(coachId);
+    this.selectedSeats.set([]);
     this.nextStep();
   }
 
   onDateSelect(date: string) {
     this.travelDate.set(date);
+    this.selectedSeats.set([]);
+    this.nextStep();
+  }
+
+  onSeatsSelect(seats: Seat[]) {
+    this.selectedSeats.set(seats);
     this.nextStep();
   }
 

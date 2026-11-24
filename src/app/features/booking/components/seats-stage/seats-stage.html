@@ -1,1 +1,201 @@
-<p>seats-stage works!</p>
+<div class="stage-header">
+  <button type="button" class="back-stage-button" (click)="onBack()">
+    <svg
+      class="back-icon"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M19 12H5M5 12l7 7M5 12l7-7"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    Back to date
+  </button>
+
+  <h2 class="stage-title">Select Seats</h2>
+  <p class="stage-desc">
+    @if (selectedCoach(); as coach) { Coach {{ coach.number }} — {{ coach.class }} class • {{
+    travelDate() }} } @else { Pick your preferred seats }
+  </p>
+</div>
+
+@if (isLoading()) {
+<div class="loading-state">
+  <div class="spinner"></div>
+  <span>Loading seats...</span>
+</div>
+} @else if (seats().length === 0) {
+<div class="empty-state">
+  <h3>No seats found</h3>
+</div>
+} @else {
+<div
+  class="carriage-interior"
+  role="region"
+  [attr.aria-label]="'Coach ' + (selectedCoach()?.number ?? '') + ' seat map'"
+>
+  <div class="carriage-interior-header">
+    <span class="carriage-interior-label">Coach {{ selectedCoach()?.number }}</span>
+    <span class="carriage-interior-class">{{ selectedCoach()?.class }} Class</span>
+  </div>
+
+  <div class="carriage-interior-seating">
+    @for (row of seatRows(); track $index) {
+    <div class="seat-row">
+      @if (row[0]; as seat1) {
+      <button
+        type="button"
+        class="seat-cube"
+        [class.seat-cube-selected]="selectedSeatIds().has(seat1.id)"
+        [class.seat-cube-booked]="unavailableIds().has(seat1.id)"
+        [disabled]="unavailableIds().has(seat1.id)"
+        [attr.aria-label]="
+          'Seat ' +
+          seat1.number +
+          (unavailableIds().has(seat1.id)
+            ? ' (booked)'
+            : selectedSeatIds().has(seat1.id)
+            ? ' (selected)'
+            : '')
+        "
+        [attr.aria-pressed]="selectedSeatIds().has(seat1.id)"
+        (click)="toggleSeat(seat1)"
+      >
+        <span class="seat-cube-back" aria-hidden="true"></span>
+        <span class="seat-cube-num">{{ seat1.number }}</span>
+      </button>
+      } @else {
+      <div class="seat-cube seat-cube-ghost" aria-hidden="true"></div>
+      } @if (row[1]; as seat2) {
+      <button
+        type="button"
+        class="seat-cube"
+        [class.seat-cube-selected]="selectedSeatIds().has(seat2.id)"
+        [class.seat-cube-booked]="unavailableIds().has(seat2.id)"
+        [disabled]="unavailableIds().has(seat2.id)"
+        [attr.aria-label]="
+          'Seat ' +
+          seat2.number +
+          (unavailableIds().has(seat2.id)
+            ? ' (booked)'
+            : selectedSeatIds().has(seat2.id)
+            ? ' (selected)'
+            : '')
+        "
+        [attr.aria-pressed]="selectedSeatIds().has(seat2.id)"
+        (click)="toggleSeat(seat2)"
+      >
+        <span class="seat-cube-back" aria-hidden="true"></span>
+        <span class="seat-cube-num">{{ seat2.number }}</span>
+      </button>
+      } @else {
+      <div class="seat-cube seat-cube-ghost" aria-hidden="true"></div>
+      }
+
+      <div class="seat-row-aisle" role="separator" aria-hidden="true"></div>
+
+      @if (row[2]; as seat3) {
+      <button
+        type="button"
+        class="seat-cube"
+        [class.seat-cube-selected]="selectedSeatIds().has(seat3.id)"
+        [class.seat-cube-booked]="unavailableIds().has(seat3.id)"
+        [disabled]="unavailableIds().has(seat3.id)"
+        [attr.aria-label]="
+          'Seat ' +
+          seat3.number +
+          (unavailableIds().has(seat3.id)
+            ? ' (booked)'
+            : selectedSeatIds().has(seat3.id)
+            ? ' (selected)'
+            : '')
+        "
+        [attr.aria-pressed]="selectedSeatIds().has(seat3.id)"
+        (click)="toggleSeat(seat3)"
+      >
+        <span class="seat-cube-back" aria-hidden="true"></span>
+        <span class="seat-cube-num">{{ seat3.number }}</span>
+      </button>
+      } @else {
+      <div class="seat-cube seat-cube-ghost" aria-hidden="true"></div>
+      }
+
+      <!-- Seat 4 -->
+      @if (row[3]; as seat4) {
+      <button
+        type="button"
+        class="seat-cube"
+        [class.seat-cube-selected]="selectedSeatIds().has(seat4.id)"
+        [class.seat-cube-booked]="unavailableIds().has(seat4.id)"
+        [disabled]="unavailableIds().has(seat4.id)"
+        [attr.aria-label]="
+          'Seat ' +
+          seat4.number +
+          (unavailableIds().has(seat4.id)
+            ? ' (booked)'
+            : selectedSeatIds().has(seat4.id)
+            ? ' (selected)'
+            : '')
+        "
+        [attr.aria-pressed]="selectedSeatIds().has(seat4.id)"
+        (click)="toggleSeat(seat4)"
+      >
+        <span class="seat-cube-back" aria-hidden="true"></span>
+        <span class="seat-cube-num">{{ seat4.number }}</span>
+      </button>
+      } @else {
+      <div class="seat-cube seat-cube-ghost" aria-hidden="true"></div>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="carriage-interior-footer">
+    <div class="seat-legend">
+      <div class="seat-legend-item">
+        <div class="seat-cube seat-cube-demo" aria-hidden="true">
+          <span class="seat-cube-back"></span>
+        </div>
+        <span>Available</span>
+      </div>
+
+      <div class="seat-legend-item">
+        <div class="seat-cube seat-cube-demo seat-cube-selected" aria-hidden="true">
+          <span class="seat-cube-back"></span>
+        </div>
+        <span>Selected</span>
+      </div>
+
+      <div class="seat-legend-item">
+        <div class="seat-cube seat-cube-demo seat-cube-booked" aria-hidden="true">
+          <span class="seat-cube-back"></span>
+        </div>
+        <span>Booked</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="seat-actions">
+  <span class="seat-count">
+    @if (selectedSeats().length > 0) { {{ selectedSeats().length }} seat{{ selectedSeats().length >
+    1 ? 's' : '' }} selected } @else { Select at least one seat }
+  </span>
+
+  <button
+    type="button"
+    class="review-button"
+    [disabled]="selectedSeats().length === 0"
+    (click)="onReview()"
+  >
+    Review Booking
+  </button>
+</div>
+}

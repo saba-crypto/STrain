@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environments';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core/primitives/di';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environments';
 import { SeatsResponse } from '../models/seat.model';
 
 @Injectable({
@@ -10,7 +9,11 @@ import { SeatsResponse } from '../models/seat.model';
 })
 export class SeatService {
   private readonly http = inject(HttpClient);
-  private baseUrl = environment.apiBaseUrl;
+  private readonly baseUrl = environment.apiBaseUrl;
+
+  getSeatsByCoach(coachId: number): Observable<SeatsResponse> {
+    return this.http.get<SeatsResponse>(`${this.baseUrl}/seats/coach/${coachId}`);
+  }
 
   getAvailableSeats(
     scheduleId: number,
