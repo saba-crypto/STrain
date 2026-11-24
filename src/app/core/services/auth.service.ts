@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { LoginCredentials, LoginResponse, RegisterCredentials } from '../models/auth.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environments';

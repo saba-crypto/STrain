@@ -13,6 +13,9 @@ export class ProfileService {
   private baseUrl = environment.apiBaseUrl;
 
   public userResource = rxResource({
+    params: () => {
+      return this.authService.isAuthenticated();
+    },
     stream: () => {
       return this.getUser();
     },
