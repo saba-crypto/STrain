@@ -21,6 +21,7 @@ export class Login {
   private loginModel = signal({
     email: '',
     password: '',
+    rememberMe: false,
   });
 
   public loginForm = form(this.loginModel, (path) => {
@@ -53,8 +54,10 @@ export class Login {
     }
     this.isLoading.set(true);
 
+    const { email, password, rememberMe } = this.loginModel();
+
     this.authService
-      .login(this.loginModel())
+      .login({ email, password }, rememberMe)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         finalize(() => {

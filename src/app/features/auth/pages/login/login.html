@@ -102,7 +102,12 @@
 
           <div class="form-options">
             <label class="remember-me" for="remember-me">
-              <input type="checkbox" id="remember-me" name="rememberMe" class="checkbox-input" />
+              <input
+                [formField]="loginForm.rememberMe"
+                type="checkbox"
+                id="remember-me"
+                class="checkbox-input"
+              />
               <span>Remember me</span>
             </label>
             <a routerLink="/forgot-password" class="forgot-link">Forgot password?</a>
