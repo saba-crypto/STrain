@@ -11,6 +11,8 @@ import { Station } from '../../../models/station.model';
 export class FiltersSidebar {
   public stations = input<Station[]>([]);
   public searchState = input<string>();
+  public originVal = input<string>('', { alias: 'origin' });
+  public destinationVal = input<string>('', { alias: 'destination' });
   public search = output<string>();
   public origin = output<string>();
   public destination = output<string>();

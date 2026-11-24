@@ -1,6 +1,8 @@
 <app-filters-sidebar
   [stations]="stations()"
   [searchState]="searchState()"
+  [origin]="originInput()"
+  [destination]="destinationInput()"
   (origin)="origin.emit($event)"
   (destination)="destination.emit($event)"
   (search)="search.emit($event)"

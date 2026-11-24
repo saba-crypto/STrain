@@ -34,14 +34,15 @@
       <div class="filters-group">
         <p class="filters-label">From</p>
         <select
+          [value]="originVal()"
           #originSelect
           (change)="onOriginChange(originSelect.value)"
           class="filters-input"
           id="origin"
         >
-          <option selected value="">Any origin</option>
+          <option value="">Any origin</option>
           @for (station of stations(); track station.id) {
-          <option [value]="station.name">{{station.name}}</option>
+          <option [value]="station.name" [selected]="station.name === originVal()">{{station.name}}</option>
           }
         </select>
       </div>
@@ -49,14 +50,15 @@
       <div class="filters-group">
         <p class="filters-label">To</p>
         <select
+          [value]="destinationVal()"
           #destinationSelect
           (change)="onDestinationChange(destinationSelect.value)"
           class="filters-input"
           id="destination"
         >
-          <option value="" selected>Any destination</option>
+          <option value="">Any destination</option>
           @for (station of stations(); track station.id) {
-          <option [value]="station.name">{{station.name}}</option>
+          <option [value]="station.name" [selected]="station.name === destinationVal()">{{station.name}}</option>
           }
         </select>
       </div>

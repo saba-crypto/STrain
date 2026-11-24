@@ -1,9 +1,10 @@
-import { Component, signal, inject, computed, Injector } from '@angular/core';
+import { Component, signal, inject, computed, Injector, OnInit } from '@angular/core';
 import { PageHeading } from '../../components/trains/page-heading/page-heading';
 import { PageContent } from '../../components/trains/page-content/page-content';
 import { TrainService } from '../../services/train.service';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { debounceTime, map, switchMap } from 'rxjs';
 import { StationService } from '../../services/station.service';
 
@@ -13,9 +14,10 @@ import { StationService } from '../../services/station.service';
   templateUrl: './trains-page.html',
   styleUrl: './trains-page.scss',
 })
-export class TrainsPage {
+export class TrainsPage implements OnInit {
   private readonly trainServices = inject(TrainService);
   private readonly stationServices = inject(StationService);
+  private readonly route = inject(ActivatedRoute);
   public injector = inject(Injector); //injecting an injector :/
 
   //filterStates
@@ -24,6 +26,17 @@ export class TrainsPage {
   public origin = signal<string>('');
   public destination = signal<string>('');
   public searchState = signal<string>('');
+
+  ngOnInit(): void {
+    const queryOrigin = this.route.snapshot.queryParamMap.get('origin');
+    const queryDestination = this.route.snapshot.queryParamMap.get('destination');
+    if (queryOrigin) {
+      this.origin.set(queryOrigin);
+    }
+    if (queryDestination) {
+      this.destination.set(queryDestination);
+    }
+  }
 
   //filterStates bundle
   public trainsState = computed(() => ({

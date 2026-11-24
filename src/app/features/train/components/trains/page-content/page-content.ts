@@ -15,6 +15,8 @@ export class PageContent {
   public trains = input<Train[]>([]);
   public stations = input<Station[]>([]);
   public searchState = input<string>();
+  public originInput = input<string>('', { alias: 'origin' });
+  public destinationInput = input<string>('', { alias: 'destination' });
   public search = output<string>();
   public origin = output<string>();
   public filterClear = output<void>();
