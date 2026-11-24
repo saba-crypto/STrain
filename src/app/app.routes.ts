@@ -11,7 +11,7 @@ import { SettingsContent } from './features/profile/pages/settings-content/setti
 import { BookingsContent } from './features/profile/pages/bookings-content/bookings-content';
 import { BookingContent } from './features/profile/pages/booking-content/booking-content';
 import { BookingPage } from './features/booking/pages/booking-page/booking-page';
-// import { authGuard } from './core/guards/auth-guard';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -45,7 +45,7 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfilePage,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: '',

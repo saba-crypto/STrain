@@ -71,8 +71,8 @@
 }
 
 .book-button {
-  min-height: 44px;
-  padding: $paddingS $paddingL;
+  @include flexbox(row, center, center);
+  padding: $paddingM $paddingL;
   color: $tertiary-font-clr;
   font: inherit;
   font-size: $font-sizeXS;

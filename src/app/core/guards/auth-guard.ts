@@ -7,7 +7,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const toastService = inject(ToastService);
   const router = inject(Router);
-  if (authService.isAuthenticated()) {
+  if (authService.isAuthenticated() || authService.getAccessToken()) {
     return true;
   } else {
     toastService.show('Please Register First', 'error');
