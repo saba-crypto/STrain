@@ -128,10 +128,15 @@
     </div>
     } @case ('confirm') {
     <div class="stage-section">
-      <div class="stage-header">
-        <h2 class="stage-title">Confirm Booking</h2>
-        <p class="stage-desc">Review and confirm your reservation</p>
-      </div>
+      <app-confirmation-stage
+        [schedule]="scheduleResource.value() ?? null"
+        [selectedCoach]="selectedCoach()"
+        [selectedSeats]="selectedSeats()"
+        [travelDate]="travelDate()"
+        [isSubmitting]="isSubmitting()"
+        (confirmBooking)="onConfirmBooking()"
+        (backToSeats)="prevStep()"
+      />
     </div>
     } }
   </div>

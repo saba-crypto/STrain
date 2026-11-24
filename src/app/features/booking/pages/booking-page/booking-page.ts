@@ -1,20 +1,23 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { map, of } from 'rxjs';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CoachService } from '../../services/coach.service';
 import { ScheduleService } from '../../services/schedule.service';
 import { SeatService } from '../../services/seat.service';
+import { BookingService } from '../../services/booking.service';
+import { ToastService } from '../../../../core/services/toast.service';
 import { Coach } from '../../models/coach.model';
 import { Seat } from '../../models/seat.model';
 import { CoachStage } from '../../components/coach-stage/coach-stage';
 import { DateStage } from '../../components/date-stage/date-stage';
 import { SeatsStage } from '../../components/seats-stage/seats-stage';
+import { ConfirmationStage } from '../../components/confirmation-stage/confirmation-stage';
 
 type BookingProgress = 'coach' | 'date' | 'seats' | 'confirm';
 
 @Component({
-  imports: [CoachStage, DateStage, SeatsStage, RouterLink],
+  imports: [CoachStage, DateStage, SeatsStage, ConfirmationStage, RouterLink],
   selector: 'app-booking-page',
   styleUrl: './booking-page.scss',
   templateUrl: './booking-page.html',
@@ -24,6 +27,9 @@ export class BookingPage {
   private readonly coachService = inject(CoachService);
   private readonly scheduleService = inject(ScheduleService);
   private readonly seatService = inject(SeatService);
+  private readonly bookingService = inject(BookingService);
+  private readonly toastService = inject(ToastService);
+  private readonly router = inject(Router);
 
   //data
   public bookingProgress = signal<BookingProgress>('coach');
@@ -32,6 +38,7 @@ export class BookingPage {
   private selectedCoachId = signal<number | null>(null);
   public travelDate = signal<string | null>(null);
   public selectedSeats = signal<Seat[]>([]);
+  public isSubmitting = signal<boolean>(false);
 
   public currentStepNumber = computed(() => {
     switch (this.bookingProgress()) {
@@ -178,5 +185,35 @@ export class BookingPage {
       return '';
     }
     return time.substring(0, 5);
+  }
+
+  onConfirmBooking(): void {
+    const travelDate = this.travelDate();
+    const scheduleId = this.scheduleId();
+    const seatIds = this.selectedSeats().map((s) => s.id);
+
+    if (!travelDate || !scheduleId || seatIds.length === 0 || this.isSubmitting()) {
+      return;
+    }
+
+    this.isSubmitting.set(true);
+
+    const formattedIsoDate = new Date(travelDate).toISOString();
+
+    this.bookingService.createBooking(scheduleId, seatIds, formattedIsoDate).subscribe({
+      next: () => {
+        this.isSubmitting.set(false);
+        this.toastService.show('Booking created successfully!', 'success');
+        this.router.navigate(['/profile/bookings']);
+      },
+      error: (err) => {
+        this.isSubmitting.set(false);
+        const errorMessage =
+          err?.error?.message ||
+          (typeof err?.error === 'string' ? err.error : null) ||
+          'Failed to create booking. Please try again.';
+        this.toastService.show(errorMessage, 'error');
+      },
+    });
   }
 }

@@ -1,0 +1,184 @@
+@use '../../../../shared/styles/index' as *;
+
+:host {
+  @include flexbox(column, center, flex-start, 40px);
+  width: 100%;
+}
+
+.stage-header {
+  margin-bottom: $paddingL;
+}
+
+.back-stage-button {
+  @include flexbox(row, flex-start, center, $paddingXS);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  margin-bottom: $paddingM;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $accent-clr;
+  }
+}
+
+.back-icon {
+  flex-shrink: 0;
+}
+
+.stage-title {
+  color: $secondary-font-clr;
+  font-size: $font-sizeL;
+  font-weight: 700;
+  margin: 0 0 $paddingXS 0;
+}
+
+.stage-desc {
+  color: $quaternary-font-clr;
+  font-size: $font-sizeS;
+  margin: 0;
+}
+
+.confirmation-container {
+  max-width: 600px;
+  width: 100%;
+  @include flexbox(column, flex-start, stretch, $paddingXL);
+}
+
+.booking-summary-card {
+  @include flexbox(column, flex-start, stretch, 0px);
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusXL;
+  padding: $paddingL;
+  box-shadow: $shadowXL;
+  box-sizing: border-box;
+}
+
+.summary-row {
+  @include flexbox(row, space-between, center, $paddingM);
+  padding: $paddingM 0;
+  border-bottom: 1px solid $primary-border-clr;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.summary-row-total {
+    padding-top: $paddingL;
+
+    .summary-label {
+      font-weight: 600;
+      color: $secondary-font-clr;
+    }
+  }
+}
+
+.summary-label {
+  font-size: $font-sizeS;
+  color: $quaternary-font-clr;
+}
+
+.summary-value {
+  font-size: $font-sizeS;
+  font-weight: 600;
+  color: $secondary-font-clr;
+  text-align: right;
+  word-break: break-word;
+
+  &.total-price {
+    font-size: $font-sizeM;
+    font-weight: 700;
+    color: $accent-clr;
+  }
+}
+
+.confirm-actions {
+  @include flexbox(row, flex-end, center, $paddingM);
+}
+
+.back-button {
+  @include flexbox(row, center, center);
+  padding: $paddingS $paddingXL;
+  min-height: 44px;
+  background-color: transparent;
+  color: $optional-font-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusM;
+  font-size: $font-sizeS;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    color: $accent-clr;
+    border-color: $accent-clr;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.confirm-button {
+  @include flexbox(row, center, center, $paddingS);
+  padding: $paddingS $paddingXL;
+  min-height: 44px;
+  background-color: $accent-clr;
+  color: $tertiary-font-clr;
+  border: none;
+  border-radius: $radiusM;
+  font-size: $font-sizeS;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: $shadow-button-hover;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: $accent-clr-hover;
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.button-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(10, 14, 26, 0.3);
+  border-top-color: $tertiary-font-clr;
+  border-radius: $radius-full;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 500px) {
+  .confirm-actions {
+    @include flexbox(column-reverse, flex-start, stretch, $paddingM);
+
+    .back-button,
+    .confirm-button {
+      width: 100%;
+    }
+  }
+}

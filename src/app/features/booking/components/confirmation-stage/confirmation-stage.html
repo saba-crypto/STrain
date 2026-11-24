@@ -1,0 +1,92 @@
+<div class="stage-header">
+  <button type="button" class="back-stage-button" (click)="onBack()">
+    <svg
+      class="back-icon"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M19 12H5M5 12l7 7M5 12l7-7"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    Back to seats
+  </button>
+
+  <h2 class="stage-title">Confirm Your Booking</h2>
+  <p class="stage-desc">Review your journey details before completing your reservation</p>
+</div>
+
+<div class="confirmation-container">
+  <div class="booking-summary-card">
+    @if (schedule(); as s) {
+    <div class="summary-row">
+      <span class="summary-label">Route</span>
+      <span class="summary-value">{{ s.origin }} &rarr; {{ s.destination }}</span>
+    </div>
+
+    <div class="summary-row">
+      <span class="summary-label">Departure</span>
+      <span class="summary-value">{{ formatTime(s.departureTime) }}</span>
+    </div>
+    }
+
+    <div class="summary-row">
+      <span class="summary-label">Coach</span>
+      <span class="summary-value">
+        Coach {{ selectedCoach()?.number }} &mdash; {{ selectedCoach()?.class }}
+      </span>
+    </div>
+
+    <div class="summary-row">
+      <span class="summary-label">Seats</span>
+      <span class="summary-value">{{ formattedSeats() }}</span>
+    </div>
+
+    <div class="summary-row">
+      <span class="summary-label">Travel Date</span>
+      <span class="summary-value">{{ travelDate() }}</span>
+    </div>
+
+    <div class="summary-row">
+      <span class="summary-label">Price per seat</span>
+      <span class="summary-value">${{ selectedCoach()?.price }}</span>
+    </div>
+
+    <div class="summary-row summary-row-total">
+      <span class="summary-label">Total price</span>
+      <span class="summary-value total-price">${{ totalPrice() }}</span>
+    </div>
+  </div>
+
+  <div class="confirm-actions">
+    <button
+      type="button"
+      class="back-button"
+      [disabled]="isSubmitting()"
+      (click)="onBack()"
+    >
+      Go Back
+    </button>
+
+    <button
+      type="button"
+      class="confirm-button"
+      [disabled]="isSubmitting() || selectedSeats().length === 0"
+      (click)="onConfirm()"
+    >
+      @if (isSubmitting()) {
+      <div class="button-spinner" aria-hidden="true"></div>
+      <span>Booking...</span>
+      } @else {
+      <span>Confirm Booking</span>
+      }
+    </button>
+  </div>
+</div>

@@ -41,11 +41,11 @@ export class BookingService {
     return this.http.put(`${this.baseUrl}/bookings/${id}`, { travelDate });
   }
 
-  createBooking(scheduleId: string, seatId: number[], travelDate: string) {
+  createBooking(scheduleId: number | string, seatId: number[], travelDate: string) {
     return this.http.post(`${this.baseUrl}/bookings`, {
-      scheduleId,
+      scheduleId: typeof scheduleId === 'string' ? Number(scheduleId) : scheduleId,
       seatId,
-      travelDate: travelDate,
+      travelDate,
     });
   }
 }
