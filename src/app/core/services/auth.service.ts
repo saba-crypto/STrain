@@ -41,12 +41,25 @@ export class AuthService {
         this.authLoading.set(false);
       },
       error: () => {
-        this.authenticated.set(false);
-        this.authLoading.set(false);
+        this.refreshToken().subscribe({
+          next: (res) => {
+            if (res) {
+              this.saveTokensToStorage(res.data.accessToken, res.data.refreshToken);
+              this.authenticated.set(true);
+            } else {
+              this.logout();
+            }
+            this.authLoading.set(false);
+          },
+          error: () => {
+            this.authenticated.set(false);
+            this.authLoading.set(false);
+          },
+        });
       },
     });
   }
-  refreshToken() {
+  refreshToken(): Observable<LoginResponse | null> {
     const refreshToken = localStorage.getItem('refreshToken');
     if (!refreshToken) {
       return of(null);
