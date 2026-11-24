@@ -78,7 +78,7 @@ export class ProfileContent {
       return;
     }
     this.isLoading.set(true);
-    const processedModel = this.processProfileModel(this.profileModel()); //replcate "" values with null
+    const processedModel = this.processProfileModel(this.profileModel()); //replace "" values with null
     this.profileService
       .updateUser(processedModel)
       .pipe(
@@ -92,7 +92,6 @@ export class ProfileContent {
           this.toastService.show('Account info was updated successfully!', 'success');
         },
         error: (errorResponse) => {
-          console.log(errorResponse);
           this.toastService.show(
             `${errorResponse.error.title}: ${errorResponse.error.detail}`,
             'error',

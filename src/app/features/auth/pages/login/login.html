@@ -91,7 +91,7 @@
                 autocomplete="current-password"
               />
             </div>
-            @if (loginForm.password().touched() && loginForm.password().invalid()) {
+            @if (loginForm.password().dirty() && loginForm.password().invalid()) {
             <ul class="error-list">
               @for (error of loginForm.password().errors(); track error) {
               <li>{{ error.message }}</li>
