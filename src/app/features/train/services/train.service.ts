@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core/primitives/di';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { TrainsResponse, TrainResponse } from '../models/train.model';
 import { environment } from '../../../../environments/environments';
 
@@ -12,8 +12,14 @@ export class TrainService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.apiBaseUrl;
 
+  public cachedTrains$: Observable<TrainsResponse> | null = null;
   getTrains(take: number = 10, page: number = 1): Observable<TrainsResponse> {
-    return this.http.get<TrainsResponse>(`${this.baseUrl}/trains?Take=${take}&Page=${page}`);
+    if (!this.cachedTrains$) {
+      this.cachedTrains$ = this.http
+        .get<TrainsResponse>(`${this.baseUrl}/trains?Take=${take}&Page=${page}`)
+        .pipe(shareReplay(1));
+    }
+    return this.cachedTrains$;
   }
 
   getTrainById(id: number): Observable<TrainResponse> {
