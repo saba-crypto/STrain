@@ -19,6 +19,98 @@
   box-sizing: border-box;
 }
 
+$image-height: clamp(9rem, 18vw, 10rem);
+
+.train-card-skeleton {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: $primary-clr;
+  border: 1px solid $primary-border-clr;
+  border-radius: $radiusXL;
+}
+
+.skeleton-image {
+  flex-shrink: 0;
+  height: $image-height;
+  background-color: $secondary-clr;
+}
+
+.skeleton-body {
+  flex: 1;
+  padding: $paddingM $paddingM $paddingS;
+  display: flex;
+  flex-direction: column;
+  gap: $paddingS;
+}
+
+.skeleton-header {
+  @include flexbox(row, space-between, center, $paddingS);
+}
+
+.skeleton-stats {
+  @include flexbox(row, flex-start, center, $paddingM);
+  margin-top: auto;
+  padding-top: $paddingXS;
+}
+
+.skeleton-wave {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba($primary-border-clr, 0.45);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba($accent-clr, 0.12) 50%,
+      transparent 100%
+    );
+    animation: skeleton-wave 1.6s ease-in-out infinite;
+  }
+}
+
+.skeleton-pill {
+  border-radius: $radiusM;
+
+  &.skeleton-number {
+    width: 80px;
+    height: 14px;
+  }
+
+  &.skeleton-badge {
+    width: 60px;
+    height: 18px;
+    border-radius: $radius-full;
+  }
+
+  &.skeleton-title {
+    width: 75%;
+    height: 20px;
+  }
+
+  &.skeleton-stat {
+    width: 70px;
+    height: 14px;
+  }
+}
+
+@keyframes skeleton-wave {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .state-icon {
   width: 52px;
   height: 52px;

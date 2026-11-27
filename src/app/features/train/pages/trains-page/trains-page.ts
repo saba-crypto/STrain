@@ -1,12 +1,13 @@
-import { Component, signal, inject, computed, Injector, OnInit } from '@angular/core';
+import { Component, signal, inject, computed, OnInit } from '@angular/core';
 import { PageHeading } from '../../components/trains/page-heading/page-heading';
 import { PageContent } from '../../components/trains/page-content/page-content';
 import { TrainService } from '../../services/train.service';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { debounceTime, map, switchMap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { StationService } from '../../services/station.service';
+import { TrainsResponse } from '../../models/train.model';
 
 @Component({
   selector: 'app-trains-page',
@@ -18,15 +19,48 @@ export class TrainsPage implements OnInit {
   private readonly trainServices = inject(TrainService);
   private readonly stationServices = inject(StationService);
   private readonly route = inject(ActivatedRoute);
-  public injector = inject(Injector); //injecting an injector :/
 
   //filterStates
-  public currentPage = signal<number>(1);
-  public trainsPerPage = signal<number>(10);
   public origin = signal<string>('');
   public destination = signal<string>('');
   public searchState = signal<string>('');
 
+  //filterStates bundle
+  public trainsState = computed(() => ({
+    origin: this.origin(),
+    destination: this.destination(),
+    searchState: this.searchState(),
+  }));
+
+  public stations$ = this.stationServices.getStations().pipe(
+    map((res) => {
+      return res.data;
+    }),
+  );
+
+  //filtration logic
+  public trainsResource = rxResource({
+    defaultValue: [],
+    params: () => this.trainsState(),
+    stream: (request) => {
+      let trainsResponse: Observable<TrainsResponse>;
+      const { origin, destination, searchState } = request.params;
+      if (origin || destination) {
+        trainsResponse = this.trainServices.getTrainsByFilter(origin, destination);
+      } else if (searchState) {
+        trainsResponse = this.trainServices.getTrainsBySearch(searchState.trim());
+      } else {
+        trainsResponse = this.trainServices.getTrains();
+      }
+      return trainsResponse.pipe(
+        map((res) => {
+          return res.data.items;
+        }),
+      );
+    },
+  });
+
+  //query params
   ngOnInit(): void {
     const queryOrigin = this.route.snapshot.queryParamMap.get('origin');
     const queryDestination = this.route.snapshot.queryParamMap.get('destination');
@@ -38,54 +72,9 @@ export class TrainsPage implements OnInit {
     }
   }
 
-  //filterStates bundle
-  public trainsState = computed(() => ({
-    currentPage: this.currentPage(),
-    trainsPerPage: this.trainsPerPage(),
-    origin: this.origin(),
-    destination: this.destination(),
-    searchState: this.searchState(),
-  }));
-
-  public filterState = computed(() => ({
-    origin: this.origin(),
-    destination: this.destination(),
-  }));
-
-  public stations$ = this.stationServices.getStations().pipe(
-    map((res) => {
-      return res.data;
-    }),
-  );
-
-  //filtration logic
-  public trains$ = toObservable(this.trainsState, { injector: this.injector }).pipe(
-    debounceTime(400),
-    switchMap((state) => {
-      if (state.searchState.length > 0) {
-        return this.trainServices.getTrainsBySearch(
-          state.searchState,
-          state.trainsPerPage,
-          state.currentPage,
-        );
-      } else if (state.origin || state.destination) {
-        return this.trainServices.getTrainsByFilter(
-          state.origin,
-          state.destination,
-          state.trainsPerPage,
-          state.currentPage,
-        );
-      } else {
-        return this.trainServices.getTrains(state.trainsPerPage, state.currentPage);
-      }
-    }),
-    map((res) => res.data.items),
-  );
-
   //methods
 
   searchTrains(query: string) {
-    this.currentPage.set(1);
     this.searchState.set(query);
   }
 
@@ -96,18 +85,6 @@ export class TrainsPage implements OnInit {
   changeDestination(destination: string) {
     this.destination.set(destination);
     console.log(this.destination());
-  }
-
-  changeCurrentPage(page: number) {
-    if (page > 0) {
-      this.currentPage.set(page);
-    }
-  }
-
-  changeTrainsPerPage(take: number) {
-    if (take > 0) {
-      this.trainsPerPage.set(take);
-    }
   }
 
   clearFilters() {

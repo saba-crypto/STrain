@@ -1,7 +1,44 @@
 <div class="trains-grid">
-  @if (trains() || trains().length > 0) { @for (train of trains(); track train.id) {
+  <!--render skeletons when trains are loading-->
+  @if (trainsResource().isLoading()) { @for (item of skeletonItems; track item) {
+  <article class="train-card-skeleton" aria-hidden="true">
+    <div class="skeleton-image skeleton-wave"></div>
+    <div class="skeleton-body">
+      <div class="skeleton-header">
+        <span class="skeleton-pill skeleton-number skeleton-wave"></span>
+        <span class="skeleton-pill skeleton-badge skeleton-wave"></span>
+      </div>
+      <div class="skeleton-pill skeleton-title skeleton-wave"></div>
+      <div class="skeleton-stats">
+        <span class="skeleton-pill skeleton-stat skeleton-wave"></span>
+        <span class="skeleton-pill skeleton-stat skeleton-wave"></span>
+      </div>
+    </div>
+  </article>
+  } }
+  <!--render error in case if error happens-->
+  @else if (trainsResource().error()) {
+  <section class="error-state" role="alert">
+    <svg
+      class="state-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 8v5M12 16.5v.5" stroke-linecap="round" />
+    </svg>
+    <h2>Unable to load trains</h2>
+    <p>Something went wrong while fetching trains. Please try again.</p>
+  </section>
+  <!--render trains themselves on success-->
+  } @else if (trainsResource().value()) { @for (train of trainsResource().value(); track train.id) {
   <app-train-card [train]="train"></app-train-card>
-  }@empty {
+  }
+  <!--render empty state if trains array is empty-->
+  @empty {
   <section class="empty-state" aria-live="polite">
     <svg
       class="state-icon"
@@ -19,21 +56,5 @@
     <h2>No trains found</h2>
     <p>Try changing your search or filters to find available trains.</p>
   </section>
-  } } @else {
-  <section class="error-state" role="alert">
-    <svg
-      class="state-icon"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.5"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="8.5" />
-      <path d="M12 8v5M12 16.5v.5" stroke-linecap="round" />
-    </svg>
-    <h2>Unable to load trains</h2>
-    <p>Something went wrong while fetching trains. Please try again.</p>
-  </section>
-  }
+  } }
 </div>

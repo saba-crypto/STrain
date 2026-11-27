@@ -4,7 +4,7 @@
   (origin)="changeOrigin($event)"
   (destination)="changeDestination($event)"
   (filterClear)="clearFilters()"
-  [trains]="(trains$ | async) ?? []"
+  [trainsResource]="trainsResource"
   [stations]="(stations$ | async) ?? []"
   [searchState]="searchState()"
   [origin]="origin()"

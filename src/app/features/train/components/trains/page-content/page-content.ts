@@ -1,4 +1,4 @@
-import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy, ResourceRef } from '@angular/core';
 import { FiltersSidebar } from '../filters-sidebar/filters-sidebar';
 import { TrainCardGrid } from '../train-card-grid/train-card-grid';
 import { Train } from '../../../models/train.model';
@@ -12,7 +12,7 @@ import { Station } from '../../../models/station.model';
   styleUrl: './page-content.scss',
 })
 export class PageContent {
-  public trains = input<Train[]>([]);
+  public trainsResource = input.required<ResourceRef<Train[]>>();
   public stations = input<Station[]>([]);
   public searchState = input<string>();
   public originInput = input<string>('', { alias: 'origin' });

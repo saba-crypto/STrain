@@ -1,4 +1,4 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy, ResourceRef } from '@angular/core';
 import { TrainCard } from '../train-card/train-card';
 import { Train } from '../../../models/train.model';
 
@@ -10,5 +10,6 @@ import { Train } from '../../../models/train.model';
   styleUrl: './train-card-grid.scss',
 })
 export class TrainCardGrid {
-  public trains = input<Train[]>([]);
+  public trainsResource = input.required<ResourceRef<Train[]>>();
+  public readonly skeletonItems = [1, 2, 3, 4, 5];
 }
