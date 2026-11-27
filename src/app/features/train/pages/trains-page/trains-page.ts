@@ -1,4 +1,4 @@
-import { Component, signal, inject, computed, OnInit } from '@angular/core';
+import { Component, signal, inject, computed, OnInit, DestroyRef } from '@angular/core';
 import { PageHeading } from '../../components/trains/page-heading/page-heading';
 import { PageContent } from '../../components/trains/page-content/page-content';
 import { TrainService } from '../../services/train.service';
@@ -19,6 +19,12 @@ export class TrainsPage implements OnInit {
   private readonly trainServices = inject(TrainService);
   private readonly stationServices = inject(StationService);
   private readonly route = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef);
+  private searchTimeout?: ReturnType<typeof setTimeout>;
+
+  constructor() {
+    this.destroyRef.onDestroy(() => clearTimeout(this.searchTimeout));
+  }
 
   //filterStates
   public origin = signal<string>('');
@@ -75,7 +81,10 @@ export class TrainsPage implements OnInit {
   //methods
 
   searchTrains(query: string) {
-    this.searchState.set(query);
+    clearTimeout(this.searchTimeout);
+    this.searchTimeout = setTimeout(() => {
+      this.searchState.set(query);
+    }, 300);
   }
 
   changeOrigin(origin: string) {
